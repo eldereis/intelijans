@@ -1,0 +1,116 @@
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="main.css" />
+<TITLE>RETS Property Search</TITLE>
+</HEAD>
+<BODY>
+<blockquote>
+<br>
+      <img src="images/property.gif">
+<br>
+      <img src="images/searchpropertycopy.gif">
+</blockquote>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+
+    <td valign="top" align="left">
+      <form action="searchPropertyAction.jsp">
+      <b>
+                <blockquote>
+                    Property DMQL Query
+                    <br>
+                <input name=searchQuery size=60 value="(LIST_PRICE=1000000+)">
+                    <br>
+            Query Type
+            <br>
+            <select name="searchQueryType">
+            <option value="DMQL">DMQL</option>
+            <option selected value="DMQL2">DMQL2</option>
+            </select>
+            <br>
+
+
+                    <br>
+                    Class
+                    <br>
+		            <select name="searchClass">
+		            <option value="LotsAndLand">Lots And Land</option>
+		            <option value="RentalHome">Rental Home</option>
+		            <option selected value="ResidentialProperty">Residential Property</option>
+		            </select>
+		            <br>
+                    <br>
+
+                                <i>Optional Parameters</i>
+                                <br>
+
+                                <font size=-1>
+
+                                Selected fields to be displayed (blank for all)
+                                <br>
+                                <input name="searchSelect" size=50 value="">
+                                <br>
+
+                                Compression Type
+                                <br>
+                                <select name="compressionFormat">
+                                <option selected value="none">No Compression</option>
+                                <option  value="gzip">GZip</option>
+                                <option value="bzip">BZip</option>
+                                </select>
+                                <br>
+
+                              Name Space
+                                <br>
+                                <select name="searchStandardNames">
+                                <option selected value="0">System Names</option>
+                                <option value="1">Standard Names</option>
+                                </select>
+                                <br>
+                                Format
+                                <br>
+                                <select name="searchFormat">
+                                <option>COMPACT</option>
+                                <option>COMPACT-DECODED</option>
+                                <option selected>STANDARD-XML</option>
+                                </select>
+                                <br>
+
+                                Count
+                                <br>
+                                <select name="searchCount">
+                                <option selected value="0">No record count returned</option>
+                                <option value="1">Include record count with data</option>
+                                <option value="2">Only record count returned</option>
+                                </select>
+                                <br>
+
+                                Limit Records returned (type NONE for no limit)
+                                <br>
+                                <input name="searchLimit" size=9 value="20">
+                                <br>
+
+                                Offset
+                                <br>
+                                <input name="searchOffset" size=9 value="">
+                                <br>
+
+                                Restricted Indicator (Value to be placed in restricted fields)<br>
+                                <input name="searchRestrictedIndicator" size=9 value="">
+                                <br>
+                                </font>
+                    <br>
+              <input type="image" src="images/submit.gif" width="94" height="37">
+               </blockquote>
+              </b>
+      </form>
+      <br>
+      <br>
+      <br>
+      <a href="technicalcomments.htm#SearchProperty"><img src="images/techcomments.gif" width="256" height="57" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="businesscomments.htm#SearchProperty"><img src="images/busicomment.gif" width="256" height="57" border="0"></a>
+    </td>
+  </tr>
+</table>
+</BODY>
+</HTML>

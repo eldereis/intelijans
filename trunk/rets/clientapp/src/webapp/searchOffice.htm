@@ -1,0 +1,108 @@
+<HTML>
+<HEAD>
+<link rel="stylesheet" href="main.css" type="text/css">
+<TITLE>RETS Office Search</TITLE>
+</HEAD>
+<BODY>
+<blockquote>
+<br>
+    <img src="images/office.gif">
+<br>
+    <img src="images/officesearchcopy.gif">
+</blockquote>
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+
+    <td valign="top" align="left">
+      <form action="searchOfficeAction.jsp">
+      <b>
+        <blockquote>
+        Office DMQL/DMQL2 Query
+        <br>
+        <input name=searchQuery size=60 value="(CITY=C*)">
+        <br>
+            Query Type
+            <br>
+            <select name="searchQueryType">
+            <option value="DMQL">DMQL</option>
+            <option selected value="DMQL2">DMQL2</option>
+            </select>
+            <br>
+
+        <br>
+
+
+            <i>Optional Parameters</i>
+            <br>
+
+            <font size=-1>
+
+            Selected fields to be displayed (blank for all)
+            <br>
+            <input name="searchSelect" size=50 value="">
+            <br>
+
+            Compression Type
+            <br>
+            <select name="compressionFormat">
+            <option selected value="none">No Compression</option>
+            <option value="gzip">GZip</option>
+            <option value="bzip">BZip</option>
+            </select>
+            <br>
+
+            Name Space
+            <br>
+            <select name="searchStandardNames">
+            <option selected value="0">System Names</option>
+            <option value="1">Standard Names</option>
+            </select>
+            <br>
+
+            Format
+            <br>
+            <select name="searchFormat">
+            <option>COMPACT</option>
+            <option>COMPACT-DECODED</option>
+            <option selected>STANDARD-XML</option>
+            </select>
+            <br>
+
+            Count
+            <br>
+            <select name="searchCount">
+            <option selected value="0">No record count returned</option>
+            <option value="1">Include record count with data</option>
+            <option value="2">Only record count returned</option>
+            </select>
+            <br>
+
+            Limit Records returned
+            <br>
+            <input name="searchLimit" size=9 value="NONE">
+            <br>
+
+            Offset
+            <br>
+            <input name="offset" size=9 value="">
+            <br>
+
+            Restricted Indicator (Value to be placed in restricted fields)<br>
+            <input name="searchRestrictedIndicator" size=9 value="">
+            <br>
+            </font>
+
+        <br>
+      <input type="image" src="images/submit.gif" width="98" height="37">
+         </blockquote>
+      </b>
+      </form>
+      <br>
+      <br>
+      <br>
+      <a href="technicalcomments.htm#OfficeSearch"><img src="images/techcomments.gif" width="256" height="57" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="businesscomments.htm#OfficeSearch"><img src="images/busicomment.gif" width="256" height="57" border="0"></a></p>
+    </td>
+  </tr>
+</table>
+</BODY>
+</HTML>

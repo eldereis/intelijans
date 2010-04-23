@@ -1,0 +1,73 @@
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="main.css" />
+<TITLE>RETS Property Search</TITLE>
+</HEAD>
+<BODY>
+<blockquote>
+<br>
+      <img src="images/property.gif">
+<br>
+      <img src="images/searchpropertycopy.gif">
+</blockquote>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+
+    <td valign="top" align="left">
+      <form action="searchPropertyAction.jsp">
+      <b>
+                <blockquote>
+                    Below are some examples of ResidentialProperty Queries using DMQL2.
+                    These queries all use the RETS standard names vocabulary.  You can view the COMPACT data
+                    response to see how the Server interprets the different DMQL parameters,
+                    and use the Dynamic search pages to create your own standard or system names
+                    queries using DMQL.
+                    <br/>
+                    <br/>
+
+                    <select name="searchQuery">
+                <option value="(ListDate=2005-01-01+),(ListPrice=500000-)">(ListDate=2005-01-01+),(ListPrice=500000-)
+                <option value="(Baths=3)|(Baths=4)">(Baths=3)|(Baths=4)
+                <option value="(ListPrice=.EMPTY.),(Beds=7-11)">(ListPrice=.EMPTY.),(Beds=7-11)
+				<option value="(CITY=*C),NOT(StreetName=WILLOWTREE)">(CITY=*C),NOT(StreetName=WILLOWTREE)
+				<option value="(County=SB),(PublicRemarks=*GOOD*)">(County=SB),(PublicRemarks=*GOOD*)
+				</select>
+                    <br>
+                    <br/>
+            Query Type: DMQL2
+            <br>
+            <input name="searchQueryType" value="DMQL2">
+            <br/>
+                    Class:  ResidentialProperty
+                    <br>
+		            <input name="searchClass" value="ResidentialProperty">
+		            <br>
+                              Name Space: StandardNames
+                                <br>
+                                <input name="searchStandardNames" value="1">
+                                <br>
+                                Format: COMPACT
+                                <br>
+                                <input name="searchFormat" value="COMPACT">
+                                <br>
+                                Limit: 5
+                                <br>
+                                <input name="searchLimit" value="5">
+                                <br>
+
+
+                    <br>
+              <input type="image" src="images/submit.gif" width="94" height="37">
+               </blockquote>
+              </b>
+      </form>
+      <br>
+      <br>
+      <br>
+      <a href="technicalcomments.htm#SearchProperty"><img src="images/techcomments.gif" width="256" height="57" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="businesscomments.htm#SearchProperty"><img src="images/busicomment.gif" width="256" height="57" border="0"></a>
+    </td>
+  </tr>
+</table>
+</BODY>
+</HTML>

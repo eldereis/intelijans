@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="main.css" />
+<TITLE>RETS Agent Search</TITLE>
+</HEAD>
+<BODY>
+
+<blockquote>
+      <br>
+        <img src="images/agent.gif">
+        <br>
+      <img src="images/searchagentcopy.gif">
+</blockquote>
+
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+
+    <td valign="top" align="left">
+
+      <form action="searchAgentAction.jsp">
+      <b>
+        <blockquote>
+            DMQL Query
+            <br>
+            <input name="searchQuery" size=50 value="(LASTNAME=Hill)">
+            <br>
+            <input type="HIDDEN" name="searchQueryType" value="DMQL2"/>
+
+<!--            Query Type
+            <br>
+            <select name="searchQueryType">
+            <option value="DMQL">DMQL</option>
+            <option selected value="DMQL2">DMQL2</option>
+            </select> -->
+
+            <br>
+            <br>
+
+            <i>Optional Parameters</i>
+            <br>
+
+            <font size=-1>
+
+            Selected fields to be displayed (blank for all)
+            <br>
+            <input name="searchSelect" size=50 value="">
+            <br>
+
+
+            Compression Type
+            <br>
+            <select name="compressionFormat">
+            <option selected value="none">No Compression</option>
+            <option value="gzip">GZip</option>
+            <option value="bzip">BZip</option>
+            </select>
+            <br>
+
+
+            Name Space
+            <br>
+            <select name="searchStandardNames">
+            <option selected value="0">System Names</option>
+            <option value="1">Standard Names</option>
+            </select>
+            <br>
+
+            Format
+            <br>
+            <select name="searchFormat">
+            <option>COMPACT</option>
+            <option>COMPACT-DECODED</option>
+            <option selected>STANDARD-XML</option>
+            </select>
+            <br>
+
+            Count
+            <br>
+            <select name="searchCount">
+            <option selected value="0">No record count returned</option>
+            <option value="1">Include record count with data</option>
+            <option value="2">Only record count returned</option>
+            </select>
+            <br>
+
+            Limit Records returned (type NONE for no limit)
+            <br>
+            <input name="searchLimit" size=9 value="15">
+            <br>
+
+            Offset
+            <br>
+            <input name="searchOffset" size=9 value="">
+            <br>
+
+            Restricted Indicator (Value to be placed in restricted fields)<br>
+            <input name="searchRestrictedIndicator" size=9 value="">
+            <br>
+           </font>
+
+            <br>
+            <br>
+            <input type="image" src="images/submit.gif" width="98" height="37" border="0">
+        </blockquote>
+        </form>
+    </td>
+  </tr>
+</table>
+</BODY>
+</HTML>

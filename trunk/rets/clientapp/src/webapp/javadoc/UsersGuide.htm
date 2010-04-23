@@ -1,0 +1,2307 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 9">
+<meta name=Originator content="Microsoft Word 9">
+<link rel=File-List href="./UsersGuide_files/filelist.xml">
+<link rel=Edit-Time-Data href="./UsersGuide_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<title>Users Guide</title>
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Subject>NAR RETS Reference Implementation</o:Subject>
+  <o:Author>Tom Weber</o:Author>
+  <o:Template>rup_prggd.dot</o:Template>
+  <o:LastAuthor>Jeffery Brush</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>316</o:TotalTime>
+  <o:LastPrinted>2002-01-08T16:07:00Z</o:LastPrinted>
+  <o:Created>2002-12-09T20:10:00Z</o:Created>
+  <o:LastSaved>2002-12-09T20:10:00Z</o:LastSaved>
+  <o:Pages>20</o:Pages>
+  <o:Words>2489</o:Words>
+  <o:Characters>14190</o:Characters>
+  <o:Company>Avantia</o:Company>
+  <o:Bytes>16896</o:Bytes>
+  <o:Lines>118</o:Lines>
+  <o:Paragraphs>28</o:Paragraphs>
+  <o:CharactersWithSpaces>17426</o:CharactersWithSpaces>
+  <o:Version>9.4402</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery>
+  <w:DisplayVerticalDrawingGridEvery>0</w:DisplayVerticalDrawingGridEvery>
+  <w:UseMarginsForDrawingGridOrigin/>
+  <w:Compatibility>
+   <w:WW6BorderRules/>
+   <w:FootnoteLayoutLikeWW8/>
+   <w:ShapeLayoutLikeWW8/>
+   <w:AlignTablesRowByRow/>
+   <w:ForgetLastTabAlignment/>
+   <w:LayoutRawTableWidth/>
+   <w:LayoutTableRowsApart/>
+  </w:Compatibility>
+ </w:WordDocument>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:Helvetica;
+	panose-1:2 11 6 4 2 2 2 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:536902279 -2147483648 8 0 511 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;
+	mso-font-charset:2;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:0 268435456 0 0 -2147483648 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:553679495 -2147483648 8 0 66047 0;}
+@font-face
+	{font-family:"Book Antiqua";
+	panose-1:2 4 6 2 5 3 5 3 3 4;
+	mso-font-charset:0;
+	mso-generic-font-family:roman;
+	mso-font-pitch:variable;
+	mso-font-signature:647 0 0 0 159 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+h1
+	{mso-style-next:Normal;
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-indent:0in;
+	line-height:12.0pt;
+	mso-pagination:none;
+	page-break-after:avoid;
+	mso-outline-level:1;
+	mso-list:l0 level1 lfo1;
+	font-size:12.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:0pt;
+	mso-bidi-font-weight:normal;}
+h2
+	{mso-style-parent:"Heading 1";
+	mso-style-next:Normal;
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-indent:0in;
+	line-height:12.0pt;
+	mso-pagination:none;
+	page-break-after:avoid;
+	mso-outline-level:2;
+	mso-list:l0 level2 lfo1;
+	font-size:10.0pt;
+	font-family:Arial;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-font-weight:normal;}
+h3
+	{mso-style-parent:"Heading 1";
+	mso-style-next:Normal;
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-indent:0in;
+	line-height:12.0pt;
+	mso-pagination:none;
+	page-break-after:avoid;
+	mso-outline-level:3;
+	mso-list:l0 level3 lfo1;
+	font-size:10.0pt;
+	font-family:Arial;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-font-style:italic;}
+h4
+	{mso-style-parent:"Heading 1";
+	mso-style-next:Normal;
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-indent:0in;
+	line-height:12.0pt;
+	mso-pagination:none;
+	page-break-after:avoid;
+	mso-outline-level:4;
+	mso-list:l0 level4 lfo1;
+	font-size:10.0pt;
+	font-family:Arial;
+	mso-bidi-font-family:"Times New Roman";
+	font-weight:normal;}
+h5
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-indent:0in;
+	line-height:12.0pt;
+	mso-pagination:none;
+	mso-outline-level:5;
+	mso-list:l0 level5 lfo1;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	font-weight:normal;}
+h6
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-indent:0in;
+	line-height:12.0pt;
+	mso-pagination:none;
+	mso-outline-level:6;
+	mso-list:l0 level6 lfo1;
+	font-size:11.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-indent:0in;
+	line-height:12.0pt;
+	mso-pagination:none;
+	mso-outline-level:7;
+	mso-list:l0 level7 lfo1;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-indent:0in;
+	line-height:12.0pt;
+	mso-pagination:none;
+	mso-outline-level:8;
+	mso-list:l0 level8 lfo1;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-indent:0in;
+	line-height:12.0pt;
+	mso-pagination:none;
+	mso-outline-level:9;
+	mso-list:l0 level9 lfo1;
+	font-size:9.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	font-weight:bold;
+	mso-bidi-font-weight:normal;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoToc1, li.MsoToc1, div.MsoToc1
+	{mso-style-next:Normal;
+	margin-top:12.0pt;
+	margin-right:.5in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	line-height:12.0pt;
+	mso-pagination:none;
+	tab-stops:right 6.5in;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc2, li.MsoToc2, div.MsoToc2
+	{mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:.5in;
+	margin-bottom:0in;
+	margin-left:.3in;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	tab-stops:right 6.5in;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc3, li.MsoToc3, div.MsoToc3
+	{mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.6in;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	tab-stops:1.0in right 6.5in;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc4, li.MsoToc4, div.MsoToc4
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:30.0pt;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc5, li.MsoToc5, div.MsoToc5
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:40.0pt;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc6, li.MsoToc6, div.MsoToc6
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:50.0pt;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc7, li.MsoToc7, div.MsoToc7
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:60.0pt;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc8, li.MsoToc8, div.MsoToc8
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:70.0pt;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoToc9, li.MsoToc9, div.MsoToc9
+	{mso-style-update:auto;
+	mso-style-next:Normal;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:80.0pt;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoNormalIndent, li.MsoNormalIndent, div.MsoNormalIndent
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:45.0pt;
+	margin-bottom:.0001pt;
+	text-indent:-45.0pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{margin-top:2.0pt;
+	margin-right:0in;
+	margin-bottom:2.0pt;
+	margin-left:.25in;
+	text-indent:-.25in;
+	line-height:12.0pt;
+	mso-pagination:lines-together;
+	page-break-after:avoid;
+	border:none;
+	mso-border-bottom-alt:solid black .75pt;
+	padding:0in;
+	mso-padding-alt:0in 0in 0in 0in;
+	font-size:8.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Helvetica;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{margin:0in;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	tab-stops:center 3.0in right 6.0in;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{margin:0in;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	tab-stops:center 3.0in right 6.0in;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+span.MsoFootnoteReference
+	{mso-ansi-font-size:10.0pt;
+	vertical-align:super;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-next:Normal;
+	margin:0in;
+	margin-bottom:.0001pt;
+	text-align:center;
+	mso-pagination:none;
+	font-size:18.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.MsoBodyText, li.MsoBodyText, div.MsoBodyText
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.5in;
+	line-height:12.0pt;
+	mso-pagination:lines-together;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoBodyTextIndent, li.MsoBodyTextIndent, div.MsoBodyTextIndent
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-style:italic;}
+p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-align:center;
+	mso-line-height-alt:12.0pt;
+	mso-pagination:none;
+	font-size:18.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-ansi-language:EN-AU;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoBodyText2, li.MsoBodyText2, div.MsoBodyText2
+	{margin:0in;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	color:blue;
+	font-style:italic;
+	mso-bidi-font-style:normal;}
+p.MsoBodyTextIndent2, li.MsoBodyTextIndent2, div.MsoBodyTextIndent2
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p.MsoDocumentMap, li.MsoDocumentMap, div.MsoDocumentMap
+	{margin:0in;
+	margin-bottom:.0001pt;
+	line-height:12.0pt;
+	mso-pagination:none;
+	background:navy;
+	font-size:10.0pt;
+	font-family:Tahoma;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.Paragraph2, li.Paragraph2, div.Paragraph2
+	{mso-style-name:Paragraph2;
+	margin-top:4.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	color:black;
+	mso-ansi-language:EN-AU;}
+p.Tabletext, li.Tabletext, div.Tabletext
+	{mso-style-name:Tabletext;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	line-height:12.0pt;
+	mso-pagination:lines-together;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.Bullet1, li.Bullet1, div.Bullet1
+	{mso-style-name:Bullet1;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	text-indent:-.3in;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.Bullet2, li.Bullet2, div.Bullet2
+	{mso-style-name:Bullet2;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:1.0in;
+	margin-bottom:.0001pt;
+	text-indent:-.25in;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	color:navy;}
+p.MainTitle, li.MainTitle, div.MainTitle
+	{mso-style-name:"Main Title";
+	margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:3.0pt;
+	margin-left:0in;
+	text-align:center;
+	mso-pagination:none;
+	font-size:16.0pt;
+	mso-bidi-font-size:10.0pt;
+	font-family:Arial;
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";
+	mso-font-kerning:14.0pt;
+	font-weight:bold;
+	mso-bidi-font-weight:normal;}
+p.Paragraph1, li.Paragraph1, div.Paragraph1
+	{mso-style-name:Paragraph1;
+	margin-top:4.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.Paragraph3, li.Paragraph3, div.Paragraph3
+	{mso-style-name:Paragraph3;
+	margin-top:4.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:76.5pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.Paragraph4, li.Paragraph4, div.Paragraph4
+	{mso-style-name:Paragraph4;
+	margin-top:4.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:112.5pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.Body, li.Body, div.Body
+	{mso-style-name:Body;
+	margin-top:6.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Book Antiqua";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.Bullet, li.Bullet, div.Bullet
+	{mso-style-name:Bullet;
+	margin-top:6.0pt;
+	margin-right:.25in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:0in;
+	mso-pagination:widow-orphan;
+	tab-stops:list .25in left .5in;
+	font-size:10.0pt;
+	font-family:"Book Antiqua";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-family:"Times New Roman";}
+p.InfoBlue, li.InfoBlue, div.InfoBlue
+	{mso-style-name:InfoBlue;
+	mso-style-update:auto;
+	mso-style-next:"Body Text";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:.25in;
+	line-height:12.0pt;
+	mso-pagination:none;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";
+	mso-bidi-font-style:italic;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-vertical-page-align:middle;
+	mso-header:url("./UsersGuide_files/header.htm") h1;
+	mso-even-footer:url("./UsersGuide_files/header.htm") ef1;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+@page Section2
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-header:url("./UsersGuide_files/header.htm") h2;
+	mso-even-footer:url("./UsersGuide_files/header.htm") ef1;
+	mso-footer:url("./UsersGuide_files/header.htm") f2;
+	mso-first-header:url("./UsersGuide_files/header.htm") fh2;
+	mso-first-footer:url("./UsersGuide_files/header.htm") ff2;
+	mso-paper-source:0;}
+div.Section2
+	{page:Section2;}
+ /* List Definitions */
+@list l0
+	{mso-list-id:-5;
+	mso-list-template-ids:317771790;}
+@list l0:level1
+	{mso-level-style-link:"Heading 1";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:0in;
+	mso-level-legacy-space:.1in;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level2
+	{mso-level-style-link:"Heading 2";
+	mso-level-text:"%1\.%2";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:0in;
+	mso-level-legacy-space:.1in;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level3
+	{mso-level-style-link:"Heading 3";
+	mso-level-text:"%1\.%2\.%3";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:0in;
+	mso-level-legacy-space:.1in;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level4
+	{mso-level-style-link:"Heading 4";
+	mso-level-text:"%1\.%2\.%3\.%4";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:0in;
+	mso-level-legacy-space:.1in;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level5
+	{mso-level-style-link:"Heading 5";
+	mso-level-text:"%1\.%2\.%3\.%4\.%5";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:0in;
+	mso-level-legacy-space:.1in;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level6
+	{mso-level-style-link:"Heading 6";
+	mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:0in;
+	mso-level-legacy-space:.1in;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level7
+	{mso-level-style-link:"Heading 7";
+	mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:0in;
+	mso-level-legacy-space:.1in;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level8
+	{mso-level-style-link:"Heading 8";
+	mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7\.%8";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:0in;
+	mso-level-legacy-space:.1in;
+	margin-left:0in;
+	text-indent:0in;}
+@list l0:level9
+	{mso-level-style-link:"Heading 9";
+	mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7\.%8\.%9";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:0in;
+	mso-level-legacy-space:.1in;
+	margin-left:0in;
+	text-indent:0in;}
+@list l1
+	{mso-list-id:-2;
+	mso-list-type:simple;
+	mso-list-template-ids:-1;}
+@list l1:level1
+	{mso-level-start-at:0;
+	mso-level-text:*;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:0in;
+	text-indent:0in;}
+@list l2
+	{mso-list-id:2246483;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l3
+	{mso-list-id:168915092;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l4
+	{mso-list-id:323357487;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1730672872 1825859010 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.75in;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l5
+	{mso-list-id:378939969;
+	mso-list-template-ids:-1783174520;}
+@list l5:level1
+	{mso-level-start-at:4;
+	mso-level-text:%1;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;}
+@list l5:level2
+	{mso-level-start-at:5;
+	mso-level-text:"%1\.%2";
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;}
+@list l5:level3
+	{mso-level-text:"%1\.%2\.%3";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	margin-left:.5in;
+	text-indent:-.5in;}
+@list l5:level4
+	{mso-level-text:"%1\.%2\.%3\.%4";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	margin-left:.5in;
+	text-indent:-.5in;}
+@list l5:level5
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5";
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	margin-left:.5in;
+	text-indent:-.5in;}
+@list l5:level6
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6";
+	mso-level-tab-stop:.75in;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.75in;}
+@list l5:level7
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7";
+	mso-level-tab-stop:.75in;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.75in;}
+@list l5:level8
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7\.%8";
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	margin-left:1.0in;
+	text-indent:-1.0in;}
+@list l5:level9
+	{mso-level-text:"%1\.%2\.%3\.%4\.%5\.%6\.%7\.%8\.%9";
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	margin-left:1.0in;
+	text-indent:-1.0in;}
+@list l6
+	{mso-list-id:382369027;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1739904792 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l6:level1
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	margin-left:1.0in;
+	text-indent:-.25in;}
+@list l7
+	{mso-list-id:399207876;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l8
+	{mso-list-id:477649521;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-386238882 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l8:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l9
+	{mso-list-id:574896836;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l10
+	{mso-list-id:750857118;
+	mso-list-type:hybrid;
+	mso-list-template-ids:578331816 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l10:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l11
+	{mso-list-id:759915342;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l11:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l12
+	{mso-list-id:800654185;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-585978434 -1058000310 67698703 -507577884 67698689 67698713 67698715 67698703 67698713 67698715;}
+@list l12:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.75in;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l12:level2
+	{mso-level-tab-stop:1.25in;
+	mso-level-number-position:left;
+	margin-left:1.25in;
+	text-indent:-.25in;}
+@list l12:level3
+	{mso-level-tab-stop:135.0pt;
+	mso-level-number-position:left;
+	margin-left:135.0pt;
+	text-indent:-.25in;}
+@list l12:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.75in;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l13
+	{mso-list-id:836578373;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l13:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l14
+	{mso-list-id:848833361;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l14:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l15
+	{mso-list-id:863324188;
+	mso-list-type:simple;
+	mso-list-template-ids:-428573274;}
+@list l15:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l16
+	{mso-list-id:916280433;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l16:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l17
+	{mso-list-id:980502277;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1115966046 1322258770 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l17:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	margin-left:1.0in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l18
+	{mso-list-id:1016274310;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1581979486 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l18:level1
+	{mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	margin-left:1.0in;
+	text-indent:-.25in;}
+@list l19
+	{mso-list-id:1019350253;
+	mso-list-type:hybrid;
+	mso-list-template-ids:47512362 1825859010 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l19:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.75in;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l20
+	{mso-list-id:1119453051;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l20:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l21
+	{mso-list-id:1239511248;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l21:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l22
+	{mso-list-id:1292979827;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-790351266 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l22:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l23
+	{mso-list-id:1331983147;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l23:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l24
+	{mso-list-id:1390375758;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l24:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l25
+	{mso-list-id:1474785530;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-282568064 67698703 67698713 67698715 67698703 67698713 67698715 67698703 67698713 67698715;}
+@list l25:level1
+	{mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l26
+	{mso-list-id:1831828806;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l26:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l27
+	{mso-list-id:1844464907;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-568178678 67698689 67698691 67698693 67698689 67698691 67698693 67698689 67698691 67698693;}
+@list l27:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.75in;
+	mso-level-number-position:left;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l28
+	{mso-list-id:1911693098;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l28:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l29
+	{mso-list-id:1949696507;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l29:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l30
+	{mso-list-id:1969311946;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l30:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l31
+	{mso-list-id:2078553303;
+	mso-list-type:simple;
+	mso-list-template-ids:67698689;}
+@list l31:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.25in;
+	mso-level-number-position:left;
+	margin-left:.25in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level1 lfo2
+	{mso-level-start-at:1;
+	mso-level-number-format:bullet;
+	mso-level-numbering:continue;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:.25in;
+	mso-level-legacy-space:0in;
+	margin-left:.75in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l1:level1 lfo7
+	{mso-level-number-format:bullet;
+	mso-level-numbering:continue;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	mso-level-legacy:yes;
+	mso-level-legacy-indent:.25in;
+	mso-level-legacy-space:0in;
+	text-indent:-.25in;
+	font-family:Symbol;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2050"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=EN-US link=blue vlink=purple style='tab-interval:.5in'>
+
+<div class=Section1>
+
+<p class=MsoTitle align=right style='text-align:right'><span style='mso-field-code:
+"SUBJECT  \\* MERGEFORMAT"'>NAR RETS Reference Implementation</span></p>
+
+<p class=MsoTitle align=right style='text-align:right'>Users Guide</p>
+
+<p class=MsoTitle align=right style='text-align:right'><span style='mso-tab-count:
+1'>       </span></p>
+
+<p class=MsoTitle align=right style='text-align:right'><span style='font-size:
+14.0pt;mso-bidi-font-size:10.0pt'>Version &lt;1.1&gt;<o:p></o:p></span></p>
+
+<p class=MsoTitle><span style='font-size:14.0pt;mso-bidi-font-size:10.0pt'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+</div>
+
+<span style='font-size:10.0pt;font-family:"Times New Roman";mso-fareast-font-family:
+"Times New Roman";mso-ansi-language:EN-US;mso-fareast-language:EN-US;
+mso-bidi-language:AR-SA'><br clear=all style='page-break-before:always;
+mso-break-type:section-break'>
+</span>
+
+<div class=Section2>
+
+<p class=MsoTitle>Revision History</p>
+
+<table border=1 cellspacing=0 cellpadding=0 style='border-collapse:collapse;
+ border:none;mso-border-alt:solid windowtext .75pt;mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+ <tr>
+  <td width=154 valign=top style='width:1.6in;border:solid windowtext .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext align=center style='text-align:center'><b
+  style='mso-bidi-font-weight:normal'>Date<o:p></o:p></b></p>
+  </td>
+  <td width=77 valign=top style='width:.8in;border:solid windowtext .75pt;
+  border-left:none;mso-border-left-alt:solid windowtext .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext align=center style='text-align:center'><b
+  style='mso-bidi-font-weight:normal'>Version<o:p></o:p></b></p>
+  </td>
+  <td width=250 valign=top style='width:2.6in;border:solid windowtext .75pt;
+  border-left:none;mso-border-left-alt:solid windowtext .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext align=center style='text-align:center'><b
+  style='mso-bidi-font-weight:normal'>Description<o:p></o:p></b></p>
+  </td>
+  <td width=154 valign=top style='width:1.6in;border:solid windowtext .75pt;
+  border-left:none;mso-border-left-alt:solid windowtext .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext align=center style='text-align:center'><b
+  style='mso-bidi-font-weight:normal'>Author<o:p></o:p></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=154 valign=top style='width:1.6in;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext>01/03/2001</p>
+  </td>
+  <td width=77 valign=top style='width:.8in;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext>1.0</p>
+  </td>
+  <td width=250 valign=top style='width:2.6in;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext>&lt;details&gt;</p>
+  </td>
+  <td width=154 valign=top style='width:1.6in;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext>Tom Weber</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=154 valign=top style='width:1.6in;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext>12/06/2002</p>
+  </td>
+  <td width=77 valign=top style='width:.8in;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext>1.1</p>
+  </td>
+  <td width=250 valign=top style='width:2.6in;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext>Updated for RETS 1.5</p>
+  </td>
+  <td width=154 valign=top style='width:1.6in;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext>Paula O’Brien</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=154 valign=top style='width:1.6in;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=77 valign=top style='width:.8in;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=250 valign=top style='width:2.6in;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=154 valign=top style='width:1.6in;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=154 valign=top style='width:1.6in;border:solid windowtext .75pt;
+  border-top:none;mso-border-top-alt:solid windowtext .75pt;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=77 valign=top style='width:.8in;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=250 valign=top style='width:2.6in;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+  <td width=154 valign=top style='width:1.6in;border-top:none;border-left:none;
+  border-bottom:solid windowtext .75pt;border-right:solid windowtext .75pt;
+  mso-border-top-alt:solid windowtext .75pt;mso-border-left-alt:solid windowtext .75pt;
+  padding:0in 5.4pt 0in 5.4pt'>
+  <p class=Tabletext><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<b style='mso-bidi-font-weight:normal'><span style='font-size:18.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial;mso-fareast-font-family:"Times New Roman";
+mso-bidi-font-family:"Times New Roman";mso-ansi-language:EN-US;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA'><br clear=all style='page-break-before:always'>
+</span></b>
+
+<p class=MsoTitle>Table of Contents</p>
+
+<p class=MsoToc1 style='tab-stops:.3in right 6.5in'><!--[if supportFields]><span
+style='mso-element:field-begin'></span><span style="mso-spacerun:
+yes"> </span>TOC \o &quot;1-3&quot; <span style='mso-element:field-separator'></span><![endif]--><span
+style='mso-bidi-font-size:12.0pt'>1.</span><span style='font-size:12.0pt'><span
+style='mso-tab-count:1'>     </span></span><span style='mso-bidi-font-size:
+12.0pt'>System Requirements</span><span style='mso-tab-count:1'>                                                                                                                                                              </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207711 \h <span
+style='mso-element:field-separator'></span><![endif]-->4<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700310031000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc2 style='tab-stops:50.0pt right 6.5in'>1.1<span
+style='font-size:12.0pt'><span style='mso-tab-count:1'>      </span></span>Hardware/Operating
+System Requirements<span style='mso-tab-count:1'>                                                                                                            </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207712 \h <span
+style='mso-element:field-separator'></span><![endif]-->4<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700310032000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc2 style='tab-stops:50.0pt right 6.5in'>1.2<span
+style='font-size:12.0pt'><span style='mso-tab-count:1'>      </span></span>Software
+Requirements<span style='mso-tab-count:1'>                                                                                                                                               </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207713 \h <span
+style='mso-element:field-separator'></span><![endif]-->4<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700310033000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc1 style='tab-stops:.3in right 6.5in'><span style='mso-bidi-font-size:
+12.0pt'>2.</span><span style='font-size:12.0pt'><span style='mso-tab-count:
+1'>     </span></span><span style='mso-bidi-font-size:12.0pt'>Installing the
+Reference Implementation</span><span style='mso-tab-count:1'>                                                                                                                              </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207714 \h <span
+style='mso-element:field-separator'></span><![endif]-->4<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700310034000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc1 style='tab-stops:.3in right 6.5in'><span style='mso-bidi-font-size:
+12.0pt'>3.</span><span style='font-size:12.0pt'><span style='mso-tab-count:
+1'>     </span></span><span style='mso-bidi-font-size:12.0pt'>Starting the
+Server</span><span style='mso-tab-count:1'>                                                                                                                                                                   </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207715 \h <span
+style='mso-element:field-separator'></span><![endif]-->5<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700310035000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc1 style='tab-stops:.3in right 6.5in'><span style='mso-bidi-font-size:
+12.0pt'>4.</span><span style='font-size:12.0pt'><span style='mso-tab-count:
+1'>     </span></span><span style='mso-bidi-font-size:12.0pt'>Using the Client</span><span
+style='mso-tab-count:1'>                                                                                                                                                                        </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207716 \h <span
+style='mso-element:field-separator'></span><![endif]-->5<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700310036000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc2 style='tab-stops:50.0pt right 6.5in'>4.1<span
+style='font-size:12.0pt'><span style='mso-tab-count:1'>      </span></span>Login<span
+style='mso-tab-count:1'>                                                                                                                                                                             </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207717 \h <span
+style='mso-element:field-separator'></span><![endif]-->5<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700310037000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc2 style='tab-stops:50.0pt right 6.5in'>4.2<span
+style='font-size:12.0pt'><span style='mso-tab-count:1'>      </span></span>Search<span
+style='mso-tab-count:1'>                                                                                                                                                                            </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207718 \h <span
+style='mso-element:field-separator'></span><![endif]-->6<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700310038000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc3 style='tab-stops:1.0in 80.0pt right 6.5in'>4.2.1<span
+style='font-size:12.0pt'><span style='mso-tab-count:1'>    </span></span>Property
+Search<span style='mso-tab-count:1'>                                                                                                                                                  </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207719 \h <span
+style='mso-element:field-separator'></span><![endif]-->6<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700310039000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc3 style='tab-stops:1.0in 80.0pt right 6.5in'>4.2.2<span
+style='font-size:12.0pt'><span style='mso-tab-count:1'>    </span></span>Agent
+Search<span style='mso-tab-count:1'>                                                                                                                                                    </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207720 \h <span
+style='mso-element:field-separator'></span><![endif]-->11<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700320030000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc3 style='tab-stops:1.0in 80.0pt right 6.5in'>4.2.3<span
+style='font-size:12.0pt'><span style='mso-tab-count:1'>    </span></span>Office
+Search<span style='mso-tab-count:1'>                                                                                                                                                    </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207721 \h <span
+style='mso-element:field-separator'></span><![endif]-->14<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700320031000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc2 style='tab-stops:50.0pt right 6.5in'>4.3<span
+style='font-size:12.0pt'><span style='mso-tab-count:1'>      </span></span>Monitor<span
+style='mso-tab-count:1'>                                                                                                                                                                       </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207722 \h <span
+style='mso-element:field-separator'></span><![endif]-->17<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700320032000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc2 style='tab-stops:50.0pt right 6.5in'>4.4<span
+style='font-size:12.0pt'><span style='mso-tab-count:1'>      </span></span>Misc<span
+style='mso-tab-count:1'>                                                                                                                                                                             </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207723 \h <span
+style='mso-element:field-separator'></span><![endif]-->18<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700320033000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc3 style='tab-stops:1.0in 80.0pt right 6.5in'>4.4.1<span
+style='font-size:12.0pt'><span style='mso-tab-count:1'>    </span></span>View
+Metadata<span style='mso-tab-count:1'>                                                                                                                                                 </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207724 \h <span
+style='mso-element:field-separator'></span><![endif]-->18<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700320034000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc2 style='tab-stops:50.0pt right 6.5in'>4.5<span
+style='font-size:12.0pt'><span style='mso-tab-count:1'>      </span></span>JavaDoc<span
+style='mso-tab-count:1'>                                                                                                                                                                      </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207725 \h <span
+style='mso-element:field-separator'></span><![endif]-->19<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700320035000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoToc1 style='tab-stops:.3in right 6.5in'><span style='mso-bidi-font-size:
+12.0pt'>5.</span><span style='font-size:12.0pt'><span style='mso-tab-count:
+1'>     </span></span><span style='mso-bidi-font-size:12.0pt'>Appendix A --
+Software License Information</span><span style='mso-tab-count:1'>                                                                                                                    </span><!--[if supportFields]><span
+style='mso-element:field-begin'></span> PAGEREF _Toc27207726 \h <span
+style='mso-element:field-separator'></span><![endif]-->20<!--[if gte mso 9]><xml>
+ <w:data>08D0C9EA79F9BACE118C8200AA004BA90B02000000080000000D0000005F0054006F006300320037003200300037003700320036000000</w:data>
+</xml><![endif]--><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><span
+style='font-size:12.0pt'><o:p></o:p></span></p>
+
+<p class=MsoTitle><!--[if supportFields]><span style='mso-element:field-end'></span><![endif]--><br
+clear=all style='page-break-before:always'>
+RETS Reference Implementation Users Guide</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal>A publicly available install of the RETS Reference
+Implementation site can be accessed at the following URL : <a
+href="http://rets.avantia-inc.com/">http://rets.avantia-inc.com</a></p>
+
+<h1 style='margin-left:0in;text-indent:0in'><a name="_Toc27207711"><![if !supportLists]>1.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>System
+Requirements</a></h1>
+
+<h2 style='margin-left:0in;text-indent:0in'><a name="_Toc27207712"><![if !supportLists]>1.1<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Hardware/Operating
+System Requirements</a></h2>
+
+<p class=MsoBodyTextIndent>The Reference Implementation of RETS 1.5 has been
+tested on Windows 2000 and RedHat Linux 7.2 and 8.0.<span style="mso-spacerun:
+yes">  </span>A minimum of 400 Mhz processor and 128 Megabytes of system memory
+is suggested.<span style="mso-spacerun: yes">   </span>100 Megabytes of disk
+space should be plenty.</p>
+
+<h2 style='margin-left:0in;text-indent:0in'><a name="_Toc27207713"><![if !supportLists]>1.2<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Software
+Requirements</a></h2>
+
+<p class=MsoBodyTextIndent>All of the software used to develop and deploy the
+RETS 1.5 reference implementation is either Open Source or freely
+available.<span style="mso-spacerun: yes">  </span>The License Information
+section has links to details of each of the piece of software used.<span
+style="mso-spacerun: yes">  </span>If you have the reference implementation CD,
+all required software will be provided on the CD.</p>
+
+<p class=MsoNormal style='margin-left:.75in;text-indent:-.25in;mso-list:l12 level1 lfo22;
+tab-stops:list .75in'><![if !supportLists]><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Java JDK 1.2 or greater.</p>
+
+<p class=MsoNormal style='margin-left:.75in;text-indent:-.25in;mso-list:l12 level1 lfo22;
+tab-stops:list .75in'><![if !supportLists]><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>A Java application server that supports version 2.2 or
+better of the Java Servlet Specification<span style="mso-spacerun: yes"> 
+</span>and 1.1 or better of the Java Server Pages Specification.<span
+style="mso-spacerun: yes">  </span>The Reference Implementation was developed
+and tested using Apache Tomcat/4.1.12.<span style="mso-spacerun: yes"> 
+</span>These installation instructions assume Apache Tomcat version 4.1.12 is
+the Servlet/JSP Engine used.<span style="mso-spacerun: yes">  </span>Tomcat can
+downloaded from the Apache Jakarta site: <a
+href="http://jakarta.apache.org/tomcat/index.html">http://jakarta.apache.org/tomcat/index.html</a></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-indent:-.25in;mso-list:l12 level1 lfo22;
+tab-stops:list .75in'><![if !supportLists]><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>A Jakarta Ant build script supplied with the Reference
+Implementation.<span style="mso-spacerun: yes">  </span>Ant is not required but
+it makes things much easier.<span style="mso-spacerun: yes">  </span>Make sure
+to setup the environment variables “ANT_HOME” and “JAVA_HOME”. Ant can be
+downloaded from the Apache Jakarta site: <a
+href="http://jakarta.apache.org/ant/">http://jakarta.apache.org/ant/</a></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-indent:-.25in;mso-list:l12 level1 lfo22;
+tab-stops:list .75in'><![if !supportLists]><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>MySQL is used as the database engine.<span
+style="mso-spacerun: yes">  </span>Version 3.23.52 of MySQL was used in
+development and testing of the Reference Implementation but later versions
+should work as well.<span style="mso-spacerun: yes">  </span>MySQL can be
+downloaded from the following site: <a href="http://www.mysql.com/">http://www.mysql.com/</a></p>
+
+<h1 style='margin-left:0in;text-indent:0in'><a name="_Toc27207714"><![if !supportLists]>2.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Installing
+the Reference Implementation</a></h1>
+
+<p class=MsoBodyTextIndent>Install the all software listed in the Software
+Requirements section. </p>
+
+<p class=MsoBodyTextIndent>Download the “rets15Reference.zip” from <a
+href="http://www.rets-wg.org/"><span style='color:windowtext;text-decoration:
+none;text-underline:none'>www.rets-wg.org</span></a>.<span style="mso-spacerun:
+yes">  </span>Extract rets15Reference.zip to a directory of your choice.<span
+style="mso-spacerun: yes">  </span></p>
+
+<p class=MsoBodyTextIndent>Install the data for the Reference implementation:</p>
+
+<p class=MsoBodyTextIndent>Start the MySQL server</p>
+
+<p class=MsoBodyTextIndent>Change directory to<span style="mso-spacerun: yes"> 
+</span>&lt;MySQL_install_directory&gt;\bin</p>
+
+<p class=MsoBodyTextIndent>Issue the following command:</p>
+
+<p class=MsoBodyTextIndent><span style="mso-spacerun: yes">   </span>mysql &lt;
+${rets_install_directory}\rets\data\RETS\rets15DB.dmp</p>
+
+<p class=MsoBodyTextIndent><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:.75in;text-indent:-.25in;mso-list:l12 level1 lfo22;
+tab-stops:list .75in'><![if !supportLists]><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Copy the following jar files to
+&lt;TOMCAT_HOME&gt;\common\endorsed:</p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='mso-bidi-font-style:
+italic'>${rets_install_directory}</span>\lib\jakarta-regexp-1.2.jar </p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='mso-bidi-font-style:
+italic'>${rets_install_directory}</span>\lib\BZip2.jar</p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='mso-bidi-font-style:
+italic'>${rets_install_directory}</span>\lib\jakarta-regexp-1.2.jar</p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='mso-bidi-font-style:
+italic'>${rets_install_directory}</span>\lib\log4j.jar</p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='mso-bidi-font-style:
+italic'>${rets_install_directory}</span>\lib\mm.mysql-2.0.7-bin.jar</p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='mso-bidi-font-style:
+italic'>${rets_install_directory}</span>\lib\xercesImpl.jar</p>
+
+<p class=MsoNormal style='margin-left:.75in'><span style='mso-bidi-font-style:
+italic'>${rets_install_directory}</span>\lib\xmlParserAPIs.jar</p>
+
+<p class=MsoNormal style='margin-left:.75in;text-indent:-.25in;mso-list:l27 level1 lfo23;
+tab-stops:list .75in'><![if !supportLists]><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>In the file,
+&lt;rets_install_directory&gt;\build\rets.properties, set the “TOMCAT_HOME”
+property to the directory where Tomcat is installed.</p>
+
+<p class=MsoNormal style='margin-left:.75in;text-indent:-.25in;mso-list:l27 level1 lfo23;
+tab-stops:list .75in'><![if !supportLists]><span style='font-family:Symbol'>·<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Configure the MySQL JDBC connection by modifying the
+“rets.DATABASE_URL” property in the file
+&lt;rets_install_directory&gt;\web\RETSDBConnection.properties”.<span
+style="mso-spacerun: yes">  </span>If MySQL is running on the same machine as
+Tomcat, this file does not need to change.</p>
+
+<p class=InfoBlue>Change directory to “&lt;rets_install_directory&gt;\build and
+type “ant deploy”.<span style="mso-spacerun: yes">  </span>The “build.xml” ant
+script will build the java source, build the javadocs, create the web archive
+“rets.war” and deploy rets.war to &lt;TOMCAT_HOME&gt;/webapps directory. The
+RETS server and client will be deployed the next time Tomcat is started.</p>
+
+<h1 style='margin-left:0in;text-indent:0in'><a name="_Toc27207715"><![if !supportLists]>3.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Starting
+the Server</a></h1>
+
+<p class=InfoBlue>Starting Tomcat should start the RETS Server if everything is
+installed properly.<span style="mso-spacerun: yes">  </span>The MySQL server
+must be running to use the RETS Server.</p>
+
+<h1 style='margin-left:0in;text-indent:0in'><a name="_Toc27207716"><![if !supportLists]>4.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Using
+the Client</a></h1>
+
+<p class=MsoNormal style='margin-left:.5in'>The RETS client is implemented as
+an HTML application. Start by connecting to <a
+href="http://localhost:8080/rets/RETS.htm">http://localhost:8080/rets/RETS.htm</a>
+assuming Tomcat is installed on the local machine. A copy of the Reference
+Implementation is running at the following address: <a
+href="http://rets.avantia-inc.com/">http://rets.avantia-inc.com</a>. Figure 1
+shows the menu for the RETS Client along the left side and the Login form to
+the right.<span style="mso-spacerun: yes">  </span>The menu is separated into
+five sections: Login, Search, Monitor, Misc and JavaDoc.<span
+style="mso-spacerun: yes">   </span></p>
+
+<h2 style='margin-left:0in;text-indent:0in'><a name="_Toc27207717"><![if !supportLists]>4.1<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Login</a></h2>
+
+<p class=MsoNormal style='margin-left:.5in'>The login page is displayed by
+default or by selecting “Login” from the menu.<span style="mso-spacerun: yes"> 
+</span>The login page as seen in figure 1 has 3 fields.<span
+style="mso-spacerun: yes">  </span>The “Server URL” field is for the URL of the
+RETS Server and defaults to “http://localhost:8080/rets/server/login”.<span
+style="mso-spacerun: yes">    </span>You can also use the RETS Client to
+connect to other RETS Servers.<span style="mso-spacerun: yes">  </span>Just
+change the “Server URL” from<span style="mso-spacerun: yes">  </span>the
+default to the URL of the RETS Server you wish to connect to.<span
+style="mso-spacerun: yes">  </span>You will need to know the Username and
+Password for that server, and also which version of RETS—1.0 or 1.5---the
+server supports.<span style="mso-spacerun: yes">  </span></p>
+
+<p class=MsoNormal style='margin-left:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:.5in'>The Username field is used for the
+login id of the user and defaults to a valid id for the reference
+implementation.<span style="mso-spacerun: yes">  </span>The password field is
+used for the users password, in the reference implementation the password is
+not set for any user. Just type in a valid Username and leave the Password
+blank.<span style="mso-spacerun: yes">  </span></p>
+
+<p class=MsoNormal style='margin-left:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:.5in'>RETS Version tells the server<span
+style="mso-spacerun: yes">  </span>which RETS version you wish to use:<span
+style="mso-spacerun: yes">  </span>RETS 1.0 or the new RETS 1.5 version.<span
+style="mso-spacerun: yes">  </span>The RETS Reference Implementation supports
+backward compatibility for all 1.* releases.<span style="mso-spacerun: yes"> 
+</span>See the RETS 1.5 specification at <a href="http://www.rets-wg.org/">http://www.rets-wg.org</a>
+to understand the differences between these two releases.<span
+style="mso-spacerun: yes">  </span></p>
+
+<p class=MsoNormal style='margin-left:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:.5in'>When the submit button is selected
+on the login page the RETS client attempts to establish a connection to the
+RETS Server identified by the “Server URL” field and send a login transaction.
+The results of the login transaction are displayed in a text box on the web
+browser.</p>
+
+<p class=MsoNormal style='margin-left:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:.5in'>Selecting logout from the menu
+sends a logout transaction the server.</p>
+
+<p class=MsoNormal style='margin-left:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:.5in'>Once you have successfully logged
+in, you will notice that the RETS Client displays a “Transaction time” for each
+transaction.<span style="mso-spacerun: yes">  </span>This measures the time, in
+seconds, that it takes for the Client request and Server response to
+execute.<span style="mso-spacerun: yes">  </span>You can use the transaction
+times to test the performance of various transactions against an expected
+benchmark.<span style="mso-spacerun: yes">  </span>(NOTE:<span
+style="mso-spacerun: yes">  </span>the transaction time does not include any
+formatting done by the Client after receiving a response from the Server, such
+as table formatting performed by the Client for display purposes in this
+implementation.)</p>
+
+<p class=MsoNormal align=center style='text-align:center'><!--[if gte vml 1]><v:shapetype
+ id="_x0000_t75" coordsize="21600,21600" o:spt="75" o:preferrelative="t"
+ path="m@4@5l@4@11@9@11@9@5xe" filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:468pt;
+ height:480pt'>
+ <v:imagedata src="./UsersGuide_files/image001.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=624 height=640
+src="./UsersGuide_files/image002.jpg" v:shapes="_x0000_i1025"><![endif]></p>
+
+<p class=MsoNormal align=center style='text-align:center'>Figure 1 RETS Client
+login page</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<h2 style='margin-left:0in;text-indent:0in'><a name="_Toc27207718"><![if !supportLists]>4.2<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Search</a>
+</h2>
+
+<p class=MsoBodyTextIndent2>The Reference Implementation supports Property,
+Agent and Office searches. </p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<h3 style='margin-left:0in;text-indent:0in'><a name="_Toc27207719"><![if !supportLists]>4.2.1<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Property
+Search</a></h3>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2>Selecting “Property” from the menu brings up the
+Property Search page as seen in Figure 2.<span style="mso-spacerun: yes"> 
+</span>The “Property DMQL Query” field allows the entry of a DMQL query.<span
+style="mso-spacerun: yes">  </span>The “Property DMQL Query” field is populated
+with a valid DMQL query by default. </p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2>The Query Type dropdown allows you to select which
+version of DMQL you wish to use.<span style="mso-spacerun: yes">  </span>If you
+are requesting data from<span style="mso-spacerun: yes">  </span>a RETS 1.0
+server, you must select DMQL.<span style="mso-spacerun: yes">  </span>If you
+are requesting data from a RETS 1.5 server, you must select DMQL2.</p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2>The Class field represents the type of Property you
+are searching for.<span style="mso-spacerun: yes">  </span>Property classes
+supported by RETS are: RES, MUL, LND, RENT, and COM.<span style="mso-spacerun:
+yes">  </span>The Reference Implementation only contains data for residential
+(RES) properties.<span style="mso-spacerun: yes">  </span>If you are requesting
+data from a different RETS Server, you can use the “View Metadata” transaction
+to find out what types of<span style="mso-spacerun: yes">  </span>properties
+that server supports and enter that data in this field.</p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2>There are Optional Parameters you may wish to
+include in your query. </p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2>“Selected Fields” allows you to select a subset of
+fields to be returned, instead of returning all fields available for a
+listing.<span style="mso-spacerun: yes">  </span>You may type these fields in a
+comma-separated list.<span style="mso-spacerun: yes">  </span>If you leave this
+field blank, all available fields will be returned.</p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2><span style="mso-spacerun:
+yes"> </span>“Compression Type”<span style="mso-spacerun: yes">  </span>will only
+work if the RETS Server you are requesting data from supports compression.<span
+style="mso-spacerun: yes">  </span>The RETS Reference Implementation Server
+supports two types of compression:<span style="mso-spacerun: yes">  </span>GZIP
+and BZIP.<span style="mso-spacerun: yes">    </span>Compression is very useful
+if you have requested data in an XML format.</p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2>“Name Space” will allow you to choose to request
+and return data using either System Names (names unique to the database on the
+RETS Server) or Standard Names (a selection of standard field names defined by
+the RETS specification).</p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2>“Format” allows you to choose whether you want your
+data returned as Compact, Compact-Decoded or Standard XML.<span
+style="mso-spacerun: yes">  </span></p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2>“Count” will provide you with a count of the number
+of records being returned from your search.<span style="mso-spacerun: yes"> 
+</span>You can choose to have No record count returned, Include record count
+with data, or Only record count returned.<span style="mso-spacerun: yes"> 
+</span>This last option returns only the number of records which met your
+search criteria, but not the records themselves.<span style="mso-spacerun:
+yes">  </span></p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2>“Limit Records returned” allows you to set the
+number of records you wish to returned from your query.<span
+style="mso-spacerun: yes">  </span>If you wish to return ALL<span
+style="mso-spacerun: yes">  </span>records that match your search criteria,
+type NONE in this field.</p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2>“Offset” allows you to get a record set that begins
+with a record other than the first.<span style="mso-spacerun: yes">  </span>For
+example, if you set your offset to “20”, you can get the record set back
+beginning with the 20<sup>th</sup> record.<span style="mso-spacerun: yes"> 
+</span>Leaving this field blank will default to a record set that begins with
+the first record.</p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2>Some servers have fields that are restricted, and
+you will be unable to view these fields when they are sent as part of your record.<span
+style="mso-spacerun: yes">  </span>Normally these fields will be sent as null
+(or empty) values.<span style="mso-spacerun: yes">  </span>“Restricted
+Indicator”<span style="mso-spacerun: yes">  </span>allows you to type in
+another value for restricted fields.<span style="mso-spacerun: yes"> 
+</span>For example, you may choose “xxxx”, and any field that is restricted
+will be returned with a value of<span style="mso-spacerun: yes">  </span>“xxxx”
+instead of the default null.</p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2>Once you have entered all your search
+criteria,<span style="mso-spacerun: yes">  </span>selecting<span
+style="mso-spacerun: yes">  </span>the “Submit” button sends to the RETS
+Server<span style="mso-spacerun: yes">  </span>a property search transaction based
+on the DMQL and options entered.</p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2 align=center style='margin-left:0in;text-align:
+center'><!--[if gte vml 1]><v:shape id="_x0000_i1026" type="#_x0000_t75"
+ style='width:468pt;height:480pt'>
+ <v:imagedata src="./UsersGuide_files/image003.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=624 height=640
+src="./UsersGuide_files/image004.jpg" v:shapes="_x0000_i1026"><![endif]></p>
+
+<p class=MsoBodyTextIndent2 align=center style='margin-left:0in;text-align:
+center'>Figure 2 Property Search Page</p>
+
+<p class=MsoBodyTextIndent2 align=center style='margin-left:0in;text-align:
+center'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:.5in'>Figure 3 shows the response page
+for a Search Property Transaction.<span style="mso-spacerun: yes">  </span>At
+the top of the page is the text of the Response status in this case
+“searchProperty Successful”.<span style="mso-spacerun: yes">    </span>The
+response data is shown in both table format and the raw XML in a textbox below
+the table.<span style="mso-spacerun: yes">  </span>The RETS Client also
+exercises a GetObject transaction every time a Property Search is
+performed.<span style="mso-spacerun: yes">  </span>You can view this image by
+selecting the “Photo” hyperlink for a particular listing.</p>
+
+<p class=MsoNormal style='margin-left:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:.5in'>The table near the top of the page
+is generated using XSLT from the XML data displayed in the textbox.<span
+style="mso-spacerun: yes">  </span>The table contains four hyperlinks for each
+record, shown as <u><span style='color:#3366FF'>blue underlined text</span></u><span
+style='color:#3366FF'>.<span style="mso-spacerun: yes">  </span></span>Selecting
+a<span style="mso-spacerun: yes">  </span>hyperlink will send an additional
+search transaction to the RETS Server.<span style="mso-spacerun: yes"> 
+</span>Selecting the<span style="mso-spacerun: yes">  </span>hyperlink in the
+“Listing Agent ID” column performs a Search Agent Transaction for the agent
+whose license number<span style="mso-spacerun: yes">  </span>matches the
+selected Listing Agent ID.<span style="mso-spacerun: yes">  </span>Selecting
+the hyperlink in the “City” column performs a Search Property Transaction for
+all listings in the selected city.<span style="mso-spacerun: yes"> 
+</span>Selecting the hyperlink in the Zip column performs a Search<span
+style="mso-spacerun: yes">  </span>Property Transaction for<span
+style="mso-spacerun: yes">  </span>listings in the selected zip code.</p>
+
+<p class=MsoNormal style='margin-left:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:.5in'>If you have selected a Compact or
+Compact-Decoded format, the resulting table will be slightly different and not
+contain any hyperlinks or photo images. Figure 3 shows the response page for a
+Search Property Transaction in Compact format.</p>
+
+<p class=MsoNormal style='margin-left:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal align=center style='margin-left:.5in;text-align:center'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1027" type="#_x0000_t75" style='width:467.25pt;height:387.75pt'>
+ <v:imagedata src="./UsersGuide_files/image005.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=623 height=517
+src="./UsersGuide_files/image006.jpg" v:shapes="_x0000_i1027"><![endif]></p>
+
+<p class=MsoNormal align=center style='margin-left:.5in;text-align:center'>Figure
+3 Search Property Response Page, Compact Format</p>
+
+<p class=MsoNormal align=center style='margin-left:.5in;text-align:center'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2 style='page-break-after:avoid'><span
+style="mso-spacerun: yes"> </span>Figure 4 shows the response page for a Search
+Property Transaction in Standard XML format.</p>
+
+<p class=MsoNormal style='margin-left:.5in;page-break-after:avoid'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal align=center style='margin-left:.5in;text-align:center;
+page-break-after:avoid'><!--[if gte vml 1]><v:shape id="_x0000_i1028" type="#_x0000_t75"
+ style='width:467.25pt;height:387.75pt'>
+ <v:imagedata src="./UsersGuide_files/image007.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=623 height=517
+src="./UsersGuide_files/image008.jpg" v:shapes="_x0000_i1028"><![endif]></p>
+
+<p class=MsoBodyTextIndent2 align=center style='margin-left:0in;text-align:
+center'>Figure 4 Search Property Response Page, Standard XML Format</p>
+
+<p class=MsoBodyTextIndent2 style='margin-left:0in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2 style='margin-left:0in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent><i style='mso-bidi-font-style:normal'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></i></p>
+
+<h3 style='margin-left:0in;text-indent:0in'><a name="_Toc27207720"><![if !supportLists]>4.2.2<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Agent
+Search</a></h3>
+
+<p class=MsoBodyTextIndent2 style='page-break-after:avoid'><span
+style='mso-bidi-font-style:italic'>Selecting “Agent” search brings up the
+Search Agent page seen in Figure 5.<span style="mso-spacerun: yes"> 
+</span>This page is used to send an Agent search to the RETS Server.<span
+style="mso-spacerun: yes">  </span>The “Search by Agent Last Name” field
+defaults to a valid Last Name for the Reference Implementation.<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='page-break-after:avoid'><span
+style='mso-bidi-font-style:italic'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent2 style='page-break-after:avoid'><span
+style='mso-bidi-font-style:italic'>The Optional Parameters for Agent Search are
+the same as those used in the Property Search.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in;page-break-after:avoid'><span
+style='mso-bidi-font-style:italic'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent align=center style='margin-left:0in;text-align:center'><i><!--[if gte vml 1]><v:shape
+ id="_x0000_i1029" type="#_x0000_t75" style='width:467.25pt;height:387.75pt'>
+ <v:imagedata src="./UsersGuide_files/image009.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=623 height=517
+src="./UsersGuide_files/image010.jpg" v:shapes="_x0000_i1029"><![endif]></i></p>
+
+<p class=MsoNormal align=center style='text-align:center'>Figure 5 Search Agent
+page</p>
+
+<p class=MsoNormal align=center style='margin-left:.5in;text-align:center'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:.5in'>Figure 5 shows the Search Agent
+reply page.<span style="mso-spacerun: yes">  </span>The status is displayed at
+the top, formatted response text is displayed in an HTML table and the raw XML
+is displayed in a textbox at the bottom part of the page.<span
+style="mso-spacerun: yes">  </span>There are two columns which contain
+hyperlinks that will allow you to perform additional transactions.<span
+style="mso-spacerun: yes">  </span>Selecting the<span style="mso-spacerun:
+yes">  </span>hyperlink in the “Name” column of the HTML table will perform a
+Search Property Transaction for all properties where the selected agent is the
+listing agent.<span style="mso-spacerun: yes">  </span>Selecting the<span
+style="mso-spacerun: yes">  </span>hyperlink in the “Office ID” column will
+perform a Search Office Transaction where the office ID is equal to the
+selected id.</p>
+
+<p class=MsoNormal style='margin-left:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoHeader align=center style='text-align:center;tab-stops:.5in'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1030" type="#_x0000_t75" style='width:467.25pt;height:387.75pt'>
+ <v:imagedata src="./UsersGuide_files/image011.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=623 height=517
+src="./UsersGuide_files/image012.jpg" v:shapes="_x0000_i1030"><![endif]></p>
+
+<p class=MsoNormal align=center style='margin-left:.5in;text-align:center'>Figure
+6 Search Agent Response page, Standard XML</p>
+
+<p class=MsoNormal align=center style='margin-left:.5in;text-align:center'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2 style='page-break-after:avoid'>If you selected
+Compact or Compact-Decoded as your Format, your response page will contain a
+slightly different table, seen in Figure 7.<span style="mso-spacerun: yes"> 
+</span>There are no hyperlinks available in the Compact view.</p>
+
+<p class=MsoBodyTextIndent2 style='page-break-after:avoid'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2 align=center style='text-align:center;page-break-after:
+avoid'><!--[if gte vml 1]><v:shape id="_x0000_i1031" type="#_x0000_t75"
+ style='width:467.25pt;height:387.75pt'>
+ <v:imagedata src="./UsersGuide_files/image013.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=623 height=517
+src="./UsersGuide_files/image014.jpg" v:shapes="_x0000_i1031"><![endif]></p>
+
+<p class=MsoBodyTextIndent2 align=center style='text-align:center'>Figure 7
+Search Agent Response page, Compact Format</p>
+
+<h3 style='margin-left:0in;text-indent:0in'><a name="_Toc27207721"><![if !supportLists]>4.2.3<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Office
+Search</a></h3>
+
+<p class=MsoBodyTextIndent2 style='page-break-after:avoid'>Selecting the
+“Office” search brings up the Office Search page shown in Figure 8.<span
+style="mso-spacerun: yes">  </span>The “Search Office DMQL Query” field
+defaults to a valid DMQL query<i>.<span style="mso-spacerun: yes">  </span></i><span
+style='mso-bidi-font-style:italic'>The Optional Parameters for Office Search
+are the same as those used in the Property and Agent Searches.<o:p></o:p></span></p>
+
+<p class=MsoBodyTextIndent style='page-break-after:avoid'><i style='mso-bidi-font-style:
+normal'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></i></p>
+
+<p class=MsoBodyTextIndent style='page-break-after:avoid'><i style='mso-bidi-font-style:
+normal'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></i></p>
+
+<p class=MsoBodyTextIndent style='page-break-after:avoid'>A Search Office
+Transaction is sent to the RETS Server when the Submit button is selected.</p>
+
+<p class=MsoBodyTextIndent style='page-break-after:avoid'><i style='mso-bidi-font-style:
+normal'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></i></p>
+
+<p class=MsoNormal align=center style='text-align:center'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1032" type="#_x0000_t75" style='width:467.25pt;height:483pt'>
+ <v:imagedata src="./UsersGuide_files/image015.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=623 height=644
+src="./UsersGuide_files/image016.jpg" v:shapes="_x0000_i1032"><![endif]></p>
+
+<p class=MsoNormal align=center style='margin-left:.5in;text-align:center'>Figure
+8 Search Office page</p>
+
+<p class=MsoNormal align=center style='margin-left:.5in;text-align:center'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent>Figure 9 shows the Search Office Response page in
+Standard XML Format.<span style="mso-spacerun: yes">  </span>The status is
+displayed at the top of the page, formatted response text is displayed in an
+HTML table and the raw XML is displayed in a textbox at the bottom part of the
+page.<span style="mso-spacerun: yes">  </span>Selecting the hyperlink in the
+“Name” column of the HTML table will perform a Search Agent Transaction for all
+Agents at the selected office.</p>
+
+<p class=MsoBodyTextIndent style='page-break-after:avoid'><i style='mso-bidi-font-style:
+normal'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></i></p>
+
+<p class=MsoNormal align=center style='text-align:center'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1033" type="#_x0000_t75" style='width:467.25pt;height:436.5pt'>
+ <v:imagedata src="./UsersGuide_files/image017.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=623 height=582
+src="./UsersGuide_files/image018.jpg" v:shapes="_x0000_i1033"><![endif]></p>
+
+<p class=MsoNormal align=center style='text-align:center'>Figure 9 Search
+Office Response page, Standard XML Format</p>
+
+<p class=MsoNormal align=center style='text-align:center'><i><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></i></p>
+
+<p class=MsoBodyTextIndent2 style='page-break-after:avoid'>If you selected
+Compact or Compact-Decoded as your Format, your response page will contain a
+slightly different table, seen in Figure 10.<span style="mso-spacerun: yes"> 
+</span>There are no hyperlinks available in the Compact view.</p>
+
+<p class=MsoBodyTextIndent2 style='page-break-after:avoid'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2 align=center style='text-align:center'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1034" type="#_x0000_t75" style='width:467.25pt;height:436.5pt'>
+ <v:imagedata src="./UsersGuide_files/image019.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=623 height=582
+src="./UsersGuide_files/image020.jpg" v:shapes="_x0000_i1034"><![endif]></p>
+
+<p class=MsoBodyTextIndent2 align=center style='text-align:center'>Figure
+10<span style="mso-spacerun: yes">  </span>Search Office Response page, Compact
+Format</p>
+
+<p class=MsoBodyTextIndent2><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent><i style='mso-bidi-font-style:normal'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></i></p>
+
+<p class=MsoBodyTextIndent><i style='mso-bidi-font-style:normal'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></i></p>
+
+<h2 style='margin-left:0in;text-indent:0in'><a name="_Toc27207722"><![if !supportLists]>4.3<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Monitor</a></h2>
+
+<p class=MsoNormal style='margin-left:.5in;page-break-after:avoid'>Selecting
+the “Client Monitor” opens a new browser window, the contents of the RETS
+Client log file is streamed to the window.<span style="mso-spacerun: yes"> 
+</span>The “Server Monitor” also opens in a new window and the contents of the
+RETS Server log file is streamed to the window.<span style="mso-spacerun:
+yes">  </span>Figure 11 shows a sample Server Monitor window.</p>
+
+<p class=MsoNormal style='margin-left:.5in;page-break-after:avoid'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal align=center style='margin-left:.25in;text-align:center'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1035" type="#_x0000_t75" style='width:431.25pt;height:276.75pt'>
+ <v:imagedata src="./UsersGuide_files/image021.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=575 height=369
+src="./UsersGuide_files/image022.jpg" v:shapes="_x0000_i1035"><![endif]></p>
+
+<p class=MsoBodyTextIndent align=center style='margin-left:.25in;text-align:
+center'><i style='mso-bidi-font-style:normal'>Figure 11 Server Monitor window<o:p></o:p></i></p>
+
+<p class=MsoBodyTextIndent><b><i style='mso-bidi-font-style:normal'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></i></b></p>
+
+<p class=MsoBodyTextIndent><b><i style='mso-bidi-font-style:normal'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></i></b></p>
+
+<p class=MsoBodyTextIndent><b><i style='mso-bidi-font-style:normal'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></i></b></p>
+
+<h2 style='margin-left:0in;text-indent:0in'><a name="_Toc27207723"><![if !supportLists]>4.4<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Misc</a></h2>
+
+<h3 style='margin-left:0in;text-indent:0in'><a name="_Toc27207724"><![if !supportLists]>4.4.1<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>View
+Metadata</a></h3>
+
+<p class=MsoBodyTextIndent2 style='page-break-after:avoid'>Selecting “View
+Metadata” brings up the View Metadata page shown in Figure 9.</p>
+
+<p class=MsoBodyTextIndent2 style='page-break-after:avoid'>The Type dropdown
+box identifies the type of Metadata to be retrieved. The ID field identifies
+the resource followed by the class, separated by a ‘:’.(see Real Estate Data
+Interchange Standard: Real Estate Transaction Specification Version 1.5 Section
+11.) A GetMetadata Transaction is sent to the RETS Server when the Submit
+button is selected.<span style="mso-spacerun: yes">  </span>The only format
+supported by the Reference Implementation Server is Standard-XML.<span
+style="mso-spacerun: yes">  </span></p>
+
+<p class=MsoNormal style='page-break-after:avoid'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal align=center style='text-align:center'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1036" type="#_x0000_t75" style='width:467.25pt;height:436.5pt'>
+ <v:imagedata src="./UsersGuide_files/image023.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=623 height=582
+src="./UsersGuide_files/image024.jpg" v:shapes="_x0000_i1036"><![endif]></p>
+
+<p class=MsoNormal align=center style='text-align:center'>Figure 12 View
+Metadata Page</p>
+
+<span style='font-size:10.0pt;font-family:"Times New Roman";mso-fareast-font-family:
+"Times New Roman";mso-ansi-language:EN-US;mso-fareast-language:EN-US;
+mso-bidi-language:AR-SA'><br clear=all style='mso-special-character:line-break;
+page-break-before:always'>
+</span>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoBodyTextIndent2 style='page-break-after:avoid'>Figure 13 shows the
+View Metadata reply page.<span style="mso-spacerun: yes">  </span>The status is
+displayed at the top and the raw XML is displayed in a textbox at the bottom
+part of the page.</p>
+
+<p class=MsoHeader style='page-break-after:avoid;tab-stops:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal align=center style='text-align:center'><!--[if gte vml 1]><v:shape
+ id="_x0000_i1037" type="#_x0000_t75" style='width:467.25pt;height:436.5pt'>
+ <v:imagedata src="./UsersGuide_files/image025.png" o:title=""/>
+</v:shape><![endif]--><![if !vml]><img border=0 width=623 height=582
+src="./UsersGuide_files/image026.jpg" v:shapes="_x0000_i1037"><![endif]></p>
+
+<p class=MsoNormal align=center style='text-align:center'>Figure 13 GetMetadata
+Response Page</p>
+
+<p class=MsoNormal><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:.5in'><span style='font-family:Arial'>If
+you request Metadata from a different server that does not support Standard
+–XML, the Compact metadata will be returned.<o:p></o:p></span></p>
+
+<p class=MsoNormal style='margin-left:.5in'><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></p>
+
+<h2 style='margin-left:0in;text-indent:0in'><a name="_Toc27207725"><![if !supportLists]>4.5<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>JavaDoc</a></h2>
+
+<p class=MsoBodyTextIndent2>Selecting JavaDoc opens a new window with links to
+documentation for all classes in the RETS 1.5 reference implementation. </p>
+
+<p class=MsoHeader style='margin-left:.5in;tab-stops:.5in'><b><span
+style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<b style='mso-bidi-font-weight:normal'><span style='font-size:12.0pt;
+mso-bidi-font-size:10.0pt;font-family:Arial;mso-fareast-font-family:"Times New Roman";
+mso-bidi-font-family:"Times New Roman";mso-ansi-language:EN-US;mso-fareast-language:
+EN-US;mso-bidi-language:AR-SA'><br clear=all style='page-break-before:always'>
+</span></b>
+
+<h1 style='margin-left:0in;text-indent:0in'><a name="_Toc27207726"><![if !supportLists]>5.<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp; </span><![endif]>Appendix
+A -- Software License Information</a></h1>
+
+<p class=MsoHeader style='tab-stops:.5in'><b><span style='font-family:Arial'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></span></b></p>
+
+<p class=MsoNormal style='margin-left:.5in'>All software used in the
+development of the RETS 1.5 Reference Implementation is Open Source or freely
+available. License information for each product used can be found at the
+following links:</p>
+
+<p class=MsoNormal style='margin-left:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+<p class=MsoNormal style='margin-left:.5in'>Apache License Information: <a
+href="http://www.apache.org/LICENSE.txt">http://www.apache.org/LICENSE.txt</a></p>
+
+<p class=MsoNormal style='margin-left:.5in'>Ant License Information:<span
+style="mso-spacerun: yes">  </span><a
+href="http://jakarta.apache.org/ant/manual/index.html">http://jakarta.apache.org/ant/manual/index.html</a></p>
+
+<p class=MsoHeader style='margin-left:.5in;tab-stops:.5in'>Tomcat License
+Information:<span style="mso-spacerun: yes">  </span><a
+href="http://www.apache.org/licenses/LICENSE">http://www.apache.org/licenses/LICENSE</a></p>
+
+<p class=MsoNormal style='margin-left:.5in'>MySQL/LGPL license information
+(JDBC are licensed under LGPL as well): <a
+href="http://www.mysql.com/documentation/mysql++/D_Copyright.html">http://www.mysql.com/documentation/mysql++/D_Copyright.html</a></p>
+
+<p class=MsoNormal style='margin-left:.5in'><![if !supportEmptyParas]>&nbsp;<![endif]><o:p></o:p></p>
+
+</div>
+
+</body>
+
+</html>
