@@ -1,0 +1,188 @@
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="main.css" />
+<TITLE>Technical Comments</TITLE>
+</HEAD>
+<BODY>
+     <img src="images/techcomments.gif" width="256" height="57"><br>
+      <br>
+      <br>
+      <br>
+      <a name="login"></a><img src="images/retslogin.gif" width="252" height="25"> 
+			<blockquote>
+      <p>The RETS Reference Implementation is written in Java, 
+        the server is a Java servlet and the client consists of API classes and 
+        JSP pages. This software was developed for Apache Tomcat 4.0 as the Servlet/JSP 
+        engine, and MySQL is the database engine. The RETS Reference Implementation 
+        should work with any Servlet engine that supports the 2.2 or 2.3 Servlet 
+        Specification and the 1.1 or 1.2 JSP specification.</p>
+      <p>Here is an excerpt from the Developers Guide dealing with 
+        the RETS Login process from the RETS Client side. It illustrates the degree 
+        of thought and detail available to developers&#133;.</p>
+      <blockquote>
+        <p align="left"><br>
+          In the following sequence diagram, &quot;loginAction.jsp&quot; is parsed 
+          when a user selects submit on the login page. &quot;loginAction.jsp&quot; 
+          creates an instance of RETSLoginTransaction and an instance of RETSConnection. 
+          The &quot;execute()&quot; method of the RETSConnection object is called 
+          passing the LoginTransaction as an argument. RETSConnection sends the 
+          request to the RETSServer identified by the &quot;serverURL&quot; variable 
+          of the Transaction. The RETSServer response is parsed by the RETSConnection 
+          object and the &quot;set Response()&quot; method is called on the Transaction 
+          object to complete the transaction. &quot;loginAction.jsp&quot; calls 
+          the Transaction's &quot;getResponseMap()&quot; method and formats the 
+          response for display to the browser. <br>
+          <br>
+          <br>
+          </p>
+      <p><img src="images/diagram.gif" width="520" height="436"></p>
+        </blockquote>
+			</blockquote>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>	
+			<br>
+			<br>
+			<br>		
+      <p><a name="LoginSuccessful"></a><img src="images/retsloginsu.gif" width="252" height="24"></p>
+      <blockquote>
+			<p>It is possible to see even more about what is happening 
+        by using the &quot;Monitor&quot; choices on the left. </p>
+      <p>Apache Log4J is used for logging by all 
+        classes in the reference implementation.<br>
+        A servlet is running that streams the contents of an Apache Log4J file 
+        to an http client. </p>
+      <p>By default, server side classes write 
+        to the file &quot;/tmp/retsServer.log&quot; and client side classes write 
+        to the file &quot;/tmp/retsClientAPI.log&quot;. </p>
+      <p>Hence, the Monitor provides you a view 
+        of the logfiles for either the RETS Client Side or the RETS Server. </p>
+      </blockquote>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>	
+      <p><a name="OfficeSearch"></a><img src="images/officesearch.gif" width="252" height="26"></p>
+      <blockquote>
+			<p>The &quot;Search Office DMQL Query&quot; 
+        field defaults to a valid DMQL query. A Search Office Transaction is sent 
+        to the RETS Server when the Submit button is selected.</p>
+      </blockquote>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>	
+      <p><a name="PropertyBatch"></a><img src="images/propertybatch.gif" width="252" height="23"></p>
+      <blockquote>
+			<p>The input here is not DMQL, the RETS Client 
+        builds the DMQL before the Transaction request is sent to the RETS Server</p>
+      </blockquote>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>	
+      <p><a name="SearchProperty"></a><img src="images/searchprop.gif" width="251" height="23"></p>
+			<blockquote>
+      <p>The reference implementation is delivered 
+        with three MySQL tables; AGENTS, OFFICES and PROPERTIES. These are populated 
+        with a sample of actual data. Of course you can see what fields are supported 
+        for the queries by looking at the underlying RETS Metadata for Property. 
+        This can be done via the &quot;View Metadata&quot; choice on the left.</p>
+      <p><br>
+        Bruce Toback's DMQLtoSQL classes are used to implement the DMQL support 
+        in the reference implementation. For more information on Bruce Toback's 
+        DMQLtoSQL, see the following URL:</p>
+      <p>http://www.optc.com/~btoback/DMQLtoSQLTest/doc/index.html</p>
+      </blockquote>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>	
+      <p><a name="SearchPropertySuccessful"></a><img src="images/searchpropsu.gif" width="250" height="22"></p>
+      <blockquote>
+			<p>The supplied RETS Client also exercises a GetObject transaction 
+        every time a Property Search is performed, the image at the bottom of 
+        the page is the result of the GetObject transaction.<br>
+      </p>
+			</blockquote>
+      <br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>	
+      <p><a name="viewmetadata"></a><img src="images/viewmeta.gif" width="252" height="23"></p>
+			<blockquote>
+      <p>The ID field identifies the resource followed by the class, 
+        separated by a colon ':' (see Real Estate Data Interchange Standard: Real 
+        Estate Transaction Specification Version 1.0 Section 11.) A GetMetadata 
+        Transaction is sent to the RETS Server when the Submit button is selected.<br>
+      </p>
+			</blockquote>
+      <br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+</BODY>
+</HTML>

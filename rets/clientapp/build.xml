@@ -1,0 +1,103 @@
+<project name="clientapp" default="deploy" basedir=".">
+
+  <property file="build.properties"/>
+
+  <path id="java.classpath">
+    <fileset dir="${libdir}">
+      <include name="*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="clean">
+    <delete dir="${build}"/>
+  </target>
+
+  <target name="init">
+    <tstamp/>
+    <mkdir dir="${build}"/>
+    <mkdir dir="${classes}"/>
+    <mkdir dir="${libdir}"/>
+    <mkdir dir="${tlddir}"/>
+
+  </target>
+	
+  <target name="copy-deps" depends="init">
+    <copy file="${libsrc}/log4j-1.2.5.jar" tofile="${libdir}/log4j-1.2.5.jar" />
+    <copy file="${libsrc}/junit-3.8.jar" tofile="${libdir}/junit-3.8.jar" />
+    <copy file="${libsrc}/regexp-1.2.jar" tofile="${libdir}/regexp-1.2.jar" />
+    <copy file="${libsrc}/commons-httpclient-3.0.1.jar" tofile="${libdir}/commons-httpclient-3.0.1.jar" />
+    <copy file="${libsrc}/commons-codec-1.3jar" tofile="${libdir}/commons-codec-1.3.jar" />
+    <copy file="${libsrc}/BZip2.jar" tofile="${libdir}/BZip2.jar" />
+    <copy file="${libsrc}/xalan.jar" tofile="${libdir}/xalan.jar" />
+    <copy file="${libsrc}/retsAPI.jar" tofile="${libdir}/retsAPI.jar"/>
+    <copy file="${libsrc}/retsCommons.jar" tofile="${libdir}/retsCommons.jar"/>
+     <copy file="${libsrc}/retsValidation.jar" tofile="${libdir}/retsValidation.jar"/>
+   
+    
+     
+    <copy file="${libsrc}/servlet.jar" tofile="${libdir}/servlet.jar" />
+  </target>	
+
+  <target name="compile" depends="copy-deps">
+    <javac srcdir="${src}" destdir="${classes}" debug="on">
+      <classpath refid="java.classpath"/>
+      <classpath>
+      		<pathelement path="${libsrc}/xalan.jar"/>
+	</classpath>
+      <include name="main/java/org/realtor/**/*.java"/>
+    </javac>
+    <copy todir="${classes}">
+      <fileset dir="${etc}">
+        <include name="*.dtd" />
+        <include name="*.properties" />
+        <include name="*.xml" />
+        <include name="*.xsl" />
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="javadoc" depends="copy-deps">
+    <javadoc packagenames="org.realtor.rets.*"
+             sourcepath="${src}/main/java"
+             defaultexcludes="yes"
+             destdir="${javadoc}"
+             classpathref="java.classpath"
+             author="true"
+             version="true"
+             use="true"
+             private="Yes"
+             windowtitle="RETS 1.5 Reference Impl">
+      <doctitle><![CDATA[<h1>RETS 1.5</h1>]]></doctitle>
+      <bottom><![CDATA[<i>Copyright &#169; 2002 National Association of Realtors - All Rights Reserved.</i>]]></bottom>
+      <link href="http://developer.java.sun.com/developer/products/xml/docs/api/"/>
+    </javadoc>
+  </target>
+
+<target name="war" depends="compile">
+  <delete file="${libdir}/servlet.jar"/>
+  <war warfile="${build}/retsclientapp.war" webxml="${webapp}/WEB-INF/web.xml">
+     <fileset dir="${webapp}">
+        <include name="*.htm*"/>
+        <include name="*.jsp"/>
+        <include name="*.css"/>
+        <include name="images/**"/>
+        <include name="doc/**"/>
+        <include name="javadoc/**"/>
+     </fileset>
+     <lib dir="${libdir}">
+        <include name="*.jar"/>
+     </lib>
+     <classes dir="${classes}">
+        <exclude name="**/tests/*"/>
+     </classes>
+  </war>
+</target>
+	
+<target name="deploy" depends="war">
+   <delete dir="${TOMCAT_HOME}/webapps/retsclientapp"/>
+   <delete file="${TOMCAT_HOME}/webapps/retsclientapp.war"/>
+   <copy file="${build}/retsclientapp.war" tofile="${TOMCAT_HOME}/webapps/retsclientapp.war" overwrite="yes"/>
+   <chmod file="${TOMCAT_HOME}/webapps/retsclientapp.war" perm="ugo+rwx"/>
+</target>
+
+</project>
