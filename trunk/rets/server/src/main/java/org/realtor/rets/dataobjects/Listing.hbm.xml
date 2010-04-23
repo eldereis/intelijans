@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="org.realtor.rets.dataobjects">
+	<class name="Listing" table="properties">
+		<id
+			column="OID"
+			name="oid"
+			type="java.lang.Long"
+		>
+		<generator class="native" />
+		</id>
+
+		<property column="UID" name="uid" type="java.lang.Double"/>
+		<property column="ACRES" name="acres" type="java.lang.Double"/>
+		<property column="AMENITIES" name="amenities" type="string"/>
+		<property column="LISTING_AGENT" name="listingAgent" type="string"/>
+		<property column="SELLING_AGENT" name="sellingAgent" type="string"/>
+		<property column="LISTING_COMPANY" name="listingCompany" type="string"/>
+		<property column="SELLING_COMPANY" name="sellingCompany" type="string"/>
+		<property column="AREA" name="area" type="java.lang.Double"/>
+		<property column="AUCTION" name="auction" type="boolean"/>
+		<property column="BATHSFULL" name="fullBaths" type="integer"/>
+		<property column="BATHSHALF" name="halfBaths" type="integer"/>
+		<property column="BATHSTOTAL" name="totalBaths" type="integer"/>
+		<property column="BEDS" name="bedrooms" type="integer"/>
+		<property column="CITY" name="city" type="string"/>
+		<property column="CLOSEDBY" name="closedBy" type="string"/>
+		<property column="CLOSEDDATE" name="closedDate" type="date"/>
+		<property column="COMPBUY" name="comparableBuyPrice" type="java.lang.Double"/>
+		<property column="COMPSELL" name="comparableSellPrice" type="java.lang.Double"/>
+		<property column="COMPOTHER" name="otherCompensation" type="string"/>
+		<property column="CONTINGENCY" name="contingency" type="string"/>
+		<property column="COOLSYSTEM" name="coolingSystem" type="string"/>
+		<property column="COUNTY" name="county" type="string"/>
+		<property column="DAYSONMARKET" name="daysOnMarket" type="integer"/>
+		<property column="DIRECTIONS" name="directions" type="string"/>
+		<property column="FENCE" name="fence" type="string"/>
+		<property column="FINANCEACCEPTABLE" name="acceptableFinances" type="string"/>
+		<property column="FINANCECODE" name="financeCode" type="string"/>
+		<property column="GARAGEDESC" name="garageDescription" type="string"/>
+		<property column="HANDICAP" name="handicapAccessible" type="boolean"/>
+		<property column="HEATSRC" name="heatSource" type="string"/>
+		<property column="HEATSYSTEM" name="heatingSystem" type="string"/>
+		<property column="INTERNETLIST" name="internetListing" type="boolean"/>
+		<property column="LATITUDE" name="latitude" type="java.lang.Double"/>
+		<property column="LISTPRICE" name="listingPrice" type="java.lang.Double"/>
+		<property column="LISTPRICEORIG" name="originalListPrice" type="java.lang.Double"/>
+		<property column="LISTSTATUS" name="listStatus" type="string"/>
+		<property column="LISTTYPE" name="listType" type="string"/>
+		<property column="LOCKBOXDESC" name="lockBoxDescription" type="string"/>
+		<property column="LONGITUDE" name="longitude" type="java.lang.Double"/>
+		<property column="LOTDESC" name="lotDescription" type="string"/>
+		<property column="LOTDIM" name="lotDimensions" type="string"/>
+		<property column="LOTNUM" name="lotNumber" type="string"/>
+		<property column="MAP" name="map" type="string"/>
+		<property column="MAPCOUNTY" name="mapCounty" type="string"/>
+		<property column="MAPPAGE" name="mapPage" type="integer"/>
+		<property column="MLSCROSSREF" name="mlsCrossReference" type="string"/>
+		<property column="MLSNUM" name="mlsNumber" type="string"/>
+		<property column="MLSNUM_CRIS" name="mlsNumber_CRIS" type="string"/>
+		<property column="MLSTYPE" name="mlsType" type="string"/>
+		<property column="MODIFIED" name="lastModified" type="date"/>
+		<property column="MULTIPLEPIN" name="multiplePin" type="string"/>
+		<property column="OCCUPIED" name="occupied" type="string"/>
+		<property column="OFFICESELL" name="sellingOffice" type="string"/>
+		<property column="OFFICELIST" name="listingOffice" type="string"/>
+		<property column="OFFMARKETDATE" name="offMarketDate" type="date"/>
+		<property column="OWNERAGENT" name="ownerAgent" type="string"/>
+		<property column="PARKINGCOVERED" name="coveredParking" type="integer"/>
+		<property column="PENDINGDATE" name="pendingDate" type="date"/>
+		<property column="PHOTOCODE" name="photoCode" type="string"/>
+		<property column="PHOTOCOUNT" name="photoCount" type="integer"/>
+		<property column="PHOTODATE" name="photoDate" type="date"/>
+		<property column="PHOTOINSTR" name="photoInstructions" type="string"/>
+		<property column="POSSESSION" name="posession" type="string"/>
+		<property column="PROPSUBTYPE" name="propertySubtype" type="string"/>
+		<property column="PROPTYPE" name="prototype" type="string"/>
+		<property column="PUBLICTRANS" name="publicTransportation" type="string"/>
+		<property column="REALREMARKS" name="realRemarks" type="string"/>
+		<property column="REMARKS" name="remarks" type="string"/>
+		<property column="ROOF" name="roof" type="string"/>
+		<property column="ROOMS" name="rooms" type="integer"/>
+		<property column="SALESPRICE" name="salesPrice" type="java.lang.Double"/>
+		<property column="SCHOOLDISTRICT" name="schoolDistrict" type="string"/>
+		<property column="SCHOOLDISTRICT_DISPLAY" name="displaySchoolDistrict" type="string"/>
+		<property column="SCHOOLHIGH" name="highSchool" type="string"/>
+		<property column="SELLERPOINTS" name="sellerPoints" type="integer"/>
+		<property column="SHOWINSTR" name="showingInstructions" type="string"/>
+		<property column="SIDING" name="siding" type="string"/>
+		<property column="SQFTSOURCE" name="squareFootSource" type="string"/>
+		<property column="SQFTTOTAL" name="totalSquareFeet" type="java.lang.Double"/>
+		<property column="STATE" name="state" type="string"/>
+		<property column="STORIES" name="stories" type="integer"/>
+		<property column="STREETDIR" name="streetDirectional" type="string"/>
+		<property column="STREETNAME" name="streetName" type="string"/>
+		<property column="STREETNUM" name="streetNumber" type="string"/>
+		<property column="STREETNUMDISPLAY" name="displayStreetNumber" type="string"/>
+		<property column="STYLE" name="style" type="string"/>
+		<property column="SUBDIVISION" name="subdivision" type="string"/>
+		<property column="TAXAMOUNT" name="taxAmount" type="java.lang.Double"/>
+		<property column="TAXPARCEL" name="taxParcel" type="string"/>
+		<property column="TEMPOFFMARKETDATE" name="tempOffMarketDate" type="date"/>
+		<property column="VIEWDESC" name="viewDescription" type="string"/>
+		<property column="WARRANTY" name="warranty" type="string"/>
+		<property column="WATER" name="water" type="string"/>
+		<property column="WITHDRAWNDATE" name="withdrawnDate" type="date"/>
+		<property column="YEARBUILT" name="yearBuilt" type="integer"/>
+		<property column="ZIPCODE" name="zip" type="integer"/>
+		<property column="ZIP4" name="zipExtension" type="integer"/>
+		<property column="ZONING" name="zoning" type="string"/>
+		<property column="FRONTAGEFEET" name="frontageFeet" type="integer"/>
+		<property column="NEWCONSTRUCTION" name="newConstruction" type="string"/>
+		<property column="APPLIANCES" name="appliances" type="string"/>
+		<property column="ASSOCFEE" name="associateFee" type="java.lang.Double"/>
+		<property column="ASSOCFEEPAID" name="associateFeePaid" type="string"/>
+		<property column="BASEMENT" name="basement" type="string"/>
+		<property column="BED2DESC" name="bedroomTwoDescription" type="string"/>
+		<property column="BED2DIM" name="bedroomTwoDimensions" type="string"/>
+		<property column="BED2LEVEL" name="bedroomTwoLevel" type="string"/>
+		<property column="BED3DESC" name="bedroomThreeDescription" type="string"/>
+		<property column="BED3DIM" name="bedroomThreeDimensions" type="string"/>
+		<property column="BED3LEVEL" name="bedroomThreeLevel" type="string"/>
+		<property column="BED4DESC" name="bedroomFourDescription" type="string"/>
+		<property column="BED4DIM" name="bedroomFourDimensions" type="string"/>
+		<property column="BED4LEVEL" name="bedroomFourLevel" type="string"/>
+		<property column="BED5DESC" name="bedroomFiveDescription" type="string"/>
+		<property column="BED5DIM" name="bedroomFiveDimensions" type="string"/>
+		<property column="BED5LEVEL" name="bedroomFiveLevel" type="string"/>
+		<property column="EXTERIOR" name="exterior" type="string"/>
+		<property column="FIREPLACES" name="fireplaces" type="string"/>
+		<property column="HOMEOWNERSASSOC" name="homeOwnersAssociation" type="string"/>
+		<property column="LOTRENT" name="lotRent" type="string"/>
+		<property column="MAINTFEE" name="maintenanceFee" type="java.lang.Double"/>
+		<property column="MAINTFEEINCLUDES" name="maintenanceFeeIncludes" type="string"/>
+		<property column="MONTHGAS" name="monthlyGas" type="java.lang.Double"/>
+		<property column="MONTHELECTRIC" name="montlyElectric" type="java.lang.Double"/>
+		<property column="MONTHWATER" name="monthlyWater" type="java.lang.Double"/>
+		<property column="NUMFLOORS" name="numberOfFloors" type="integer"/>
+		<property column="RECREATIONFEE" name="recreationFee" type="integer"/>
+		<property column="RESTRICTIONS" name="restrictions" type="string"/>
+		<property column="ROOMDENDESC" name="denDescription" type="string"/>
+		<property column="ROOMDENDIM" name="denDimensions" type="string"/>
+		<property column="ROOMDENLEVEL" name="denLevel" type="string"/>
+		<property column="ROOMDININGDESC" name="diningRoomDescription" type="string"/>
+		<property column="ROOMDININGDIM" name="diningRoomDimensions" type="string"/>
+		<property column="ROOMDININGLEVEL" name="diningRoomLevel" type="string"/>
+		<property column="ROOMFAMILYDESC" name="familyRoomDescription" type="string"/>
+		<property column="ROOMFAMILYDIM" name="familyRoomDimensions" type="string"/>
+		<property column="ROOMFAMILYLEVEL" name="familyRoomLevel" type="string"/>
+		<property column="ROOMKITCHENDESC" name="kitchenDescription" type="string"/>
+		<property column="ROOMKITCHENDIM" name="kitchenDimensions" type="string"/>
+		<property column="ROOMKITCHENLEVEL" name="kitchenLevel" type="string"/>
+		<property column="ROOMLIVINGDESC" name="livingRoomDescription" type="string"/>
+		<property column="ROOMLIVINGDIM" name="livingRoomDimensions" type="string"/>
+		<property column="ROOMLIVINGLEVEL" name="livingRoomLevel" type="string"/>
+		<property column="ROOMMASTERBEDDESC" name="masterBedroomDescription" type="string"/>
+		<property column="ROOMMASTERBEDDIM" name="masterBedroomDimensions" type="string"/>
+		<property column="ROOMMASTERBEDLEVEL" name="masterBedroomLevel" type="string"/>
+		<property column="ROOMOTHER" name="otherRoom" type="string"/>
+		<property column="ROOMOTHER1DESC" name="otherRoom1Description" type="string"/>
+		<property column="ROOMOTHER1DIM" name="otherRoom1Dimensions" type="string"/>
+		<property column="ROOMOTHER1LEVEL" name="otherRoom1Level" type="string"/>
+		<property column="ROOMOTHER1NAME" name="otherRoom1Name" type="string"/>
+		<property column="ROOMOTHER2DESC" name="otherRoom2Description" type="string"/>
+		<property column="ROOMOTHER2DIM" name="otherRoom2Dimensions" type="string"/>
+		<property column="ROOMOTHER2LEVEL" name="otherRoom2Level" type="string"/>
+		<property column="ROOMOTHER2NAME" name="otherRoom2Name" type="string"/>
+		<property column="ROOMOTHER3DESC" name="otherRoom3Description" type="string"/>
+		<property column="ROOMOTHER3DIM" name="otherRoom3Dimensions" type="string"/>
+		<property column="ROOMOTHER3LEVEL" name="otherRoom3Level" type="string"/>
+		<property column="ROOMOTHER3NAME" name="otherRoom3Name" type="string"/>
+		<property column="SQFTFINISHED" name="finishedSquareFeet" type="integer"/>
+		<property column="UNITFLOORNUM" name="floorNumberUnit" type="string"/>
+
+<!--
+		<property column="EXPIREDATE" name="expireDate" not-null="false" type="date"/>
+		<property column="LISTDATE" name="listingDate" not-null="false" type="date"/>
+		<property column="LISTDATERECEIVED" name="listingDateReceived" not-null="false" type="date"/>
+        <property column="SQFTUNFINISHED" name="unfinishedSquareFeet" not-null="false" type="integer"/>
+-->
+	</class>
+</hibernate-mapping>

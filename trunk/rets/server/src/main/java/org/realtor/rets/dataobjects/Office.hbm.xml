@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="org.realtor.rets.dataobjects">
+	<class name="Office" table="offices">
+		<id
+			column="UID"
+			name="UID"
+			type="java.lang.String"
+		>
+		<generator class="native" />
+		</id>
+
+<!--		<property column="UID" name="UID" type="string"/>-->
+
+		<property column="ADDRESS1" name="address1" type="string"/>
+		<property column="ADDRESS2" name="address2" type="string"/>
+		<property column="CITY" name="city" type="string"/>
+		<property column="STATE" name="state" type="string"/>
+		<property column="FAX" name="faxNumber" type="string"/>
+		<property column="OFFICEEMAIL" name="officeMail" type="string"/>
+		<property column="OFFICEID" name="id" type="string"/>
+		<property column="OFFICENAME" name="officeName" type="string"/>
+		<property column="OFFICESTATUS" name="officeStatus" type="string"/>
+		<property column="OPTINFLG" name="optinFlag" type="string"/>
+		<property column="PHONE" name="phone" type="string"/>
+        <property column="ZIP4" name="zipExtension" type="string"/>
+		<property column="UIDCOMPANY" name="uidCompany" type="string"/>
+		<property column="WEB" name="webAddress" type="string"/>
+		<property column="ZIP" name="zip" type="string"/>
+		<property column="MODIFIED" name="lastModified" type="date"/>
+	</class>
+</hibernate-mapping>

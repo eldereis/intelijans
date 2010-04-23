@@ -1,0 +1,64 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE RETS SYSTEM "RETS-20041001.dtd">
+<RETS ReplyCode="$!{results.replyCode}" ReplyText="$!{replyText}" >
+#set( $countLimit = $parameters.get("Limit") )
+#set( $searchCount = $parameters.get("Count") )
+#set( $countOnly = false )
+#set( $countAndData = false )
+#if ($searchCount == "1") 
+	#set( $countAndData = true)
+#end
+#if ($searchCount == "2") 
+	#set( $countOnly = true)
+#end
+#if ($searchCount )
+	#if ($countOnly || $countAndData)
+<COUNT Records="$!{results.rows.size()}" />
+	#end
+#end
+#if (!$countOnly )
+<REData>
+<REProperties>
+#foreach( $row in $results.rows )
+<REAgent>
+  <FirstName>$!{row.get("a.fullname")}</FirstName>
+  <LastName></LastName>
+  <ContactInformation>
+    <OfficePhone>$!{row.get("a.preferredphone")}</OfficePhone>
+    <CellPhone></CellPhone>
+    <HomePhone>$!{row.get("a.homephone")}</HomePhone>
+    <Fax></Fax>
+    <Pager></Pager>
+    <Email>$!{row.get("a.email")}</Email>
+    <URL></URL>
+  </ContactInformation>
+  <StreetAddress>
+    <StreetNumber></StreetNumber>
+    <BoxNumber></BoxNumber>
+    <StreetDirPrefix></StreetDirPrefix>
+    <StreetName>$!{row.get("a.address1")}</StreetName>
+    <StreetAdditionalInfo></StreetAdditionalInfo>
+    <StreetDirSuffix></StreetDirSuffix>
+    <StreetSuffix></StreetSuffix>
+    <UnitNumber></UnitNumber>
+    <City>$!{row.get("a.city")}</City>
+    <StateOrProvince>$!{row.get("a.state")}</StateOrProvince>
+    <Country>USA</Country>
+    <PostalCode>$!{row.get("a.zip")}</PostalCode>
+    <CarrierRoute></CarrierRoute>
+  </StreetAddress>
+  <ListingServiceName></ListingServiceName>
+  <AgentID>$!{row.get("a.pubid")}</AgentID>
+  <NRDSMemberID></NRDSMemberID>
+  <OfficeID>$!{row.get("a.uidoffice")}</OfficeID>
+  <BrokerID></BrokerID>
+  <ModificationTimestamp>$!{row.get("a.modified")}</ModificationTimestamp>
+</REAgent>
+#end
+</REProperties>
+</REData>
+#if ( $countLimit <= $results.rows.size() )
+<MAXROWS/>
+#end
+#end 
+</RETS>

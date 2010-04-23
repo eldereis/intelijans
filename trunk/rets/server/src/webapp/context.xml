@@ -1,0 +1,36 @@
+
+        <Context className="org.apache.catalina.core.StandardContext" wrapperClass="org.apache.catalina.core.StandardWrapper" privileged="false" crossContext="false" swallowOutput="false" cookies="true" workDir="work\Standalone\localhost\claw" docBase="C:\Program Files\Apache Group\Tomcat 4.1\webapps\claw.war" path="/claw" charsetMapperClass="org.apache.catalina.util.CharsetMapper" useNaming="true" debug="0" mapperClass="org.apache.catalina.core.StandardContextMapper" cachingAllowed="true" reloadable="true">
+
+    <ResourceParams name="jdbc/rets">
+      <parameter>
+        <name>url</name>
+        <value>jdbc:mysql://localhost/rets?autoReconnect=true</value>
+      </parameter>
+      <parameter>
+        <name>password</name>
+        <value>smartass</value>
+      </parameter>
+      <parameter>
+        <name>maxActive</name>
+        <value>4</value>
+      </parameter>
+      <parameter>
+        <name>maxWait</name>
+        <value>5000</value>
+      </parameter>
+      <parameter>
+        <name>driverClassName</name>
+        <value>com.mysql.jdbc.Driver</value>
+      </parameter>
+      <parameter>
+        <name>username</name>
+        <value>root</value>
+      </parameter>
+      <parameter>
+        <name>maxIdle</name>
+        <value>2</value>
+      </parameter>
+    </ResourceParams>
+
+        </Context>
+
