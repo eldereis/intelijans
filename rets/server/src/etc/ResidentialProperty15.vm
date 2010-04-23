@@ -1,0 +1,146 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE RETS SYSTEM "RETS-20021015.dtd">
+<RETS ReplyCode="$!{results.replyCode}" ReplyText="$!{results.replyText}" >
+##parse("functions.vm")
+#set( $countLimit = "700" )
+#set( $countLimit = $parameters.get("Limit") )
+#set( $searchCount = $parameters.get("Count") )
+#set( $countOnly = false )
+#set( $countAndData = false )
+#if ($searchCount == "1") 
+	#set( $countAndData = true)
+#end
+#if ($searchCount == "2") 
+	#set( $countOnly = true)
+#end
+#if ($searchCount )
+	#if ($countOnly || $countAndData)
+<COUNT Records="$!{results.rows.size()}" />
+	#end
+#end
+#if (!$countOnly )
+<REData>
+<REProperties>
+#foreach( $row in $results.rows )
+<ResidentialProperty>
+  <Listing>
+    <StreetAddress>
+      <StreetNumber>$!{row.get("p.addrnumber")}</StreetNumber>
+##      <BoxNumber/>
+      <StreetDirPrefix>$!{row.get("p.addrdirectionprefix")}</StreetDirPrefix>
+      <StreetName>$!{row.get("p.addrname")}</StreetName>
+##      <StreetAdditionalInfo/>
+      <StreetDirSuffix>$!{row.get("p.addrdirectionsuffix")}</StreetDirSuffix>
+      <StreetSuffix>$!{row.get("p.addrsuffix")}</StreetSuffix>
+      <UnitNumber>$!{row.get("p.addrunitnumber")}</UnitNumber>
+      <City>$!{row.get("p.city")}</City>
+      <StateOrProvince>$!{row.get("p.state")}</StateOrProvince>
+##      <Country>$!{row.get("p.country")}</Country>
+      <PostalCode>$!{row.get("p.zip1")}</PostalCode>
+      <CarrierRoute>$!{row.get("p.zip4")}</CarrierRoute>
+    </StreetAddress>
+    <ListingData>
+      <REAgent>
+        <FirstName>$!{row.get("p.firstname")}</FirstName>
+        <LastName>$!{row.get("p.lastname")}</LastName>
+        <AgentID>$!{row.get("p.listingagentid")}</AgentID>
+      </REAgent>
+      <REOffice>
+        <Name>$!{row.get("p.listingoffice")}</Name>
+        <OfficeID>$!{row.get("p.listingofficeid")}</OfficeID>
+##        <BrokerID>$!{row.get("p.agentcolist")}</BrokerID>
+      </REOffice>
+      <ListDate Format="YYYY-MM-DD" Type="DATE">$!{row.get("p.listingdate")}</ListDate>
+      <ListPrice>$!{row.get("p.listprice")}</ListPrice>
+      <ExpirationDate Format="YYYY-MM-DD" Type="DATE">$!{row.get("p.listingexpirationdate")}</ExpirationDate>
+      <ShowingInstructions>$!{row.get("p.showinginstructions")}</ShowingInstructions>
+##      <ListingType>$!{row.get("p.listtype")}</ListingType>
+##      <Commission CurrencyCode="USD" Type="FLOAT" Value="Currency">$!{row.get("p.compbuy")}</Commission>
+      <Remarks>$!{row.get("p.description")}</Remarks>
+##      <PublicRemarks>$!{$row.get("p.remarks")}</PublicRemarks>
+    </ListingData>
+    <MLSInformation>
+      <ListingStatus Status="$!{row.get("p.retslistingstatus")}">$!{row.get("p.listingstatus")}</ListingStatus>
+##      <OriginalListPrice>$!{row.get("p.listpriceorig")}</OriginalListPrice>
+    </MLSInformation>
+    <GeographicData>
+      <Latitude>$!{row.get("p.latitude")}</Latitude>
+      <Longitude>$!{row.get("p.longitude")}</Longitude>
+      <County>$!{row.get("p.county")}</County>
+      <Directions>$!{row.get("p.directions")}</Directions>
+      <MapCoordinate>$!{row.get("p.mapcoordinate")}</MapCoordinate>
+##      <URL/>
+    </GeographicData>
+    <ModificationTimestamp/>
+    <ListingID>$!{row.get("p.mlsnumber")}</ListingID>
+    <Zoning>$!{row.get("p.zoning")}</Zoning>
+    <SalesData>
+      <REAgent/>
+      <REOffice/>
+      <ContractDate Format="YYYY-MM-DD" Type="DATE">$!{row.get("p.contractdate")}</ContractDate>
+      <ClosePrice>$!{row.get("p.saleprice")}</ClosePrice>
+      <CloseDate Format="YYYY-MM-DD" Type="DATE">$!{row.get("p.escrowclosingdateactual")}</CloseDate>
+    </SalesData>
+    <SchoolData>
+      <SchoolDistrict>$!{row.get("p.schooldistrict")}</SchoolDistrict>
+##      <HighSchool>$!{row.get("p.schoolhigh")}</HighSchool>
+    </SchoolData>
+    <TaxData>
+        <LegalDescription>$!{row.get("p.legal")}</LegalDescription>
+        <AssessedValuation>$!{row.get("p.taxtotalvalue")}</AssessedValuation>
+    </TaxData>
+    <ParcelNumber>$!{row.get("p.parcelnumber")}</ParcelNumber>
+  </Listing>
+  <Bedrooms Type="INTEGER">$!{row.get("p.bedrooms")}</Bedrooms>
+  <Baths>
+    <BathsTotal>$!{row.get("p.baths")}</BathsTotal>
+    <BathsFull>$!{row.get("p.fullbaths")}</BathsFull>
+    <BathsHalf>$!{row.get("p.halfbaths")}</BathsHalf>
+  </Baths>
+    <Subdivision>$!{row.get("p.subdivision")}</Subdivision>
+    <AssociationFee>$!{row.get("p.hoassocfee")}</AssociationFee>
+    <LivingArea>
+    	<Area Units="SqFeet">$!{row.get("p.totalsquarefeet")}</Area>
+    </LivingArea>
+    <LotSize>
+        <Area>$!{row.get("p.lotsize")}</Area>
+        <Dimensions>$!{row.get("p.lot_dimen")}</Dimensions>
+    </LotSize>
+    <Parking>
+        <Garage>$!{row.get("p.garage")}</Garage>
+        <CarPort>$!{row.get("p.carport")}</CarPort>
+        <OpenParking>$!{row.get("p.openparking")}</OpenParking>
+        <CoveredParking>$!{row.get("p.coveredparking")}</CoveredParking>
+    </Parking>
+    <Stories>$!{row.get("p.stories")}</Stories>
+    <YearBuilt Format="YYYY" NewConstruction="No" Type="DATE">$!{row.get("p.yearbuilt")}</YearBuilt>
+    <Heating>$!{row.get("p.heating")}</Heating>
+    <Cooling>$!{row.get("p.cooling")}</Cooling>
+    <Pool>$!{row.get("p.pool")}</Pool>
+    <InteriorFeatures>$!{row.get("p.interiorfeatures")}</InteriorFeatures>
+    <ExteriorFeatures>$!{row.get("p.physicalcharacteristics")}</ExteriorFeatures>
+##    <Type>$!{row.get("p.type")}</Type>
+    <Style>$!{row.get("p.style")}</Style>
+  <Rooms>
+        <Basement #if(${row.get("p.basement")}) Present="$!{row.get("p.basement")}" #end/>
+##        <TotalRooms>$!{row.get("p.ROOMS")}</TotalRooms>
+  </Rooms>
+  <Occupant>
+        <Name>$!{row.get("p.occupantname")}</Name>
+        <ContactInformation>
+            <OfficePhone>$!{row.get("p.occupantofficephone")}</OfficePhone>
+            <HomePhone>$!{row.get("p.occupanthomephone")}</HomePhone>
+        </ContactInformation>
+  </Occupant>
+  <Fireplaces>$!{row.get("p.fireplace")}</Fireplaces>
+  <Roof>$!{row.get("p.roof")}</Roof>
+  <Exterior>$!{row.get("p.exterior")}</Exterior>
+</ResidentialProperty>
+#end
+</REProperties>
+</REData>
+#if ( $countLimit <= $results.rows.size() )
+<MAXROWS/>
+#end
+#end 
+</RETS>

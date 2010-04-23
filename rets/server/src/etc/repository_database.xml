@@ -1,0 +1,148 @@
+
+<!--
+Define here all used connections.
+One defined connection should be defined as the default one,
+by set default-connection="true" - this could be done at runtime too.
+
+It is possible to set user/password at
+runtime or let login different users at runtime using the same
+database. Use different PBKey with same jcdAlias name but
+different user/password.
+
+Ditto it is possible to add jdbc-connection-descriptor at runtime
+using the MetadataManager.
+-->
+
+
+    <!-- this connection was used as the default one within OJB -->
+    <jdbc-connection-descriptor
+   		jcd-alias="default"
+   		default-connection="true"
+   		platform="MySQL"
+   		jdbc-level="2.0"
+   		driver="org.gjt.mm.mysql.Driver"
+   		protocol="jdbc"
+   		subprotocol="mysql"
+   		dbalias="//localhost/RETS"
+   		username="rets"
+   		password="rets"
+        eager-release="false"
+   		batch-mode="false"
+        useAutoCommit="1"
+        ignoreAutoCommitExceptions="false"
+     >
+
+        <connection-pool
+            maxActive="21"
+            validationQuery="" />
+
+        <sequence-manager className="org.apache.ojb.broker.util.sequence.SequenceManagerHighLowImpl">
+            <attribute attribute-name="grabSize" attribute-value="20"/>
+            <attribute attribute-name="autoNaming" attribute-value="true"/>
+            <attribute attribute-name="globalSequenceId" attribute-value="false"/>
+            <attribute attribute-name="globalSequenceStart" attribute-value="10000"/>
+        </sequence-manager>
+   </jdbc-connection-descriptor>
+
+   <!-- Datasource example -->
+    <!-- jdbc-connection-descriptor
+        jcd-alias="default"
+        default-connection="true"
+   		platform="Hsqldb"
+   		jdbc-level="2.0"
+   		jndi-datasource-name="java:DefaultDS"
+   		username="sa"
+   		password=""
+		eager-release="false"
+        batch-mode="false"
+        useAutoCommit="0"
+        ignoreAutoCommitExceptions="false"
+   >
+        <sequence-manager className="org.apache.ojb.broker.util.sequence.SequenceManagerNextValImpl">
+            <attribute attribute-name="autoNaming" attribute-value="true"/>
+        </sequence-manager>
+
+   </jdbc-connection-descriptor -->
+
+
+
+    <!--
+        NOTE: This is a test descriptor used within
+        the junit test suite, do not change any value.
+        A test db connections used for junit tests.
+        This connection match a hsql database called 'OJB_FarAway'
+        If you do not use the test suite, you could delete
+        this descriptor.
+        This descriptor was used to check multiple database
+        use.
+    -->
+    <jdbc-connection-descriptor
+        jcd-alias="farAway"
+        platform="Hsqldb"
+        jdbc-level="2.0"
+        driver="org.hsqldb.jdbcDriver"
+        protocol="jdbc"
+        subprotocol="hsqldb"
+        dbalias="../OJB_FarAway"
+        username="sa"
+        password=""
+        batch-mode="false"
+    >
+        <connection-pool
+            maxActive="5"
+            whenExhaustedAction="0"
+            validationQuery="select count(*) from OJB_HL_SEQ"
+        />
+
+        <sequence-manager className="org.apache.ojb.broker.util.sequence.SequenceManagerHighLowImpl">
+            <attribute attribute-name="grabSize" attribute-value="5"/>
+        </sequence-manager>
+    </jdbc-connection-descriptor>
+
+    <!--
+        NOTE: This is a test descriptor used within
+        the junit test suite, do not change any value.
+        If you do not use the test suite, you could
+        delete this descriptor.
+        In the the test directory under
+        org.apache.ojb.broker.metadata.MetadataTest#testReadConnectionDescriptor
+        this descriptor will be evaluated.
+    -->
+    <jdbc-connection-descriptor
+        jcd-alias="testConnection"
+        default-connection="false"
+        platform="Oracle"
+        jdbc-level="1.0"
+        driver="a driver"
+        protocol="a protocol"
+        subprotocol="a subprotocol"
+        dbalias="myDbalias"
+        username="a user"
+        password="a password"
+        eager-release="true"
+        batch-mode="true"
+        useAutoCommit="0"
+        ignoreAutoCommitExceptions="true"
+    >
+        <connection-pool
+            maxActive="1"
+            maxIdle="2"
+            maxWait="3"
+            minEvictableIdleTimeMillis="4"
+            numTestsPerEvictionRun="5"
+            testOnBorrow="true"
+            testOnReturn="true"
+            testWhileIdle="true"
+            timeBetweenEvictionRunsMillis="6"
+            whenExhaustedAction="2"
+            validationQuery="a query"
+            logAbandoned="true"
+            removeAbandoned="true"
+            removeAbandonedTimeout="8"
+        />
+
+        <sequence-manager className="org.apache.ojb.broker.util.sequence.SequenceManagerHighLowImpl">
+            <attribute attribute-name="key1" attribute-value="value1"/>
+            <attribute attribute-name="key2" attribute-value="value2"/>
+        </sequence-manager>
+    </jdbc-connection-descriptor>

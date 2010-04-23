@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE ResidentialProperty SYSTEM "http://localhost:8080/rets/rets10.dtd"> -->
+<ResidentialProperty>
+  <Listing>
+    <StreetAddress>
+      <StreetNumber>OBJECT:Property;ATTRIBUTE:StreetNumber</StreetNumber>
+      <BoxNumber/>
+      <StreetDirPrefix/>
+      <StreetName>OBJECT:Property;ATTRIBUTE:StreetName</StreetName>
+      <StreetAdditionalInfo/>
+      <StreetDirSuffix/>
+      <UnitNumber/>
+      <City>OBJECT:Property;ATTRIBUTE:City</City>
+      <StateOrProvince>OBJECT:Property;ATTRIBUTE:State</StateOrProvince>
+      <Country>OBJECT:Property;ATTRIBUTE:Country</Country>
+      <PostalCode>OBJECT:Property;ATTRIBUTE:PostalCode</PostalCode>
+      <CarrierRoute>OBJECT:Property;ATTRIBUTE:CarrierRoute</CarrierRoute>
+    </StreetAddress>
+    <ListingData>
+      <REAgent>
+        <AgentID>OBJECT:Property;ATTRIBUTE:ListAgentAgentID</AgentID>
+      </REAgent>
+      <REOffice>
+        <OfficeID>OBJECT:Property;ATTRIBUTE:ListOfficeOfficeID</OfficeID>
+        <BrokerID>OBJECT:Property;ATTRIBUTE:AgentCoList</BrokerID>
+      </REOffice>
+      <ListDate Format="YYYY-MM-DD" Type="DATE">OBJECT:Property;ATTRIBUTE:ListDate</ListDate>
+      <ListPrice>OBJECT:Property;ATTRIBUTE:ListPrice</ListPrice>
+      <ExpirationDate Format="YYYY-MM-DD" Type="DATE">OBJECT:Property;ATTRIBUTE:ExpireDate</ExpirationDate>
+      <ShowingInstructions>OBJECT:Property;ATTRIBUTE:ShowInstr</ShowingInstructions>
+      <ListingType>OBJECT:Property;ATTRIBUTE:ListType</ListingType>
+      <Commission CurrencyCode="USD" Type="FLOAT" Value="Currency">OBJECT:Property;ATTRIBUTE:CompBuy</Commission>
+      <Remarks>OBJECT:Property;ATTRIBUTE:RealRemarks</Remarks>
+      <PublicRemarks>OBJECT:Property;ATTRIBUTE:Remarks</PublicRemarks>
+    </ListingData>
+    <MLSInformation>
+      <ListingStatus Status="Active"/>
+      <OriginalListPrice>OBJECT:Property;ATTRIBUTE:ListPriceOrig</OriginalListPrice>
+    </MLSInformation>
+    <GeographicData>
+      <Latitude/>
+      <Longitude/>
+      <County>OBJECT:Property;ATTRIBUTE:County</County>
+      <Directions>OBJECT:Property;ATTRIBUTE:Directions</Directions>
+      <MapCoordinate>OBJECT:Property;ATTRIBUTE:Map</MapCoordinate>
+      <URL/>
+    </GeographicData>
+    <ModificationTimestamp/>
+    <ListingID>OBJECT:Property;ATTRIBUTE:ListingID</ListingID>
+    <SalesData>
+      <REAgent/>
+      <REOffice/>
+      <ContractDate>OBJECT:Property;ATTRIBUTE:OffMarketDate</ContractDate>
+      <ClosePrice>OBJECT:Property;ATTRIBUTE:SalesPrice</ClosePrice>
+      <CloseDate>OBJECT:Property;ATTRIBUTE:ClosedDate</CloseDate>
+    </SalesData>
+    <SchoolData>
+      <SchoolDistrict>OBJECT:Property;ATTRIBUTE:SchoolDistrict</SchoolDistrict>
+      <HighSchool>OBJECT:Property;ATTRIBUTE:SchoolHigh</HighSchool>
+    </SchoolData>
+    <PictureData>
+      <URL/>
+    </PictureData>
+  </Listing>
+  <Bedrooms Type="INTEGER">OBJECT:Property;ATTRIBUTE:Beds</Bedrooms>
+  <Baths>
+    <BathsTotal>OBJECT:Property;ATTRIBUTE:BathsTotal</BathsTotal>
+    <BathsFull>OBJECT:Property;ATTRIBUTE:BathsFull</BathsFull>
+    <BathsHalf>OBJECT:Property;ATTRIBUTE:BathsHalf</BathsHalf>
+  </Baths>
+  <YearBuilt Format="YYYY" NewConstruction="No" Type="DATE">OBJECT:Property;ATTRIBUTE:YearBuilt</YearBuilt>
+  <Type>OBJECT:Property;ATTRIBUTE:Type</Type>
+  <Style>OBJECT:Property;ATTRIBUTE:Style</Style>
+</ResidentialProperty>

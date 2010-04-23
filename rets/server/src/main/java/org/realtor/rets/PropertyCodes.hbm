@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="org.realtor.rets.database">
+	<class name="PropertyCodes" table="property_codes">
+		<composite-id class="PropertyCodesPK" name="Id">
+			<key-property
+				column="ATTRIBUTE_NAME"
+				name="AttributeName"
+				type="string"
+			 />
+			<key-property
+				column="VALUE"
+				name="Value"
+				type="string"
+			 />
+		</composite-id>
+		<property
+			column="SHORT_VALUE"
+			length="25"
+			name="ShortValue"
+			not-null="false"
+			type="string"
+		 />
+		<property
+			column="LONG_VALUE"
+			length="120"
+			name="LongValue"
+			not-null="false"
+			type="string"
+		 />
+	</class>
+</hibernate-mapping>

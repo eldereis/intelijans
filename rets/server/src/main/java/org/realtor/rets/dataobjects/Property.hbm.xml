@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="org.realtor.rets.dataobjects">
+	<class name="Property" table="property">
+		<id
+			column="OID"
+			name="oid"
+			type="java.lang.Long"
+		>
+		<generator class="native" />
+		</id>
+	
+		<!-- Property fields -->
+	    <property column="MLS_NUM" name="mlsNumber" type="string"/>
+	    <property column="STR_NUM" name="streetNumber" type="integer"/>
+	    <property column="STR_DIR" name="streetDirection" type="string"/>
+	    <property column="STR_NAME" name="streetName" type="string"/>
+	    <property column="STR_TYPE" name="streetType" type="string"/>
+	    <property column="UNIT" name="addressUnit" type="string"/>
+	    <property column="CITY" name="city" type="string"/>
+	    <property column="ZIP" name="zipCode" type="integer"/>
+	    <property column="COUNTY" name="county" type="string"/>
+	    <property column="BOARD_CODE" name="board" type="string"/>
+	    <property column="EXCL_RIGHT" name="exclusiveRight" type="string"/>
+	    <property column="TBM_GRID" name="thomasGuide" type="string"/>
+	    <property column="AREA" name="area" type="string"/>
+	    <property column="APN" name="apn" type="string"/>
+	    <property column="BLKS_NS" name="blocksNorthSouth" type="integer"/>
+	    <property column="DIR_NS" name="directionNorthSouth" type="string"/>
+	    <property column="TEXT_NS" name="streetNameNorthSouth" type="string"/>
+	    <property column="BLKS_EW" name="blocksEastWest" type="integer"/>
+	    <property column="DIR_EW" name="directionEastWest" type="string"/>
+	    <property column="TEXT_EW" name="streetNameEastWest" type="string"/>
+	    <property column="LIST_PRICE" name="listPrice" type="long"/>
+	    <property column="ORIG_PRICE" name="originalPrice" type="long"/>
+	    <property column="LIST_date" name="listDate" type="date"/>
+	    <property column="DOM" name="daysOnMarket" type="integer"/>
+	    <property column="EXP_date" name="expirationDate" type="date"/>
+	    <property column="IDX_OK" name="idxOk" type="string"/>
+	    <property column="REMARKS" name="publicRemarks" type="string"/>
+	    <property column="AGT_RMKS" name="privateRemarks" type="string"/>
+	    <property column="FIRMNR" name="listingOfficeFirmNumber" type="string"/>
+	    <property column="LO_PHONE" name="listingOfficePhone" type="string"/>
+	    <property column="LO_PHEXT" name="listingOfficePhoneExtension" type="string"/>
+	    <property column="LO_NAME" name="listingOfficeName" type="string"/>
+	    <property column="LO_ADDR" name="listingOfficeAddress" type="string"/>
+	    <property column="LO_CITY" name="listingOfficeCity" type="string"/>
+	    <property column="LO_ZIP" name="listingOfficeZip" type="integer"/>
+	    <property column="LAGT1_NAME" name="listingAgent1Name" type="string"/>
+	    <property column="LAGT1_1PHN" name="listingAgent1Phone1" type="string"/>
+	    <property column="PHONE_TYP1" name="listingAgent1Phone1Type" type="string"/>
+	    <property column="LAGT1_2PHN" name="listingAgent1Phone2" type="string"/>
+	    <property column="LAGT1_MEMN" name="listingAgent1MemberNumber" type="long"/>
+	    <property column="AGT_EMAIL" name="agentEMailAddress" type="string"/>
+	    <property column="LAGT2_NAME" name="listingAgent2Name" type="string"/>
+	    <property column="LAGT2_1PHN" name="listingAgent2Phone1" type="string"/>
+	    <property column="PHONE_TYP2" name="listingAgent2Phone1Type" type="string"/>
+	    <property column="LAGT2_2PHN" name="listingAgent2Phone2" type="string"/>
+	    <property column="LAGT2_MEMN" name="listingAgent2MemberNumber" type="long"/>
+	    <property column="STATUS" name="status" type="string"/>
+	    <property column="ACTIVE" name="active" type="boolean"/>
+	    <property column="SALE_PRICE" name="salePrice" type="long"/>
+	    <property column="SALE_date" name="saleDate" type="date"/>
+	    <property column="SALE_ESCDT" name="coeDate" type="date"/>
+	    <property column="SALE_OFFC" name="salesOfficeNumber" type="string"/>
+	    <property column="SALE_DWNPM" name="saleDownPayment" type="string"/>
+	    <property column="SAL_FNTYP" name="saleFinanceTypeCode" type="string"/>
+	    <property column="SA_NUMBER" name="sellingAgentMemberNumber" type="string"/>
+	    <property column="SALE_TYPE" name="saleTypeCode" type="string"/>
+	    <property column="NUM_PHOTOS" name="pictures" type="integer"/>
+	    <property column="SOC_EXT" name="sellingOfficeCommission" type="float"/>
+	    <property column="SOC_TYPE" name="commissionType" type="string"/>
+	    <property column="TX_SQFT" name="assrSquareFeet" type="integer"/>
+	    <property column="TX_LSQFT" name="assrLotSquareFeet" type="long"/>
+	    <property column="TX_YR_BLT" name="assrYearBuilt" type="integer"/>
+	    <property column="TX_LOTDIM" name="assrLotDimensions" type="string"/>
+	    <property column="TX_ZONE" name="assrZoning" type="string"/>
+	    <property column="TX_APN" name="assrApn" type="long"/>
+	    <property column="TX_BATHS" name="assrBathrooms" type="integer"/>
+	    <property column="TX_SPRICE" name="assrLastSalePrice" type="integer"/>
+	    <property column="TX_BR" name="assrBedrooms" type="integer"/>
+	    <property column="TX_Sdate" name="assrLastSaleDate" type="date"/>
+	    <property column="TX_TRACTN" name="assrLegalTractNumber" type="string"/>
+	    <property column="ARA_BUR" name="burbank" type="boolean"/>
+	    <property column="ARA_CV" name="conejoValley" type="boolean"/>
+	    <property column="ARA_SCV" name="santaClaritaValley" type="boolean"/>
+	    <property column="ARA_SFV" name="sanFernandoValley" type="boolean"/>
+	    <property column="ARA_SVM" name="simiValleyMoorpark" type="boolean"/>
+	    <property column="ARA_VN" name="vanNuys" type="boolean"/>
+	    <property column="ARA_OA" name="outOfArea" type="boolean"/>
+	    <property column="ST_ACT" name="ST_ACT" type="boolean"/>
+	    <property column="ST_BOM" name="ST_BOM" type="boolean"/>
+	    <property column="ST_CAN" name="ST_CAN" type="boolean"/>
+	    <property column="ST_CHG" name="ST_CHG" type="boolean"/>
+	    <property column="ST_CHP" name="ST_CHP" type="boolean"/>
+	    <property column="ST_CON" name="ST_CON" type="boolean"/>
+	    <property column="ST_CYB" name="ST_CYB" type="boolean"/>
+	    <property column="ST_CYR" name="ST_CYR" type="boolean"/>
+	    <property column="ST_EXP" name="ST_EXP" type="boolean"/>
+	    <property column="ST_NEW" name="ST_NEW" type="boolean"/>
+	    <property column="ST_PEN" name="ST_PEN" type="boolean"/>
+	    <property column="ST_REI" name="ST_REI" type="boolean"/>
+	    <property column="ST_RFS" name="ST_RFS" type="boolean"/>
+	    <property column="ST_SLD" name="ST_SLD" type="boolean"/>
+	    <property column="ST_SHW" name="ST_SHW" type="boolean"/>
+	    <property column="ST_OFF" name="ST_OFF" type="boolean"/>
+	    <property column="ST_REL" name="ST_REL" type="boolean"/>
+	    <property column="LATITUDE_8" name="latitude" type="integer"/>
+	    <property column="AGT_LIST" name="listingAgent" type="string"/>
+	    <property column="FIRM_LIST" name="listingFirm" type="string"/>
+	    <property column="AGT_SALE" name="sellingAgent" type="string"/>
+	    <property column="FIRM_SALE" name="sellingFirm" type="string"/>
+	</class>
+</hibernate-mapping>

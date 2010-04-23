@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd" >
+
+<hibernate-mapping package="org.realtor.rets.dataobjects">
+	<class name="Agent" table="agents">
+		<id
+			column="UID"
+			name="UID"
+			type="java.lang.String"
+		>
+		<generator class="native" />
+		</id>
+
+		<property column="ADDRESS1" name="address1" type="string"/>
+		<property column="ADDRESS2" name="address2" type="string"/>
+		<property column="CITY" name="city" type="string"/>
+		<property column="STATE" name="state" type="string"/>
+		<property column="ZIP" name="zip" type="string"/>
+		<property column="ZIP4" name="zipExtension" type="string"/>
+		<property column="EMAIL" name="email" type="string"/>
+		<property column="WEB" name="webAddress" type="string"/>
+		<property column="LOGINID" name="login" type="string"/>
+		<property column="FIRSTNAME" name="firstName" type="string"/>
+		<property column="LASTNAME" name="lastName" type="string"/>
+		<property column="FULLNAME" name="fullName" type="string"/>
+		<property column="MIDDLENAME" name="middleName" type="string"/>
+		<property column="GENDER" name="gender" type="string"/>
+		<property column="HOMEFAX" name="homeFax" type="string"/>
+		<property column="HOMEPHONE" name="homePhone" type="string"/>
+		<property column="LICENSENO" name="licenseNumber" type="string"/>
+		<property column="MEMBERTYPE" name="memberType" type="string"/>
+		<property column="MOBILEPHONE" name="mobilePhone" type="string"/>
+		<property column="MODIFIED" name="lastModified" type="date"/>
+		<property column="ONLINESTATUS" name="onlineStatus" type="string"/>
+		<property column="PAGERNUMBER" name="pagerNumber" type="string"/>
+		<property column="PERSONALTITLE" name="title" type="string"/>
+		<property column="PREFERREDFAX" name="preferredFaxNumber" type="string"/>
+		<property column="PREFERREDPHONE" name="preferredPhoneNumber" type="string"/>
+		<property column="PUBID" name="publicID" type="string"/>
+<!--		<property column="UID" name="uid" type="string"/>-->
+<!--		<property column="UIDOFFICE" name="uidOffice" type="string"/>-->
+		<property column="PASSWORD" name="password" type="string"/>
+		
+		<many-to-one
+			name="office"
+			column="UIDOFFICE" 
+			class="Office"
+			outer-join="false"
+		/>
+	</class>
+</hibernate-mapping>
