@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:con="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ser:coreEntry isProxy="true" isEnabled="true">
+    <ser:binding type="abstract SOAP" isSoap12="false" xsi:type="con2:AnySoapBindingType" xmlns:con2="http://www.bea.com/wli/sb/services/bindings/config"/>
+    <ser:monitoring isEnabled="false">
+      <ser:aggregationInterval>10</ser:aggregationInterval>
+      <ser:pipelineMonitoringLevel>Pipeline</ser:pipelineMonitoringLevel>
+    </ser:monitoring>
+    <ser:reporting>true</ser:reporting>
+    <ser:logging isEnabled="true">
+      <ser:logLevel>debug</ser:logLevel>
+    </ser:logging>
+    <ser:sla-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:sla-alerting>
+    <ser:pipeline-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:pipeline-alerting>
+    <ser:ws-policy>
+      <ser:binding-mode>service-policy-bindings</ser:binding-mode>
+      <ser:policies/>
+    </ser:ws-policy>
+  </ser:coreEntry>
+  <ser:endpointConfig>
+    <tran:provider-id>local</tran:provider-id>
+    <tran:inbound>true</tran:inbound>
+    <tran:inbound-properties/>
+    <tran:all-headers>true</tran:all-headers>
+  </ser:endpointConfig>
+  <ser:router>
+    <con:pipeline type="request" name="PipelinePairNode_request" xmlns:con="http://www.bea.com/wli/sb/pipeline/config">
+      <con:stage name="GetDynamicProxyName">
+        <con:context>
+          <con1:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0" prefix="ns"/>
+        </con:context>
+        <con:actions>
+          <con2:assign varName="dynamicRoute" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+            <con1:id>_ActionId-5902692962645258631--3a5186a7.12cc0284cdf.-715c</con1:id>
+            <con2:expr>
+              <con1:xqueryText>fn:concat(fn:normalize-space($body//*:MsgSpecificProperties//*:Property[*:name='ProxyName']/*:value),fn:normalize-space($header//*:MsgSpecificProperties//*:Property[*:name='ProxyName']/*:value))</con1:xqueryText>
+            </con2:expr>
+          </con2:assign>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="PipelinePairNode_response" xmlns:con="http://www.bea.com/wli/sb/pipeline/config"/>
+    <con:flow xmlns:con="http://www.bea.com/wli/sb/pipeline/config">
+      <con:pipeline-node name="PipelinePairNode">
+        <con:request>PipelinePairNode_request</con:request>
+        <con:response>PipelinePairNode_response</con:response>
+      </con:pipeline-node>
+      <con:route-node name="DynamicRouteNode">
+        <con:context/>
+        <con:actions>
+          <con1:dynamic-route xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config">
+            <con2:id xmlns:con2="http://www.bea.com/wli/sb/stages/config">_ActionId-5902692962645258631--3a5186a7.12cc0284cdf.-740c</con2:id>
+            <con1:service>
+              <con2:xqueryText xmlns:con2="http://www.bea.com/wli/sb/stages/config">&lt;ctx:route>
+	&lt;ctx:service isProxy="true">{data($dynamicRoute)}&lt;/ctx:service>
+&lt;/ctx:route></con2:xqueryText>
+            </con1:service>
+            <con1:outboundTransform/>
+            <con1:responseTransform/>
+          </con1:dynamic-route>
+        </con:actions>
+      </con:route-node>
+    </con:flow>
+  </ser:router>
+</xml-fragment>

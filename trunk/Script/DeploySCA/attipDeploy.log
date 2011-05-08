@@ -1,0 +1,92 @@
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+deployAll:
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+deployApplication:
+     [echo] deploy application BusinessServices/ManageCustomer/ManageCustomer
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+deployProjectFromJarName:
+     [echo] Deploy composite sca_ManageCustomer_rev1.0.0.8.jar
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+deployProject:
+     [echo] deploy project ManageCustomer for  environment TEST
+     [echo] deploy on http://pgm1int:8001 with user weblogic
+     [echo] deploy sarFile C:\SRC\Utilities\Script\DeploySCA/TEST/Distributions/BusinessServices/ManageCustomer/ManageCustomer/sca_ManageCustomer_rev1.0.0.8.jar
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+deploy:
+    [input] skipping input as property serverURL has already been set.
+    [input] skipping input as property sarLocation has already been set.
+[deployComposite] setting user/password..., user=weblogic
+[deployComposite] Processing sar=C:\SRC\Utilities\Script\DeploySCA/TEST/Distributions/BusinessServices/ManageCustomer/ManageCustomer/sca_ManageCustomer_rev1.0.0.8.jar
+[deployComposite] Adding sar file - C:\SRC\Utilities\Script\DeploySCA\TEST\Distributions\BusinessServices\ManageCustomer\ManageCustomer\sca_ManageCustomer_rev1.0.0.8.jar
+[deployComposite] Creating HTTP connection to host:pgm1int, port:8001
+[deployComposite] Received HTTP response from the server, response code=200
+[deployComposite] ---->Deploying composite success.
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+deployProjectFromJarName:
+     [echo] Deploy composite sca_PropagateCustomerFromSiebelInbound_rev1.0.0.4.jar
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+deployProject:
+     [echo] deploy project PropagateCustomerFromSiebelInbound for  environment TEST
+     [echo] deploy on http://pgm1int:8001 with user weblogic
+     [echo] deploy sarFile C:\SRC\Utilities\Script\DeploySCA/TEST/Distributions/BusinessServices/ManageCustomer/ManageCustomer/sca_PropagateCustomerFromSiebelInbound_rev1.0.0.4.jar
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+deploy:
+    [input] skipping input as property serverURL has already been set.
+    [input] skipping input as property sarLocation has already been set.
+[deployComposite] setting user/password..., user=weblogic
+[deployComposite] Processing sar=C:\SRC\Utilities\Script\DeploySCA/TEST/Distributions/BusinessServices/ManageCustomer/ManageCustomer/sca_PropagateCustomerFromSiebelInbound_rev1.0.0.4.jar
+[deployComposite] Adding sar file - C:\SRC\Utilities\Script\DeploySCA\TEST\Distributions\BusinessServices\ManageCustomer\ManageCustomer\sca_PropagateCustomerFromSiebelInbound_rev1.0.0.4.jar
+[deployComposite] Creating HTTP connection to host:pgm1int, port:8001
+[deployComposite] Received HTTP response from the server, response code=200
+[deployComposite] ---->Deploying composite success.
+
+BUILD SUCCESSFUL
+Total time: 13 seconds

@@ -1,0 +1,523 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:ct="http://www.turktelekom.com.tr/aTTIP/Customer/1.0" xmlns:cat="http://www.turktelekom.com.tr/aTTIP/CustomerAccount/1.0" xmlns:ad="http://www.turktelekom.com.tr/aTTIP/Address/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.turktelekom.com.tr/aTTIP/Customer/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+<xs:annotation>
+<xs:documentation>20100715 Customer.xsd v.2.6</xs:documentation>
+</xs:annotation>
+<xs:import namespace="http://www.turktelekom.com.tr/aTTIP/Address/1.0" schemaLocation="Address.xsd"/>
+<xs:import namespace="http://www.turktelekom.com.tr/aTTIP/CustomerAccount/1.0" schemaLocation="CustomerAccount.xsd"/>
+<xs:element name="Customer" type="ct:CustomerType"/>
+<xs:complexType name="CustomerType">
+<xs:complexContent>
+<xs:extension base="ct:PartyRoleType">
+<xs:sequence>
+<xs:element name="customerStatus" type="xs:string" minOccurs="0"/>
+<xs:element name="customerRank" type="xs:long" minOccurs="0"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+<xs:element name="vipLevel" type="xs:string" minOccurs="0"/>
+<xs:element name="pinCode" type="xs:string" minOccurs="0"/>
+<xs:element name="description" type="xs:string" minOccurs="0"/>
+<xs:element name="statusChangeReason" type="xs:string" minOccurs="0"/>
+<xs:element name="CustomerCharacteristicValue" type="ct:CustomerCharacteristicValueType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="TelephoneNumber" type="ct:TelephoneNumberType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="EmailContact" type="ct:EmailContactType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="FaxNumber" type="ct:FaxNumberType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="WebAddress" type="ct:WebAddressType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="PostalContact" type="ct:PostalContactType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="TTEnterprise" type="ct:TTEnterpriseType" minOccurs="0"/>
+<xs:element name="CustomerAccount" type="cat:CustomerAccountType" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="AddressContactMediumRoleType">
+<xs:sequence>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="GeographicAddress" type="ct:GeographicAddressType" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IndividualNameType">
+<xs:sequence>
+<xs:element name="formattedName" type="xs:string" minOccurs="0"/>
+<xs:element name="legalName" type="xs:string" minOccurs="0"/>
+<xs:element name="aristocraticTitle" type="xs:string" minOccurs="0"/>
+<xs:element name="formOfAddress" type="xs:string" minOccurs="0"/>
+<xs:element name="generation" type="xs:string" minOccurs="0"/>
+<xs:element name="givenNames" type="xs:string" minOccurs="0"/>
+<xs:element name="preferredGivenName" type="xs:string" minOccurs="0"/>
+<xs:element name="middleNames" type="xs:string" minOccurs="0"/>
+<xs:element name="familyNamePrefix" type="xs:string" minOccurs="0"/>
+<xs:element name="familyNames" type="xs:string" minOccurs="0"/>
+<xs:element name="familyGeneration" type="xs:string" minOccurs="0"/>
+<xs:element name="qualifications" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IndividualType">
+<xs:complexContent>
+<xs:extension base="ct:PartyType">
+<xs:sequence>
+<xs:element name="gender" type="xs:string" minOccurs="0"/>
+<xs:element name="placeOfBirth" type="xs:string" minOccurs="0"/>
+<xs:element name="nationality" type="xs:string" minOccurs="0"/>
+<xs:element name="maritalStatus" type="xs:string" minOccurs="0"/>
+<xs:element name="dateOfBirth" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="dateOfDeath" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="jobTitle" type="xs:string" minOccurs="0"/>
+<xs:element name="Party" type="ct:PartyType" minOccurs="0"/>
+<xs:element name="IndividualName" type="ct:IndividualNameType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="TurkishIdentification" type="ct:TurkishIdentificationType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="TaxIdentification" type="ct:TaxIdentificationType" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="IndividualIdentificationType">
+<xs:complexContent>
+<xs:extension base="ct:PartyIdentificationType">
+<xs:sequence>
+<xs:element name="documentType" type="xs:string" minOccurs="0"/>
+<xs:element name="documentNumber" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TurkishIdentificationType">
+<xs:complexContent>
+<xs:extension base="ct:IndividualIdentificationType">
+<xs:sequence>
+<xs:element name="mernisTCID" type="xs:string" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="surname" type="xs:string" minOccurs="0"/>
+<xs:element name="gender" type="xs:string" minOccurs="0"/>
+<xs:element name="motherName" type="xs:string" minOccurs="0"/>
+<xs:element name="fatherName" type="xs:string" minOccurs="0"/>
+<xs:element name="dateOfBirth" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="placeOfBirth" type="xs:string" minOccurs="0"/>
+<xs:element name="city" type="xs:string" minOccurs="0"/>
+<xs:element name="province" type="xs:string" minOccurs="0"/>
+<xs:element name="neighborhood" type="xs:string" minOccurs="0"/>
+<xs:element name="volumeCode" type="xs:string" minOccurs="0"/>
+<xs:element name="familySequenceNr" type="xs:string" minOccurs="0"/>
+<xs:element name="sequenceNr" type="xs:string" minOccurs="0"/>
+<xs:element name="maritalStatus" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="OrganizationType">
+<xs:complexContent>
+<xs:extension base="ct:PartyType">
+<xs:sequence>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+<xs:element name="incorporationDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="disincorporationDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="establishmentDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="size" type="xs:string" minOccurs="0"/>
+<xs:element name="subSector" type="xs:string" minOccurs="0"/>
+<xs:element name="sector" type="xs:string" minOccurs="0"/>
+<xs:element name="OrganizationName" type="ct:OrganizationNameType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="OrganizationIdentification" type="ct:OrganizationIdentificationType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="TaxIdentification" type="ct:TaxIdentificationType" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="OrganizationNameType">
+<xs:sequence>
+<xs:element name="tradingName" type="xs:string" minOccurs="0"/>
+<xs:element name="nameType" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="OrganizationIdentificationType">
+<xs:complexContent>
+<xs:extension base="ct:PartyIdentificationType">
+<xs:sequence>
+<xs:element name="documentType" type="xs:string" minOccurs="0"/>
+<xs:element name="documentNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="chamberOfIndustryRegisterID" type="xs:string" minOccurs="0"/>
+<xs:element name="charityAssociationRegisterID" type="xs:string" minOccurs="0"/>
+<xs:element name="chamberOfTradeRegisterID" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="PartyIdentificationType">
+<xs:sequence>
+<xs:element name="issueDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="scan" type="xs:string" minOccurs="0"/>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TaxIdentificationType">
+<xs:complexContent>
+<xs:extension base="ct:PartyIdentificationType">
+<xs:sequence>
+<xs:element name="taxNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="taxOfficeCityName" type="xs:string" minOccurs="0"/>
+<xs:element name="taxOfficeNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="taxOfficeName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="PartyType">
+<xs:sequence>
+<xs:element name="partyId" type="xs:string" minOccurs="0"/>
+<xs:element name="isLegalEntity" type="xs:string" minOccurs="0"/>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PartyRoleType">
+<xs:sequence>
+<xs:element name="partyRoleId" type="xs:string" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="status" type="xs:string" minOccurs="0"/>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="PartyRoleAssociation" type="ct:PartyRoleAssociationType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="PartyRoleType" type="ct:PartyRoleTypeType" minOccurs="0"/>
+<xs:element name="TTPartyDemographic" type="ct:TTPartyDemographicType" minOccurs="0"/>
+<xs:element name="Individual" type="ct:IndividualType" minOccurs="0"/>
+<xs:element name="Organization" type="ct:OrganizationType" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PartyRoleTypeType">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="description" type="xs:string" minOccurs="0"/>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PartyRoleAssociationType">
+<xs:sequence>
+<xs:element name="associationType" type="xs:string" minOccurs="0"/>
+<xs:element name="status" type="xs:string" minOccurs="0"/>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="PartyRole" type="ct:PartyRoleType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="Contact" type="ct:ContactType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TTPartyDemographicType">
+<xs:complexContent>
+<xs:extension base="ct:PartyDemographicType">
+<xs:sequence>
+<xs:element name="numberOfEmployees" type="xs:integer" minOccurs="0"/>
+<xs:element name="revenue" type="xs:string" minOccurs="0"/>
+<xs:element name="MarketSegment" type="ct:MarketSegmentType" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="MarketSegmentType">
+<xs:sequence>
+<xs:element name="ID" type="xs:string" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="description" type="xs:string" minOccurs="0"/>
+<xs:element name="marketSegmentCategory" type="xs:string" minOccurs="0"/>
+<xs:element name="marketSegmentSubCategory" type="xs:string" minOccurs="0"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PartyDemographicType">
+<xs:sequence>
+<xs:element name="ID" type="xs:string" minOccurs="0"/>
+<xs:element name="description" type="xs:string" minOccurs="0"/>
+<xs:element name="partyDemographicSource" type="xs:string" minOccurs="0"/>
+<xs:element name="dateCreated" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ContactMediumType">
+<xs:sequence>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="preferredContactMethod" type="xs:string" minOccurs="0"/>
+<xs:element name="preferredContactTime" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TelephoneNumberType">
+<xs:complexContent>
+<xs:extension base="ct:ContactMediumType">
+<xs:sequence>
+<xs:element name="number" type="xs:string" minOccurs="0"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="EmailContactType">
+<xs:complexContent>
+<xs:extension base="ct:ContactMediumType">
+<xs:sequence>
+<xs:element name="eMailAddress" type="xs:string" minOccurs="0"/>
+<xs:element name="eMailProtocol" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="FaxNumberType">
+<xs:complexContent>
+<xs:extension base="ct:ContactMediumType">
+<xs:sequence>
+<xs:element name="number" type="xs:string" minOccurs="0"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="WebAddressType">
+<xs:complexContent>
+<xs:extension base="ct:ContactMediumType">
+<xs:sequence>
+<xs:element name="url" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="PostalContactType">
+<xs:complexContent>
+<xs:extension base="ct:ContactMediumType">
+<xs:sequence>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+<xs:element name="AddressContactMediumRole" type="ct:AddressContactMediumRoleType" minOccurs="0"/>
+<xs:element name="Address" type="ct:AddressType" minOccurs="0"/>
+<xs:element name="GeographicAddress" type="ct:GeographicAddressType" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="AddressContactMediumType">
+<xs:sequence>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AddressType">
+<xs:sequence>
+<xs:element name="ID" type="xs:string" minOccurs="0"/>
+<xs:element name="category" type="xs:string" minOccurs="0"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+<xs:element name="isPrimary" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="GeographicAddressType">
+<xs:complexContent>
+<xs:extension base="ct:AddressType">
+<xs:sequence>
+<xs:element name="stateOrProvince" type="xs:string" minOccurs="0"/>
+<xs:element name="municipality" type="xs:string" minOccurs="0"/>
+<xs:element name="field" type="xs:string" minOccurs="0"/>
+<xs:element name="suburb" type="xs:string" minOccurs="0"/>
+<xs:element name="territory" type="xs:string" minOccurs="0"/>
+<xs:element name="LogicalGeographicAddress" type="ct:LogicalGeographicAddressType" minOccurs="0"/>
+<xs:element name="PoBoxAddress" type="ct:PoBoxAddressType" minOccurs="0"/>
+<xs:element name="Country" type="ad:CountryType" minOccurs="0"/>
+<xs:element name="City" type="ad:TTCityType" minOccurs="0"/>
+<xs:element name="SubDistrict" type="ad:TTSubDistrictType" minOccurs="0"/>
+<xs:element name="District" type="ad:TTDistrictType" minOccurs="0"/>
+<xs:element name="Village" type="ad:TTVillageType" minOccurs="0"/>
+<xs:element name="Neighborhood" type="ad:TTNeighborhoodType" minOccurs="0"/>
+<xs:element name="ASBC" type="ad:TTASBCType" minOccurs="0"/>
+<xs:element name="Building" type="ad:TTBuildingType" minOccurs="0"/>
+<xs:element name="Apartment" type="ad:TTApartmentType" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="UrbanPropertyAddressType">
+<xs:complexContent>
+<xs:extension base="ct:GeographicAddressType">
+<xs:sequence>
+<xs:element name="streetNrFirst" type="xs:string" minOccurs="0"/>
+<xs:element name="streetNrFirstSuffix" type="xs:string" minOccurs="0"/>
+<xs:element name="streetNrLast" type="xs:string" minOccurs="0"/>
+<xs:element name="streetNrLastSuffix" type="xs:string" minOccurs="0"/>
+<xs:element name="streetName" type="xs:string" minOccurs="0"/>
+<xs:element name="streetType" type="xs:string" minOccurs="0"/>
+<xs:element name="streetSuffix" type="xs:string" minOccurs="0"/>
+<xs:element name="locality" type="xs:string" minOccurs="0"/>
+<xs:element name="postcode" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="LogicalGeographicAddressType">
+<xs:sequence>
+<xs:element name="stateOrProvince" type="xs:string" minOccurs="0"/>
+<xs:element name="municipality" type="xs:string" minOccurs="0"/>
+<xs:element name="field" type="xs:string" minOccurs="0"/>
+<xs:element name="suburb" type="xs:string" minOccurs="0"/>
+<xs:element name="territory" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PoBoxAddressType">
+<xs:complexContent>
+<xs:extension base="ct:LogicalGeographicAddressType">
+<xs:sequence>
+<xs:element name="boxType" type="xs:string" minOccurs="0"/>
+<xs:element name="boxNr" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="ContactType">
+<xs:complexContent>
+<xs:extension base="ct:PartyRoleType">
+<xs:sequence>
+<xs:element name="comments" type="xs:string" minOccurs="0"/>
+<xs:element name="doNotCall" type="xs:string" minOccurs="0"/>
+<xs:element name="doNotMail" type="xs:string" minOccurs="0"/>
+<xs:element name="doNotEmail" type="xs:string" minOccurs="0"/>
+<xs:element name="isAuthorizedContact" type="xs:string" minOccurs="0"/>
+<xs:element name="contactType" type="xs:string" minOccurs="0"/>
+<xs:element name="position" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TTEnterpriseType">
+<xs:sequence>
+<xs:element name="ID" type="xs:string" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+<xs:element name="description" type="xs:string" minOccurs="0"/>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="Customer" type="ct:CustomerType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PartyContractRoleType">
+<xs:sequence>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CustomerCharacteristicValueType">
+<xs:sequence>
+<xs:element name="value" type="xs:string" minOccurs="0"/>
+<xs:element name="CustomerCharacteristicSpecValue" type="ct:CustomerCharacteristicSpecValueType" minOccurs="0"/>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CustomerCharacteristicSpecValueType">
+<xs:sequence>
+<xs:element name="valueType" type="xs:string" minOccurs="0"/>
+<xs:element name="default" type="xs:boolean" minOccurs="0"/>
+<xs:element name="value" type="xs:string" minOccurs="0"/>
+<xs:element name="unitOfMeasure" type="xs:string" minOccurs="0"/>
+<xs:element name="valueFrom" type="xs:string" minOccurs="0"/>
+<xs:element name="valueTo" type="xs:string" minOccurs="0"/>
+<xs:element name="rangeInterval" type="xs:string" minOccurs="0"/>
+<xs:element name="ID" type="xs:string" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="desctiption" type="xs:string" minOccurs="0"/>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TTContractType">
+<xs:complexContent>
+<xs:extension base="ct:AgreementType">
+<xs:sequence>
+<xs:element name="contractID" type="xs:string" minOccurs="0"/>
+<xs:element name="contractName" type="xs:string" minOccurs="0"/>
+<xs:element name="contractDescription" type="xs:string" minOccurs="0"/>
+<xs:element name="creationDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="TTContractItem" type="ct:TTContractItemType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TTContractItemType">
+<xs:complexContent>
+<xs:extension base="ct:AgreementItemType">
+<xs:sequence>
+<xs:element name="contractItemID" type="xs:string" minOccurs="0"/>
+<xs:element name="contractItemName" type="xs:string" minOccurs="0"/>
+<xs:element name="contractItemDescription" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="AgreementType">
+<xs:complexContent>
+<xs:extension base="ct:BusinessInteractionType">
+<xs:sequence>
+<xs:element name="agreementDocumentNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="agreementStatementOfIntent" type="xs:string" minOccurs="0"/>
+<xs:element name="agreementStartDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="agreementEndDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="AgreementItem" type="ct:AgreementItemType" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="AgreementItemType">
+<xs:complexContent>
+<xs:extension base="ct:BusinessInteractionItemType">
+<xs:sequence>
+<xs:element name="status" type="xs:string" minOccurs="0"/>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="BusinessInteractionItemType">
+<xs:sequence>
+<xs:element name="action" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="BusinessInteractionType">
+<xs:sequence>
+<xs:element name="ID" type="xs:string" minOccurs="0"/>
+<xs:element name="interactionDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="description" type="xs:string" minOccurs="0"/>
+<xs:element name="interactionDateComplete" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="interactionStatus" type="xs:string" minOccurs="0"/>
+<xs:element name="BusinessInteractionRelationship" type="ct:BusinessInteractionRelationshipType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="BusinessInteractionItem" type="ct:BusinessInteractionItemType" minOccurs="0"/>
+<xs:element name="BusinessInteractionRole" type="ct:BusinessInteractionRoleType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="BusinessInteractionRelationshipType">
+<xs:sequence>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="RequestResponseRelationshipType">
+<xs:complexContent>
+<xs:extension base="ct:BusinessInteractionRelationshipType">
+<xs:sequence>
+<xs:element name="correlationID" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="BusinessInteractionRoleType">
+<xs:sequence>
+<xs:element name="interactionRole" type="xs:string" minOccurs="0"/>
+<xs:element name="BusinessInteractionItem" type="ct:BusinessInteractionItemType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PartyInteractionRoleType">
+<xs:complexContent>
+<xs:extension base="ct:BusinessInteractionRoleType">
+<xs:sequence>
+<xs:element name="PartyRole" type="ct:PartyRoleType" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+</xs:schema>

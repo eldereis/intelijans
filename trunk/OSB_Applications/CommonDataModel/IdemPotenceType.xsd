@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.turktelekom.com.tr/aTTIP/IdemPotenceType" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:complexType name="IdempotenceType">
+		<xs:annotation>
+			<xs:documentation>Message structure for ATTIP_IDEMPOTENCE table</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Id" type="xs:string" minOccurs="0"/>
+			<xs:element name="TimeStampCreated" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="TimestampUpdated" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="PartitionDate" type="xs:string" minOccurs="0"/>
+			<xs:element name="SrcSystem" type="xs:string" minOccurs="0"/>
+			<xs:element name="CorrelationID" type="xs:string" minOccurs="0"/>
+			<xs:element name="BusinessID" type="xs:string" minOccurs="0"/>
+			<xs:element name="ConversationID" type="xs:string" minOccurs="0"/>
+			<xs:element name="RequestID" type="xs:string" minOccurs="0"/>
+			<xs:element name="MessageID" type="xs:string" minOccurs="0"/>
+			<xs:element name="Service" type="xs:string" minOccurs="0"/>
+			<xs:element name="AttipRequestID" type="xs:string" minOccurs="0"/>
+			<xs:element name="State" type="xs:string" minOccurs="0"/>
+			<xs:element name="Retries" type="xs:string" minOccurs="0"/>
+			<xs:element name="DestSystem" type="xs:string" minOccurs="0"/>
+			<xs:element name="Version" type="xs:int" minOccurs="0"/>
+			<xs:element name="PxName" type="xs:string" minOccurs="0"/>
+			<xs:element name="Code" type="xs:string" minOccurs="0"/>
+			<xs:element name="ErrorCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="ErrorDescription" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+    </xs:complexType>	
+  </xs:schema>

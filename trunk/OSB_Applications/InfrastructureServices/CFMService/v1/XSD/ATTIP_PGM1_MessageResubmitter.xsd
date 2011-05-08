@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mr="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0" targetNamespace="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0" elementFormDefault="qualified">
+  <xsd:complexType name="ResubmittionRequestType">
+    <xsd:sequence>
+      <xsd:element name="RoutingInfo" type="mr:RoutingInfoType"/>
+      <xsd:element name="OriginalMessage" type="xsd:anyType"/>
+      <xsd:element name="OriginalFault" type="xsd:anyType"/>
+      <xsd:element name="Timestamp" type="xsd:dateTime"/>
+      <xsd:element name="ServiceName" type="xsd:string"/>
+      <xsd:element name="SourceSystem" type="xsd:string"/>
+      <xsd:element name="Typology" type="xsd:string"/>
+      <xsd:element name="CompositeInstanceID" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RoutingInfoType">
+    <xsd:sequence>
+      <xsd:element name="DestinationQueueJNDI" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="ProxyService" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="BusinessService" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="JmsProperties" type="mr:JMSPropertiesType"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="JMSPropertiesType">
+    <xsd:sequence>
+      <xsd:element name="JmsProperty" type="mr:JMSPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="JMSPropertyType">
+    <xsd:sequence>
+      <xsd:element name="Name" type="xsd:string"/>
+      <xsd:element name="Value" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ResubmitionRequest" type="mr:ResubmittionRequestType"/>
+  <xsd:element name="ResubmitionRoutingResponse" type="mr:ResubmitionRoutingResponseType"/>
+  <xsd:complexType name="ResubmitionRoutingResponseType">
+    <xsd:sequence>
+      <xsd:element name="ResubmitionResultCode"/>
+      <xsd:element name="ResubmitionTimestamp" type="xsd:dateTime"/>
+      <xsd:element name="ResubmitionQueue" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

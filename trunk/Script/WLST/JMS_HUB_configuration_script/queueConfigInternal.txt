@@ -1,0 +1,9 @@
+interaction 1 1 1 1 1 1 0
+interactionUser 1 1 1 1 1 1 0
+geographicAddress 1 1 1 1 1 1 0
+service 1 1 1 1 1 1 0
+customer 1 1 1 1 1 1 0
+customerAccount 1 1 1 1 1 1 0
+workOrder 1 1 1 1 1 1 0
+notificationOrder 1 1 1 1 1 1 0
+internalUser 1 1 1 1 1 1 0

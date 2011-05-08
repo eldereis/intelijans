@@ -1,0 +1,19 @@
+Abbiamo creato un nuovo dominio chiamato JMS_HUB con due nodi manage in cluster (jms_ms1 e jms_ms2).
+Abbiamo creato due cartelle fisiche fs_1 e fs_2 poi abbiamo creato due persistemte stores jms_fs1 e jms_fs2 facendoli puntare alle due cartelle fisiche.
+Abbiamo creato due jms servers jms_server1 e jms_server2 facendoli puntare ai persistent store jms_fs1 e jms_fs2 che puntano a loro volta alle due cartelle fisiche fs_1 e fs_2.
+Abbiamo lanciato 2 script:
+ - configureJmsResources.py
+ - configureJmsUdq.py
+
+Il file wls.properties contiene le credenziali + l'url di accesso al wls
+Il file queue.properties contiene le info sulla coda da creare
+
+I comandi da lanciare sono:
+
+....../Middleware/wlserver_10.3/common/bin/wlst.sh configureJmsResources.py 
+....../Middleware/wlserver_10.3/common/bin/wlst.sh configureJmsUdq.py
+
+*********************************************************************************************************************************************************************************
+Creare una system property in JAVA
+-Dattip_config=C:\Users\leopoldo.elefante\workspace\aTTIP_config\attip_config.properties
+*********************************************************************************************************************************************************************************

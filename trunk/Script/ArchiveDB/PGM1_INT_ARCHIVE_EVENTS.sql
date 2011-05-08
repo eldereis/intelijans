@@ -1,0 +1,46 @@
+SET verify off
+SET head off
+SET feed off
+SET PAGESIZE 100
+SET serveroutput ON
+WHENEVER SQLERROR EXIT SQL.SQLCODE
+
+SPOOL &1;
+
+
+DECLARE
+  PARTITIONNAME VARCHAR2(200);
+  PARTITIONDATENEW VARCHAR2(200);
+  FLAG_COMMIT CHAR := 'Y';
+  ROWN NUMBER;
+  l_errmsg varchar2(4000);
+BEGIN
+  PARTITIONNAME := '&2';
+  PARTITIONDATENEW := '&3';
+  
+  IF (rtrim('x&4')<>'x') THEN
+	begin
+  		ROWN := to_number('&4');
+	EXCEPTION WHEN OTHERS THEN
+		ROWN := null;
+	end;
+  END IF;
+
+  ATTIP_MANAGER.MOVEEVENTS(
+    IN_PartitionName => PARTITIONNAME,
+    IN_PartitionDateNew => PARTITIONDATENEW,
+    IN_ROWN => ROWN,
+    IN_COMMIT => FLAG_COMMIT
+  );
+  DBMS_OUTPUT.PUT_LINE('['|| TO_CHAR (SYSDATE, 'dd/mm/yyyy HH24:MI:SS') ||'] MOVING-FLOWS - EXECUTION COMPLETED');
+ 
+  RETURN;
+  EXCEPTION WHEN OTHERS THEN
+    l_errmsg := SUBSTR (SQLERRM, 1, 200);
+    DBMS_OUTPUT.PUT_LINE('['|| TO_CHAR (SYSDATE, 'dd/mm/yyyy HH24:MI:SS') ||'] MOVING-FLOWS - ERROR: ('||l_errmsg ||')');
+    RETURN;
+END;
+/
+spool off;
+exit;
+/

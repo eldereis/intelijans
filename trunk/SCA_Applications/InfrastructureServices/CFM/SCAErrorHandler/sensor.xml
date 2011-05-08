@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sensors xmlns="http://xmlns.oracle.com/bpel/sensor">
+    <sensor sensorName="businessID" kind="service" target="undefined" filter="" xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0">
+        <serviceConfig service="scaerrorhandlerprocess" expression="$in.payload/ns1:ResubmitionRequest/ns1:RoutingInfo/ns1:JmsProperties/ns1:JmsProperty[ns1:Name='businessID']/ns1:Value" operation="init" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+    <sensor sensorName="conversationID" kind="service" target="undefined" filter="" xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0">
+        <serviceConfig service="scaerrorhandlerprocess" expression="$in.payload/ns1:ResubmitionRequest/ns1:RoutingInfo/ns1:JmsProperties/ns1:JmsProperty[ns1:Name='conversationID']/ns1:Value" operation="init" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+    <sensor sensorName="ErrorCode" kind="service" target="undefined" filter="" xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0">
+        <serviceConfig service="scaerrorhandlerprocess" expression="$in.payload/ns1:ResubmitionRequest//*:Fault/*:code" operation="error" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+</sensors>

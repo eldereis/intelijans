@@ -1,0 +1,37 @@
+loadProperties('systemShared.properties')
+
+try:
+  connect(wls_username, wls_password, wls_url) 
+  
+  edit()
+  startEdit()
+
+  cd('/')
+  cmo.createStartupClass(startupName)
+
+  cd('/Deployments/' + startupName)
+  cmo.setClassName(className)
+
+  targets = targetServers.split(",")
+  targetObjectNames = [len(targets)]
+  
+  for i in range(0, len(targets) - 1):
+    targetObjectNames[i] = getMBean("/Servers/" + targets[i])
+    
+  #for target in targetObjectNames:
+  #  cmo.addTarget(target)
+  set('Targets',jarray.array([ObjectName('com.bea:Name=AdminServer,Type=Server')], ObjectName))
+  cmo.setArguments(log4j_config)
+  cmo.setLoadBeforeAppDeployments(true)
+  cmo.setDeploymentOrder(10) 
+
+  save()
+  activate(block="true") 
+  disconnect()
+except:
+  dumpStack();
+  print "Unexpected error:", sys.exc_info()
+  cancelEdit();
+  raise
+
+

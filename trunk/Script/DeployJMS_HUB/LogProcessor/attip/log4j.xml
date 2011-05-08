@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<!-- Log4j configuration for the log processor -->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="localLog"
+		class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="aTTIP.log" />
+		<param name="MaxFileSize" value="100000KB" />
+		<!-- Keep one backup file -->
+		<param name="MaxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyyMMdd_HHmmss.SSS}|%p|%c|%m|###|%n" />
+		</layout>
+	</appender>
+
+    <appender name="centralLog"
+		class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="aTTIP_central.log" />
+		<param name="MaxFileSize" value="100000KB" />
+		<!-- Keep one backup file -->
+		<param name="MaxBackupIndex" value="10" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{yyyyMMdd_HHmmss.SSS}|%p|%c|%m|###|%n" />
+		</layout>
+	</appender>
+
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- Pattern to output the caller's file name and line number -->
+			<param name="ConversionPattern"
+				value="%d{yyyyMMdd_HHmmss.SSS}|%p|%c|%m|###|%n" />
+		</layout>
+	</appender>
+
+    <!-- Example of more detailed configuration
+	<logger name="aTTIP.OSB.TRACE.GetCustomerAddress.RESPONSE">
+		<level value="info" />
+	</logger>
+	-->
+
+    <logger name="aTTIP">
+        <level value="info"/>
+        <appender-ref ref="centralLog"/>
+    </logger>
+
+    <logger name="tr.com.turktelekom.attip">
+        <level value="debug"/>
+        <appender-ref ref="localLog"/>
+    </logger>    
+
+	<root>
+		<level value="FATAL" />
+        <appender-ref ref="stdout" />
+	</root>
+
+</log4j:configuration>

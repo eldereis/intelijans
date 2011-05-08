@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsl:stylesheet version="1.0"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+				xmlns:do="http://www.turktelekom.com.tr/aTTIP/Utilities/BAMDataObject"
+				xmlns:bam="http://www.turktelekom.com.tr/aTTIP/Utilities/BAMDataObjects/TemplateBAMDO"
+                xmlns:sensor="http://xmlns.oracle.com/bpel/sensor"
+                exclude-result-prefixes="xsi xsl sensor xsd bam do">
+  <xsl:template match="/">
+    <bam:TemplateSRRDORecord>
+	  <xsl:if test="string-length(/do:BAMDataObject/do:IntegrationFlow) &gt; 0">	
+        <bam:IntegrationFlow>
+          <xsl:value-of select="/do:BAMDataObject/do:IntegrationFlow"/>
+        </bam:IntegrationFlow>
+	  </xsl:if>
+
+	  <xsl:if test="string-length(/do:BAMDataObject/do:ServiceName) &gt; 0">
+        <bam:ServiceName>
+          <xsl:value-of select="/do:BAMDataObject/do:ServiceName"/>
+        </bam:ServiceName>
+      </xsl:if>
+
+	  <xsl:if test="string-length(/do:BAMDataObject/do:Type) &gt; 0">
+        <bam:Type>
+          <xsl:value-of select="/do:BAMDataObject/do:Type"/>
+        </bam:Type>
+	  </xsl:if>
+	  
+	  <xsl:if test="string-length(/do:BAMDataObject/do:SubType) &gt; 0">
+        <bam:SubType>
+          <xsl:value-of select="/do:BAMDataObject/do:SubType"/>
+        </bam:SubType>
+	  </xsl:if>
+	  
+	  <!--
+      <xsl:if test="string-length(/do:BAMDataObject/do:Status) &gt; 0">
+        <bam:Status>
+          <xsl:value-of select="/do:BAMDataObject/do:Status"/>
+        </bam:Status>
+	  </xsl:if>
+	  -->
+	  
+	  <xsl:if test="string-length(/do:BAMDataObject/do:Status) &gt; 0">
+		<xsl:choose>	  
+			<xsl:when test="/do:BAMDataObject/do:Status='Started'">
+			  <bam:Status>Running</bam:Status>
+			</xsl:when>
+			<xsl:otherwise>
+			  <bam:Status>
+				<xsl:value-of select="/do:BAMDataObject/do:Status"/>
+			  </bam:Status>				
+			</xsl:otherwise>
+		</xsl:choose>
+	  </xsl:if>	  
+	  
+	  <xsl:if test="string-length(/do:BAMDataObject/do:CreationDate) &gt; 0">
+		<xsl:if test="/do:BAMDataObject/do:CreationDate!='1900-10-10T10:10:10'">
+			<bam:CreationDate>
+			  <xsl:value-of select="/do:BAMDataObject/do:CreationDate"/>
+			</bam:CreationDate>
+		</xsl:if>
+	  </xsl:if>
+	  
+      <bam:LastUpdate>
+        <xsl:value-of select="/do:BAMDataObject/do:LastUpdate"/>
+      </bam:LastUpdate>
+	  
+	  <xsl:if test="string-length(/do:BAMDataObject/do:System) &gt; 0">
+        <bam:System>
+          <xsl:value-of select="/do:BAMDataObject/do:System"/>
+        </bam:System>
+	  </xsl:if>
+	  
+      <bam:InstanceID>
+        <xsl:value-of select="/do:BAMDataObject/do:InstanceID"/>
+      </bam:InstanceID>
+
+	  <xsl:if test="string-length(/do:BAMDataObject/do:ErrorCD) &gt; 0">
+	    <xsl:if test="/do:BAMDataObject/do:ErrorCD='1900-10-10T10:10:10'">
+		  <bam:ErrorCD></bam:ErrorCD>
+        </xsl:if>
+	    <xsl:if test="/do:BAMDataObject/do:ErrorCD!='1900-10-10T10:10:10'">		
+  		  <bam:ErrorCD>
+            <xsl:value-of select="/do:BAMDataObject/do:ErrorCD"/>
+		  </bam:ErrorCD>
+		</xsl:if>
+	  </xsl:if>
+
+	  <xsl:if test="string-length(/do:BAMDataObject/do:ErrorFD) &gt; 0">
+	    <xsl:if test="/do:BAMDataObject/do:ErrorFD='1900-10-10T10:10:10'">
+		  <bam:ErrorFD></bam:ErrorFD>
+        </xsl:if>
+	    <xsl:if test="/do:BAMDataObject/do:ErrorFD!='1900-10-10T10:10:10'">		
+  		  <bam:ErrorFD>
+            <xsl:value-of select="/do:BAMDataObject/do:ErrorFD"/>
+		  </bam:ErrorFD>
+		</xsl:if>
+	  </xsl:if>
+	  
+	  	  
+	  <xsl:if test="string-length(/do:BAMDataObject/do:TypeError) &gt; 0">
+	    <xsl:if test="/do:BAMDataObject/do:TypeError='blank'">
+	      <bam:TypeError></bam:TypeError>
+		</xsl:if>
+		<xsl:if test="/do:BAMDataObject/do:TypeError!='blank'">
+  		  <bam:TypeError>
+            <xsl:value-of select="/do:BAMDataObject/do:TypeError"/>
+		  </bam:TypeError>		
+		</xsl:if> 		
+	  </xsl:if>	  
+	  
+	  <xsl:if test="string-length(/do:BAMDataObject/do:CodeError) &gt; 0">
+	    <xsl:if test="/do:BAMDataObject/do:CodeError='blank'">
+	      <bam:CodeError></bam:CodeError>
+		</xsl:if>
+		<xsl:if test="/do:BAMDataObject/do:CodeError!='blank'">
+  		  <bam:CodeError>
+            <xsl:value-of select="/do:BAMDataObject/do:CodeError"/>
+		  </bam:CodeError>
+		</xsl:if>
+	  </xsl:if>	  
+	  
+	  <xsl:if test="string-length(/do:BAMDataObject/do:TypeOfService) &gt; 0">
+		<bam:TypeOfService>
+          <xsl:value-of select="/do:BAMDataObject/do:TypeOfService"/>
+		</bam:TypeOfService>
+	  </xsl:if>	  	  
+	  
+    </bam:TemplateSRRDORecord>
+  </xsl:template>
+</xsl:stylesheet>

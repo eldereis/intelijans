@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faultPolicyBindings version="2.0.1" 
+                     xmlns="http://schemas.oracle.com/bpel/faultpolicy" 
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+        <!-- only applies for the ResubmiterProcess process -->
+	<component faultPolicy="FMF-OSBJMSMessageResubmission-faultpolicy">
+	    <name>ResubmiterProcess</name>
+	</component>
+
+</faultPolicyBindings>

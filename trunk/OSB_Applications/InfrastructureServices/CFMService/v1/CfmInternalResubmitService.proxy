@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:jms="http://www.bea.com/wli/sb/transports/jms" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ser:coreEntry isProxy="true" isEnabled="true">
+    <ser:binding type="abstract XML"/>
+    <ser:monitoring isEnabled="false">
+      <ser:aggregationInterval>10</ser:aggregationInterval>
+      <ser:pipelineMonitoringLevel>Pipeline</ser:pipelineMonitoringLevel>
+    </ser:monitoring>
+    <ser:reporting>true</ser:reporting>
+    <ser:logging isEnabled="true">
+      <ser:logLevel>debug</ser:logLevel>
+    </ser:logging>
+    <ser:sla-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:sla-alerting>
+    <ser:pipeline-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:pipeline-alerting>
+  </ser:coreEntry>
+  <ser:endpointConfig>
+    <tran:provider-id>jms</tran:provider-id>
+    <tran:inbound>true</tran:inbound>
+    <tran:URI>
+      <env:value>jms://ttsvint1:9004/internal.service.cf/internal.transformationError.SOA_to_OSB.request</env:value>
+    </tran:URI>
+    <tran:inbound-properties/>
+    <tran:all-headers>false</tran:all-headers>
+    <tran:provider-specific>
+      <jms:is-queue>true</jms:is-queue>
+      <jms:is-secure>false</jms:is-secure>
+      <jms:inbound-properties>
+        <jms:response-required>false</jms:response-required>
+        <jms:XA-required>false</jms:XA-required>
+        <jms:synchronous-transactional>false</jms:synchronous-transactional>
+      </jms:inbound-properties>
+      <jms:request-encoding>UTF-8</jms:request-encoding>
+    </tran:provider-specific>
+  </ser:endpointConfig>
+  <ser:router errorHandler="_onErrorHandler-6098326341178485097-4a35ce87.12becdda276.-7bfa">
+    <con:pipeline type="request" name="CfmInternalResubmit_request">
+      <con:stage name="CreateResubmitMessage">
+        <con:context/>
+        <con:actions>
+          <con1:assign varName="OriginalMsg">
+            <con2:id>_ActionId-6098326341178485097-4a35ce87.12becdda276.-7d99</con2:id>
+            <con1:expr>
+              <con2:xqueryText>fn-bea:serialize($body/*)</con2:xqueryText>
+            </con1:expr>
+          </con1:assign>
+          <con1:assign varName="FaultCatched">
+            <con2:id>_ActionId-6098326341178485097-4a35ce87.12becdda276.-7d7c</con2:id>
+            <con1:expr>
+              <con2:xqueryText><![CDATA[<ns:Fault xmlns:ns="http://www.turktelekom.com.tr/aTTIP/Common/1.0" xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0">
+  <ns1:type>1</ns1:type>
+  <ns1:code>SOA-000001</ns1:code>
+  <ns1:description>Generic Error</ns1:description>
+  <ns1:sourceSystem>ATTIP</ns1:sourceSystem>
+  <ns1:detail>BusinessID:{fn:data($body//*:Header/*:businessID)} - Service:{fn:data($body//*:Header/*:service)} - SCA error, for more informations see instance on Enterprise Manager console</ns1:detail>
+</ns:Fault>]]></con2:xqueryText>
+            </con1:expr>
+          </con1:assign>
+          <con1:assign varName="ResubmitMsg">
+            <con2:id>_ActionId-6098326341178485097-4a35ce87.12becdda276.-7db8</con2:id>
+            <con1:expr>
+              <con2:xqueryTransform>
+                <con2:resource ref="OSB_Applications/UtilityServices/Shared/XQuery/CreateResubmitMessage"/>
+                <con2:param name="proxyService">
+                  <con2:path>""</con2:path>
+                </con2:param>
+                <con2:param name="originalMessage">
+                  <con2:path>$OriginalMsg</con2:path>
+                </con2:param>
+                <con2:param name="businessID">
+                  <con2:path>if (fn:data($body//*:businessID) != '') then
+	fn:data($body//*:businessID)
+else
+	""</con2:path>
+                </con2:param>
+                <con2:param name="businessService">
+                  <con2:path>if(fn:data($body//*:Header/*:MsgSpecificProperties/*:Property[*:name='BusinessService']/*:value) != '') then
+	fn:data($body//*:Header/*:MsgSpecificProperties/*:Property[*:name='BusinessService']/*:value)
+else
+	"unknown"</con2:path>
+                </con2:param>
+                <con2:param name="conversationID">
+                  <con2:path>if (fn:data($body//*:conversationID) != '') then
+	fn:data($body//*:conversationID)
+else
+	""</con2:path>
+                </con2:param>
+                <con2:param name="destinationQueue">
+                  <con2:path>""</con2:path>
+                </con2:param>
+                <con2:param name="sourceSystem">
+                  <con2:path>"ATTIP"</con2:path>
+                </con2:param>
+                <con2:param name="serviceName">
+                  <con2:path>if (fn:data($body//*:service) != '') then
+	fn:data($body//*:service)
+else
+	""</con2:path>
+                </con2:param>
+                <con2:param name="typology">
+                  <con2:path>"BUSINESS ERROR"</con2:path>
+                </con2:param>
+                <con2:param name="faultMessage">
+                  <con2:path>fn-bea:serialize($FaultCatched)</con2:path>
+                </con2:param>
+              </con2:xqueryTransform>
+            </con1:expr>
+          </con1:assign>
+          <con1:delete varName="body">
+            <con2:id>_ActionId-6098326341178485097-4a35ce87.12becdda276.-7b68</con2:id>
+            <con1:location>
+              <con2:xpathText>.</con2:xpathText>
+            </con1:location>
+          </con1:delete>
+          <con1:replace varName="body" contents-only="true">
+            <con2:id>_ActionId-6098326341178485097-4a35ce87.12becdda276.-7c33</con2:id>
+            <con1:location>
+              <con2:xpathText>.</con2:xpathText>
+            </con1:location>
+            <con1:expr>
+              <con2:xqueryText>$ResubmitMsg</con2:xqueryText>
+            </con1:expr>
+          </con1:replace>
+        </con:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:pipeline type="response" name="CfmInternalResubmit_response"/>
+    <con:pipeline type="error" name="_onErrorHandler-6098326341178485097-4a35ce87.12becdda276.-7bfa">
+      <con:stage name="ManageError">
+        <con1:context xmlns:con3="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con5="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con1="http://www.bea.com/wli/sb/pipeline/config"/>
+        <con1:actions xmlns:con3="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con5="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con1="http://www.bea.com/wli/sb/pipeline/config">
+          <con6:assign varName="FaultCatched" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+            <con7:id xmlns:con7="http://www.bea.com/wli/sb/stages/config">_ActionId-6098326341178485097-4a35ce87.12becdda276.-7b85</con7:id>
+            <con6:expr>
+              <con7:xqueryText xmlns:con7="http://www.bea.com/wli/sb/stages/config"><![CDATA[<ns:Fault xmlns:ns="http://www.turktelekom.com.tr/aTTIP/Common/1.0" xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0">
+  <ns1:type>2</ns1:type>
+  <ns1:code>SOA-100006</ns1:code>
+  <ns1:description>Validation exception on Custom Message</ns1:description>
+  <ns1:sourceSystem>ATTIP</ns1:sourceSystem>
+  <ns1:detail>{fn:data($body//*:service)} - SCA Adapter trasformation error</ns1:detail>
+</ns:Fault>]]></con7:xqueryText>
+            </con6:expr>
+          </con6:assign>
+          <con6:assign varName="body" xmlns:con6="http://www.bea.com/wli/sb/stages/transform/config">
+            <con7:id xmlns:con7="http://www.bea.com/wli/sb/stages/config">_ActionId-6098326341178485097-4a35ce87.12becdda276.-7bc1</con7:id>
+            <con6:expr>
+              <con7:xqueryTransform xmlns:con7="http://www.bea.com/wli/sb/stages/config">
+                <con7:resource ref="OSB_Applications/UtilityServices/Shared/XQuery/CreateResubmitMessage"/>
+                <con7:param name="proxyService">
+                  <con7:path>"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="originalMessage">
+                  <con7:path>$OriginalMsg</con7:path>
+                </con7:param>
+                <con7:param name="businessService">
+                  <con7:path>if (fn:data($body//*:Header/*:MsgSpecificProperties/*:Property[*:name='BusinessService']/*:value) != '') then
+	fn:data($body//*:Header/*:MsgSpecificProperties/*:Property[*:name='BusinessService']/*:value)
+else
+	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="businessID">
+                  <con7:path>if (fn:data($body//*:businessID) != '') then
+	fn:data($body//*:businessID)
+else
+	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="destinationQueue">
+                  <con7:path>""</con7:path>
+                </con7:param>
+                <con7:param name="conversationID">
+                  <con7:path>if (fn:data($body//*:conversationID) != '') then
+	fn:data($body//*:conversationID)
+else
+	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="sourceSystem">
+                  <con7:path>"ATTIP"</con7:path>
+                </con7:param>
+                <con7:param name="serviceName">
+                  <con7:path>if (fn:data($body//*:service) != '') then
+	fn:data($body//*:service)
+else
+	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="typology">
+                  <con7:path>"BUSINESS ERROR"</con7:path>
+                </con7:param>
+                <con7:param name="faultMessage">
+                  <con7:path>fn-bea:serialize($FaultCatched)</con7:path>
+                </con7:param>
+              </con7:xqueryTransform>
+            </con6:expr>
+          </con6:assign>
+          <con4:route>
+            <con6:id xmlns:con6="http://www.bea.com/wli/sb/stages/config">_ActionId-6098326341178485097-4a35ce87.12becdda276.-7bc0</con6:id>
+            <con4:service ref="OSB_Applications/InfrastructureServices/CFMService/v1/BusinessServices/CfmServiceResubmitt" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+            <con4:outboundTransform/>
+          </con4:route>
+        </con1:actions>
+      </con:stage>
+    </con:pipeline>
+    <con:flow>
+      <con:pipeline-node name="CfmInternalResubmit">
+        <con:request>CfmInternalResubmit_request</con:request>
+        <con:response>CfmInternalResubmit_response</con:response>
+      </con:pipeline-node>
+      <con:route-node name="RouteToSCAResubmit">
+        <con:context/>
+        <con:actions>
+          <con3:route>
+            <con2:id>_ActionId-6098326341178485097-4a35ce87.12becdda276.-7cf4</con2:id>
+            <con3:service ref="OSB_Applications/InfrastructureServices/CFMService/v1/BusinessServices/CfmServiceResubmitt" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+            <con3:outboundTransform/>
+            <con3:responseTransform/>
+          </con3:route>
+        </con:actions>
+      </con:route-node>
+    </con:flow>
+  </ser:router>
+</xml-fragment>

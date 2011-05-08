@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sensors xmlns="http://xmlns.oracle.com/bpel/sensor">
+    <sensor sensorName="businessID" kind="service" target="undefined" filter="" xmlns:imp1="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0">
+        <serviceConfig service="PickFromOSBJMS" expression="$in.payload/imp1:ResubmitionRequest/imp1:RoutingInfo/imp1:JmsProperties/imp1:JmsProperty[imp1:Name='businessID']/imp1:Value" operation="Consume_Message" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+    <sensor sensorName="conversationID" kind="service" target="undefined" filter="" xmlns:imp1="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0">
+        <serviceConfig service="PickFromOSBJMS" expression="$in.payload/imp1:ResubmitionRequest/imp1:RoutingInfo/imp1:JmsProperties/imp1:JmsProperty[imp1:Name='conversationID']/imp1:Value" operation="Consume_Message" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+    <sensor sensorName="ErrorCode" kind="service" target="undefined" filter="" xmlns:imp1="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0" xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc">
+        <serviceConfig service="PickFromOSBJMS" expression="substring(string($in.payload/imp1:ResubmitionRequest/imp1:OriginalFault),oraext:index-within-string(string($in.payload/imp1:ResubmitionRequest/imp1:OriginalFault),'SOA-')+1,10)" operation="Consume_Message" outputDataType="string" outputNamespace="http://www.w3.org/2001/XMLSchema"/>
+    </sensor>
+</sensors>

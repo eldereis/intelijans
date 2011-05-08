@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:sr="http://www.turktelekom.com.tr/aTTIP/ServiceRequest" xmlns:com="http://www.turktelekom.com.tr/aTTIP/Common/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.turktelekom.com.tr/aTTIP/ServiceRequest" elementFormDefault="qualified" attributeFormDefault="unqualified">  
+  <xs:element name="ServiceRequest" type="sr:ServiceRequestType"/>
+  <xs:complexType name="ServiceRequestType">
+    <xs:sequence>
+      <xs:element name="ID" type="xs:string" minOccurs="0"/>
+      <xs:element name="interactionDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="interactionDateComplete" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="interactionStatus" type="xs:string" minOccurs="0"/>
+      <xs:element name="type" type="xs:string" minOccurs="0"/>
+      <xs:element name="customerID" type="xs:string" minOccurs="0"/>
+      <xs:element name="contactID" type="xs:string" minOccurs="0"/>
+      <xs:element name="subscriptionNumber" type="xs:string" minOccurs="0"/>
+      <xs:element name="number" type="xs:string" minOccurs="0"/>
+      <xs:element name="area" type="xs:string" minOccurs="0"/>
+      <xs:element name="subArea" type="xs:string" minOccurs="0"/>
+      <xs:element name="requestType" type="xs:string" minOccurs="0"/>
+      <xs:element name="priority" type="xs:string" minOccurs="0"/>
+      <xs:element name="severity" type="xs:string" minOccurs="0"/>
+      <xs:element name="comment" type="xs:string" minOccurs="0"/>
+      <xs:element name="inboundChannel" type="xs:string" minOccurs="0"/>
+      <xs:element name="outboundChannel" type="xs:string" minOccurs="0"/>
+      <xs:element name="requestedCloseDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="dueDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="conclusion" type="xs:string" minOccurs="0"/>
+      <xs:element name="rejectionReason" type="xs:string" minOccurs="0"/>
+      <xs:element name="cancellationReason" type="xs:string" minOccurs="0"/>
+      <xs:element name="rootCause" type="xs:string" minOccurs="0"/>
+      <xs:element name="solutionCode" type="xs:string" minOccurs="0"/>
+      <xs:element name="cancellationDescription" type="xs:string" minOccurs="0"/>
+      <xs:element name="customerConfirmationStatus" type="xs:string" minOccurs="0"/>
+      <xs:element name="systemSpecificID" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

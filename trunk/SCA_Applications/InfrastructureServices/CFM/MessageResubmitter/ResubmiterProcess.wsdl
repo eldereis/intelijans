@@ -1,0 +1,37 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ResubmiterProcess"
+     targetNamespace="http://xmlns.oracle.com/SOA_Application_jws/MessageResubmitter/ResubmiterProcess"
+     xmlns:ns2="http://www.turktelekom.com.tr/aTTIP/Common/1.0"
+     xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:ns3="http://www.turktelekom.com.tr/aTTIP/Utilities/BAMDataObject"
+     xmlns:client="http://xmlns.oracle.com/SOA_Application_jws/MessageResubmitter/ResubmiterProcess"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <plnk:partnerLinkType name="ResubmiterProcess">
+        <plnk:role name="ResubmiterProcessProvider">
+            <plnk:portType name="client:ResubmiterProcess"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0"
+                 schemaLocation="oramds:/apps/InfrastructureServices/CFM/Shared/1.0/MessageResubmitter.xsd"/>
+        </schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.turktelekom.com.tr/aTTIP/Common/1.0" schemaLocation="oramds:/apps/CommonDataModel/1.0/Common.xsd"/>
+        </xsd:schema>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.turktelekom.com.tr/aTTIP/Utilities/BAMDataObject" schemaLocation="oramds:/apps/UtilityServices/BAM/v1/BAMDataObject.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="ResubmiterProcessRequestMessage">
+        <wsdl:part name="payload" element="ns1:ResubmitionRequest"/>
+    </wsdl:message>
+    <wsdl:portType name="ResubmiterProcess">
+        <wsdl:operation name="process">
+            <wsdl:input message="client:ResubmiterProcessRequestMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

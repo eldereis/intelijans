@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions targetNamespace="http://xmlns.oracle.com/pcbpel/errorHandling"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="http://xmlns.oracle.com/pcbpel/errorHandling"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+             xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema"
+                targetNamespace="http://xmlns.oracle.com/pcbpel/errorHandling"
+                xmlns:tns="http://xmlns.oracle.com/pcbpel/errorHandling"
+                elementFormDefault="qualified">
+      <xsd:complexType name="RejectedMessageType">
+        <xsd:sequence>
+          <xsd:element name="MessageHeader" type="string"/>
+          <!-- base64 encoded string -->
+          <xsd:element name="MessagePayload" type="string"/>
+          <!-- base64 encoded string -->
+          <xsd:element name="RejectionReason" type="string"/>
+        </xsd:sequence>
+        <xsd:attribute name="RejectionId" type="string"/>
+      </xsd:complexType>
+      <xsd:element name="RejectedMessage" type="tns:RejectedMessageType"/>
+    </xsd:schema>
+  </types>
+  <message name="RejectionMessage">
+    <part name="in" element="tns:RejectedMessage"/>
+  </message>
+  <portType name="RejectedMessageHandlerPT">
+    <operation name="handleFault">
+      <input message="tns:RejectionMessage"/>
+    </operation>
+  </portType>
+  <binding name="RejectedMessageHandlerPTSOAP11Binding"
+           type="tns:RejectedMessageHandlerPT">
+    <soap:binding style="document"
+                  transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="handleFault">
+      <soap:operation style="document"
+                      soapAction="http://xmlns.oracle.com/pcbpel/errorHandling/handleFault"/>
+      <input>
+        <soap:body use="literal" parts="in"/>
+      </input>
+    </operation>
+  </binding>
+  <service name="RejectedMessageHandlerWS">
+    <port name="RejectedMessagePort"
+          binding="tns:RejectedMessageHandlerPTSOAP11Binding">
+      <soap:address location="http://localhost:7001/proxy/RejectedMessageHandlerWS"/>
+    </port>
+  </service>
+</definitions>

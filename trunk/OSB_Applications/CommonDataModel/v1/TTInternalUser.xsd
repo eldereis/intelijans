@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:ttiut="http://www.turktelekom.com.tr/aTTIP/TTInternalUser/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.turktelekom.com.tr/aTTIP/TTInternalUser/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+<xs:annotation>
+<xs:documentation>20100715 TTInternalUser.xsd v.2.4</xs:documentation>
+</xs:annotation>
+<xs:element name="TTUser" type="ttiut:TTUserType"/>
+<xs:complexType name="TTUserType">
+<xs:complexContent>
+<xs:extension base="ttiut:PartyRoleType">
+<xs:sequence>
+<xs:element name="login" type="xs:string" minOccurs="0"/>
+<xs:element name="company" type="xs:string" minOccurs="0"/>
+<xs:element name="responsibility" type="xs:string" minOccurs="0"/>
+<xs:element name="position" type="xs:string" minOccurs="0"/>
+<xs:element name="TTUserApplicationRelationship" type="ttiut:TTUserApplicationRelationshipType" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TTUserApplicationRelationshipType">
+<xs:sequence>
+<xs:element name="TTApplicationPrivilege" type="ttiut:TTApplicationPrivilegeType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TTApplicationType">
+<xs:complexContent>
+<xs:extension base="ttiut:ResourceSpecificationType">
+<xs:sequence>
+<xs:element name="ID" type="xs:string" minOccurs="0"/>
+<xs:element name="same" type="xs:string" minOccurs="0"/>
+<xs:element name="TTApplicationPrivilege" type="ttiut:TTApplicationPrivilegeType" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TTApplicationPrivilegeType">
+<xs:sequence>
+<xs:element name="roleID" type="xs:string" minOccurs="0"/>
+<xs:element name="roleName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IndividualNameType">
+<xs:sequence>
+<xs:element name="formattedName" type="xs:string"/>
+<xs:element name="legalName" type="xs:string"/>
+<xs:element name="aristocratittiutitle" type="xs:string"/>
+<xs:element name="formOfAddress" type="xs:string"/>
+<xs:element name="generation" type="xs:string"/>
+<xs:element name="givenNames" type="xs:string"/>
+<xs:element name="preferredGivenName" type="xs:string"/>
+<xs:element name="middleNames" type="xs:string"/>
+<xs:element name="familyNamePrefix" type="xs:string"/>
+<xs:element name="familyNames" type="xs:string"/>
+<xs:element name="familyGeneration" type="xs:string"/>
+<xs:element name="qualifications" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="IndividualType">
+<xs:complexContent>
+<xs:extension base="ttiut:PartyType">
+<xs:sequence>
+<xs:element name="gender" type="xs:string"/>
+<xs:element name="placeOfBirth" type="xs:string"/>
+<xs:element name="dateOfBirth" type="xs:dateTime"/>
+<xs:element name="dateOfDeath" type="xs:dateTime"/>
+<xs:element name="nationality" type="xs:string"/>
+<xs:element name="maritalStatus" type="xs:string"/>
+<xs:element name="salutation" type="xs:string"/>
+<xs:element name="jobTitle" type="xs:string"/>
+<xs:element name="IndividualName" type="ttiut:IndividualNameType" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="PartyRoleType">
+<xs:sequence>
+<xs:element name="partyRoleId" type="xs:string"/>
+<xs:element name="name" type="xs:string"/>
+<xs:element name="status" type="xs:string"/>
+<xs:element name="startDate" type="xs:dateTime"/>
+<xs:element name="endDate" type="xs:dateTime"/>
+<xs:element name="PartyRoleAssociation" type="ttiut:PartyRoleAssociationType" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TelephoneNumberType">
+<xs:sequence>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="preferredContactMethod" type="xs:string" minOccurs="0"/>
+<xs:element name="preferredContactTime" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="number" type="xs:string" minOccurs="0"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="EmailContactType">
+<xs:sequence>
+<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="preferredContactMethod" type="xs:string" minOccurs="0"/>
+<xs:element name="preferredContactTime" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="eMailAddress" type="xs:string" minOccurs="0"/>
+<xs:element name="eMailProtocol" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PartyRoleAssociationType">
+<xs:sequence>
+<xs:element name="associationType" type="xs:string"/>
+<xs:element name="status" type="xs:string"/>
+<xs:element name="PartyRole" type="ttiut:PartyRoleType"/>
+<xs:element name="startDate" type="xs:dateTime"/>
+<xs:element name="endDate" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ResourceSpecificationType">
+<xs:sequence>
+<xs:element name="objectID" type="xs:string"/>
+<xs:element name="description" type="xs:string"/>
+<xs:element name="commonName" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PartyType">
+<xs:sequence>
+<xs:element name="partyId" type="xs:string"/>
+<xs:element name="isLegalEntity" type="xs:string"/>
+<xs:element name="startDate" type="xs:dateTime"/>
+<xs:element name="endDate" type="xs:dateTime"/>
+<xs:element name="PartyRole" type="ttiut:PartyRoleType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TTDepartment">
+<xs:complexContent>
+<xs:extension base="ttiut:PartyRoleType">
+<xs:sequence>
+<xs:element name="partyId" type="xs:string"/>
+<xs:element name="isLegalEntity" type="xs:string"/>
+<xs:element name="startDate" type="xs:dateTime"/>
+<xs:element name="endDate" type="xs:dateTime"/>
+<xs:element name="PartyRole" type="ttiut:PartyRoleType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+</xs:schema>

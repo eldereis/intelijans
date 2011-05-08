@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.turktelekom.com.tr/aTTIP/Customer" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cust="http://www.turktelekom.com.tr/aTTIP/CustomerType">
+	<xs:import namespace="http://www.turktelekom.com.tr/aTTIP/CustomerType" schemaLocation="CustomerType.xsd"/>	
+  	<xs:element name="Customer">
+			<xs:complexType>
+				<xs:sequence>
+					<xs:element name="Customer" type="cust:CustomerType" minOccurs="0"/>					
+				</xs:sequence>
+			</xs:complexType>
+			</xs:element>		
+     </xs:schema>

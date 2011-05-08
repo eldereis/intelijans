@@ -1,0 +1,42 @@
+Apr 11, 2011 8:58:12 PM oracle.mds
+WARNING: Namespace mapping for "/apps/ManageCustomer/ManageCustomer/1.0/SIEBEL" is overridden by namespace mapping for "/apps/ManageCustomer"; the first mapping is not used.
+Apr 11, 2011 8:58:12 PM oracle.mds
+WARNING: Namespace mapping for "/apps/ManageCustomer/Shared/XSD/1.0" is overridden by namespace mapping for "/apps/ManageCustomer"; the first mapping is not used.
+Apr 11, 2011 8:58:12 PM oracle.mds
+WARNING: Namespace mapping for "/apps/ManageCustomer/ManageCustomer/1.0/SIEBEL" is overridden by namespace mapping for "/apps/ManageCustomer"; the first mapping is not used.
+Apr 11, 2011 8:58:12 PM oracle.mds
+WARNING: Namespace mapping for "/apps/ManageCustomer/Shared/XSD/1.0" is overridden by namespace mapping for "/apps/ManageCustomer"; the first mapping is not used.
+Apr 11, 2011 8:58:13 PM oracle.mds
+WARNING: Namespace mapping for "/apps/ManageCustomer/ManageCustomer/1.0/SIEBEL" is overridden by namespace mapping for "/apps/ManageCustomer"; the first mapping is not used.
+Apr 11, 2011 8:58:13 PM oracle.mds
+WARNING: Namespace mapping for "/apps/ManageCustomer/Shared/XSD/1.0" is overridden by namespace mapping for "/apps/ManageCustomer"; the first mapping is not used.
+Apr 11, 2011 8:58:13 PM oracle.mds
+WARNING: Namespace mapping for "/apps/ManageCustomer/ManageCustomer/1.0/SIEBEL" is overridden by namespace mapping for "/apps/ManageCustomer"; the first mapping is not used.
+Apr 11, 2011 8:58:13 PM oracle.mds
+WARNING: Namespace mapping for "/apps/ManageCustomer/Shared/XSD/1.0" is overridden by namespace mapping for "/apps/ManageCustomer"; the first mapping is not used.
+Apr 11, 2011 8:58:14 PM oracle.mds
+WARNING: Namespace mapping for "/apps/ManageCustomer/ManageCustomer/1.0/SIEBEL" is overridden by namespace mapping for "/apps/ManageCustomer"; the first mapping is not used.
+Apr 11, 2011 8:58:14 PM oracle.mds
+WARNING: Namespace mapping for "/apps/ManageCustomer/Shared/XSD/1.0" is overridden by namespace mapping for "/apps/ManageCustomer"; the first mapping is not used.
+SAXParseException in file fault-policies.xml
+org.xml.sax.SAXParseException: <Line 28, Column 50>: XML-24534: (Error) Element 'invokeWS' not expected.
+	at oracle.xml.parser.v2.XMLError.flushErrorHandler(XMLError.java:422)
+	at oracle.xml.parser.v2.XMLError.flushErrors1(XMLError.java:287)
+	at oracle.xml.parser.v2.NonValidatingParser.parseDocument(NonValidatingParser.java:335)
+	at oracle.xml.parser.v2.XMLParser.parse(XMLParser.java:318)
+	at oracle.soa.scac.ValidationFaultUtil.validateStreamWithSchema(ValidationFaultUtil.java:146)
+	at oracle.soa.scac.ValidationFaultUtil.validateWithSchema(ValidationFaultUtil.java:196)
+	at oracle.soa.scac.ValidateComposite.validateFaultPolicy(ValidateComposite.java:1341)
+	at oracle.soa.scac.ValidateComposite.doValidation(ValidateComposite.java:550)
+	at oracle.soa.scac.ValidateComposite.main(ValidateComposite.java:223)
+SAXParseException in file fault-policies.xml
+org.xml.sax.SAXParseException: <Line 30, Column 16>: XML-24521: (Error) Element not completed: 'Action'
+	at oracle.xml.parser.v2.XMLError.flushErrorHandler(XMLError.java:422)
+	at oracle.xml.parser.v2.XMLError.flushErrors1(XMLError.java:287)
+	at oracle.xml.parser.v2.NonValidatingParser.parseDocument(NonValidatingParser.java:335)
+	at oracle.xml.parser.v2.XMLParser.parse(XMLParser.java:318)
+	at oracle.soa.scac.ValidationFaultUtil.validateStreamWithSchema(ValidationFaultUtil.java:146)
+	at oracle.soa.scac.ValidationFaultUtil.validateWithSchema(ValidationFaultUtil.java:196)
+	at oracle.soa.scac.ValidateComposite.validateFaultPolicy(ValidateComposite.java:1341)
+	at oracle.soa.scac.ValidateComposite.doValidation(ValidateComposite.java:550)
+	at oracle.soa.scac.ValidateComposite.main(ValidateComposite.java:223)

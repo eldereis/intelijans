@@ -1,0 +1,31 @@
+We have created a new domain called JMS_HUB manage with two nodes in the cluster (and jms_ms1 jms_ms2).
+We created two folders physical fs_1 fs_2 and then we created two stores persistemte jms_fs1 jms_fs2 and making them point to the two physical folders.
+We created two JMS servers jms_server1 jms_server2 and making them point to the persistent store and jms_fs1 jms_fs2 to "turn to the two physical folders and fs_1 fs_2.
+We launched two scripts:
+  - configureJmsResources.py
+  - configureJmsUdq.py
+
+The wls.properties file contains the credentials for access to the url + wls
+The file contains info on queue.properties queue to create
+
+The commands to run are:
+
+....../Middleware/wlserver_10.3/common/bin/wlst.sh configureJmsResources.py
+....../Middleware/wlserver_10.3/common/bin/wlst.sh configureJmsUdq.py
+
+************************************************** ************************************************** ************************************************** ***************************
+Create a system property in Java
+
+JMS*HUB
+
+C:\Oracle\Middleware\Home_11gR1\user_projects\domains\TT_JMS-HUB\lib\attip\attip_config.properties
+
+
+OSB
+
+C:\Oracle\Middleware\OSB_10gR3\user_projects\domains\TT_OSB\lib\attip\attip_config.properties
+
+
+
+
+********

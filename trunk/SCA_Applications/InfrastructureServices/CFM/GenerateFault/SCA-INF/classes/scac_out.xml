@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>WARNING</severity>
+      <loc/>
+      <line>66</line>
+      <col/>
+      <file>GenerateFaultProcess.bpel</file>
+      <msg>
+         <![CDATA[Nessun handler di errori trovato all'interno del blocco faultHandlers. 
+Allinterno dellattività faultHandlers non è stata trovata alcuna attività catch o catchAll. 
+Specificare almeno unattività catchFault o catchAll allinterno del blocco faultHandlers come richiesto dalla specifica BPEL. ]]>
+      </msg>
+   </Fault>
+</Faults>

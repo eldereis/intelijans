@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<sensors targetNamespace="http://xmlns.oracle.com/SOA_Application_jws/MessageResubmitter/ResubmiterProcess" xmlns="http://xmlns.oracle.com/bpel/sensor" xmlns:tns="http://xmlns.oracle.com/SOA_Application_jws/MessageResubmitter/ResubmiterProcess" xmlns:pc="http://xmlns.oracle.com/bpel/sensor">
+   <sensor sensorName="ActivitySensor_BAM" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="Send_To_BAM">
+      <activityConfig evalTime="completion">
+         <variable outputDataType="BAMDataObject" outputNamespace="http://www.turktelekom.com.tr/aTTIP/Utilities/BAMDataObject" target="$varBamInfo"/>
+      </activityConfig>
+   </sensor>
+   <sensor sensorName="ActivitySensor_1" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="Assign_Reset_BAM">
+      <activityConfig evalTime="completion">
+         <variable outputDataType="BAMDataObject" outputNamespace="http://www.turktelekom.com.tr/aTTIP/Utilities/BAMDataObject" target="$varBamInfo"/>
+      </activityConfig>
+   </sensor>
+   <sensor sensorName="ActivitySensor_2" classname="oracle.tip.pc.services.reports.dca.agents.BpelActivitySensorAgent" kind="activity" target="Init_BAM">
+      <activityConfig evalTime="completion">
+         <variable outputDataType="BAMDataObject" outputNamespace="http://www.turktelekom.com.tr/aTTIP/Utilities/BAMDataObject" target="$varBamInfo"/>
+      </activityConfig>
+   </sensor>
+</sensors>
