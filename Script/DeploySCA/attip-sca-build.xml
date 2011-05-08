@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<project name="soaDeployAll" default="deployAll">
+  <echo>basedir ${basedir}</echo>
+
+  <property name="compositeDir" value="compositeDir"/>
+  <property name="compositeName" value="compositeName"/>
+  <property name="revision" value="revision"/>
+
+	<property environment="env"/>
+	<echo>current folder ${env.CURRENT_FOLDER}</echo>
+
+	<property file="${env.CURRENT_FOLDER}/build.properties"/> 
+	<property file="${env.CURRENT_FOLDER}/build-components.properties"/> 
+  <property name="distribution.dir" value="${env.CURRENT_FOLDER}/${build.target.environment}/Distributions"/>
+  <property name="configplan.dir" value="${env.CURRENT_FOLDER}/${build.target.environment}/ConfigurationPlans"/>
+  <property name="tmp.output.dir" value="${env.CURRENT_FOLDER}/${build.target.environment}/tmp"/>
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+	<import file="${basedir}/ant-sca-package.xml"/>
+  
+	<target name="buildAll">
+    <echo>Clean temporary build folder ${tmp.output.dir}</echo>      
+    <delete dir="${tmp.output.dir}"/>
+    <mkdir dir="${tmp.output.dir}"/>
+    
+    <echo>Clean Distribution directory</echo>      
+    <delete dir="${distribution.dir}"/>
+    <mkdir dir="${distribution.dir}"/>
+    
+    <echo>Clean Configuration Plans directory</echo>      
+    <delete dir="${configplan.dir}"/>
+    <mkdir dir="${configplan.dir}"/>
+    
+		<foreach list="${applications}" param="application" target="buildApplication" inheritall="true" inheritrefs="false"/>
+	</target>
+	
+  <target name="buildMDS">
+    <echo>build MDS SAR file </echo>
+    <foreach list="${mds.applications}" param="mds.application" target="buildMDSApplication" inheritall="true" inheritrefs="false"/>
+  </target>
+   
+  <target name="buildMDSApplication">
+    <echo>build MDS SAR file for application ${mds.application}</echo>
+
+    <echo>remove and create local MDS temp dir</echo>
+    <property name="mds.build.dir" value="${tmp.output.dir}/${mds.application}"/>
+    
+    <delete dir="${mds.build.dir}"/>
+    <mkdir dir="${mds.build.dir}"/>
+
+    <echo>create zip from file MDS store</echo>
+    <zip destfile="${mds.build.dir}/${mds.application}_mds.jar" compress="false">
+      <fileset dir="${mds.reposistory}/DVM" includes="**"/>
+      <fileset dir="${mds.reposistory}/xsd" includes="**"/>
+      <fileset dir="${mds.reposistory}/Events" includes="**"/>
+    </zip>
+
+    <echo>create zip with MDS jar</echo>
+    <zip destfile="${mds.build.dir}/${mds.application}_mds.zip" compress="false">
+      <fileset dir="${mds.build.dir}" includes="*.jar"/>
+    </zip>
+    
+    <echo>Copy MDS to Distributions dir</echo>
+    <copy file="${mds.build.dir}/${mds.application}_mds.zip" todir="${distribution.dir}"/>
+  </target>
+
+	<target name="buildApplication">
+		<echo>build application ${application}</echo>
+    
+    <property name="app.distribution.dir" value="${distribution.dir}/${application}"/>
+    <property name="app.configplan.dir" value="${configplan.dir}/${application}"/>
+    <mkdir dir="${app.distribution.dir}"/>
+    <mkdir dir="${app.configplan.dir}"/>
+    
+		<property file="${env.CURRENT_FOLDER}/${applications.home}/${application}/build.properties"/>
+		<foreach list="${projects}" param="project" target="buildProject" inheritall="true" inheritrefs="false"/>
+	</target>   
+
+	<target name="buildProject">
+		<echo>build project ${project} for environment ${build.target.environment}</echo>
+
+		<property name="proj.compositeName" value="${project}"/>
+		<property name="proj.compositeDir" value="${env.CURRENT_FOLDER}/${applications.home}/${application}"/>
+		<propertycopy name="proj.revision" from="${project}.revision"/>
+		<property name="proj.configPlanName" value="${proj.compositeName}_cfgplan.xml"/>
+    <property name="proj.tmp.dir" value="${tmp.output.dir}/${project}"/>
+
+    <echo>Create tmp dir ${proj.tmp.dir}</echo>
+    <delete dir="${proj.tmp.dir}"/>
+    <mkdir dir="${proj.tmp.dir}"/>
+    
+		<echo>building compositeName ${proj.compositeName}</echo>
+		<echo>build compositeDir ${proj.compositeDir}</echo>
+
+		<antcall target="package" inheritall="false">
+			<param name="compositeDir" value="${proj.compositeDir}/${project}"/>
+      <param name="compositeName" value="${proj.compositeName}"/>
+      <param name="revision" value="${proj.revision}"/>
+      <param name="oracle.home" value="${oracle.home}"/>
+      <param name="java.passed.home" value="${java.passed.home}"/>
+      <param name="wl_home" value="${wl_home}"/>
+      <param name="sca.application.home" value="${proj.compositeDir}"/>
+      <param name="scac.application.home" value="${proj.compositeDir}"/>
+      <param name="scac.input" value="${proj.compositeDir}/${proj.compositeName}/composite.xml"/>
+      <param name="scac.output" value="${proj.tmp.dir}/${proj.compositeName}.xml"/>
+      <param name="scac.error" value="${proj.tmp.dir}/${proj.compositeName}.err"/>
+      <param name="scac.displayLevel" value="3"/>
+		</antcall> 
+
+		<property name="build.sarLocation" value="${proj.compositeDir}/${proj.compositeName}/deploy/sca_${proj.compositeName}_rev${proj.revision}.jar"/>
+		<echo>built compositeName ${proj.compositeName} to SAR file ${build.sarLocation}</echo>
+		
+    <copy file="${build.sarLocation}" todir="${app.distribution.dir}"/>
+		<echo>SAR file sca_${proj.compositeName}_rev${proj.revision}.jar copied to dir ${app.distribution.dir}</echo>
+    
+    <echo>Generating Configuration Plan for composite ${proj.compositeName}</echo>
+    <antcall target="generateConfigPlan" inheritall="true"/>
+    <echo>Configuration Plan ${proj.configPlanName} generated into dir ${app.configplan.dir}</echo>
+   </target>
+    
+    <target name="generateConfigPlan">
+      <antcall target="generateplan" inheritall="false">
+        <param name="scac.input" value="${proj.compositeDir}/${proj.compositeName}/composite.xml"/>
+        <param name="scac.plan" value="${app.configplan.dir}/${proj.configPlanName}"/>
+      </antcall>
+    </target>
+</project>

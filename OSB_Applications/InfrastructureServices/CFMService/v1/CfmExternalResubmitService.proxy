@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://www.bea.com/wli/sb/typesystem/config" xmlns:con1="http://www.bea.com/wli/sb/pipeline/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con3="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config">
+  <ser:coreEntry isProxy="true" isEnabled="true">
+    <ser:binding type="Mixed" xsi:type="con:MixedBindingType" xmlns:con="http://www.bea.com/wli/sb/services/bindings/config">
+      <con:request type="XML">
+        <con5:schema ref="OSB_Applications/InfrastructureServices/CFMService/v1/XSD/ATTIP_PGM1_ExternalSystemFaultManagement" element="FaultResponse" xmlns:con5="http://www.bea.com/wli/sb/typesystem/config"/>
+      </con:request>
+    </ser:binding>
+    <ser:monitoring isEnabled="false">
+      <ser:aggregationInterval>10</ser:aggregationInterval>
+      <ser:pipelineMonitoringLevel>Pipeline</ser:pipelineMonitoringLevel>
+    </ser:monitoring>
+    <ser:reporting>true</ser:reporting>
+    <ser:logging isEnabled="true">
+      <ser:logLevel>debug</ser:logLevel>
+    </ser:logging>
+    <ser:sla-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:sla-alerting>
+    <ser:pipeline-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:pipeline-alerting>
+  </ser:coreEntry>
+  <ser:endpointConfig>
+    <tran:provider-id>local</tran:provider-id>
+    <tran:inbound>true</tran:inbound>
+    <tran:inbound-properties/>
+    <tran:all-headers>true</tran:all-headers>
+  </ser:endpointConfig>
+  <ser:router errorHandler="_onErrorHandler-5369712627462652339-46b3205a.12acd06785a.-7b44">
+    <con1:pipeline type="request" name="CfmExternalResubmitService_request">
+      <con1:stage name="LogRequest">
+        <con1:context xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config" xmlns:jms="http://www.bea.com/wli/sb/transports/jms">
+          <con2:varNsDecl namespace="http://www.siebel.com/xml/TT_R1_Account_IO_Map_Online" prefix="tt"/>
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/FF/FaultManagement/1.0" prefix="ns"/>
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Common/1.0" prefix="ns1"/>
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0" prefix="ns2"/>
+        </con1:context>
+        <con1:actions xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config" xmlns:jms="http://www.bea.com/wli/sb/transports/jms">
+          <con2:assign varName="HeaderFault" xmlns:con4="http://www.bea.com/wli/sb/pipeline/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+            <con7:id xmlns:con7="http://www.bea.com/wli/sb/stages/config">_ActionId-1869047114185229856-4de6a778.12e711fd866.-7ff9</con7:id>
+            <con2:expr>
+              <con7:xqueryTransform xmlns:con7="http://www.bea.com/wli/sb/stages/config">
+                <con7:resource ref="OSB_Applications/UtilityServices/Shared/XQuery/CreateHeaderV2"/>
+                <con7:param name="userid">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:Header/*:userid) != "") then
+    fn:data($body/*:FaultResponse/*:Header/*:userid)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="version">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:Header/*:version) != "") then
+    fn:data($body/*:FaultResponse/*:Header/*:version)
+else
+   	""</con7:path>
+                </con7:param>
+                <con7:param name="failureToURI">
+                  <con7:path>""</con7:path>
+                </con7:param>
+                <con7:param name="activityName">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:Header/*:activityName) != "") then
+    fn:data($body/*:FaultResponse/*:Header/*:activityName)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="securityType">
+                  <con7:path>""</con7:path>
+                </con7:param>
+                <con7:param name="security">
+                  <con7:path>""</con7:path>
+                </con7:param>
+                <con7:param name="replyToURI">
+                  <con7:path>""</con7:path>
+                </con7:param>
+                <con7:param name="businessID">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:Header/*:businessID) != "") then
+    fn:data($body/*:FaultResponse/*:Header/*:businessID)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="comunicationPattern">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:Header/*:comunicationPattern) != "") then
+    fn:data($body/*:FaultResponse/*:Header/*:comunicationPattern)
+else
+   	"MultipleResponse"</con7:path>
+                </con7:param>
+                <con7:param name="comunicationStyle">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:Header/*:comunicationStyle) != "") then
+    fn:data($body/*:FaultResponse/*:Header/*:comunicationStyle)
+else
+   	"MSG"</con7:path>
+                </con7:param>
+                <con7:param name="priority">
+                  <con7:path>""</con7:path>
+                </con7:param>
+                <con7:param name="messageID">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:Header/*:messageID) != "") then
+    fn:data($body/*:FaultResponse/*:Header/*:messageID)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="service">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:Header/*:service) != "") then
+    fn:data($body/*:FaultResponse/*:Header/*:service)
+else
+   	""</con7:path>
+                </con7:param>
+                <con7:param name="senderURI">
+                  <con7:path>"ATTIP"</con7:path>
+                </con7:param>
+                <con7:param name="activityStatus">
+                  <con7:path>"FAILURE"</con7:path>
+                </con7:param>
+                <con7:param name="correlationID">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:Header/*:correlationID) != "") then
+    fn:data($body/*:FaultResponse/*:Header/*:correlationID)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="originatorURI">
+                  <con7:path>""</con7:path>
+                </con7:param>
+                <con7:param name="conversationID">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:Header/*:conversationID) != "") then
+    fn:data($body/*:FaultResponse/*:Header/*:conversationID)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="MsgProperties">
+                  <con7:path><![CDATA[<ns:MsgSpecificProperties xmlns:ns="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0">
+<ns:Property>
+<ns:name>
+</ns:name>
+<ns:value>
+</ns:value>
+</ns:Property>
+</ns:MsgSpecificProperties>]]></con7:path>
+                </con7:param>
+                <con7:param name="msgName">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:Header/*:msgName) != "") then
+    fn:data($body/*:FaultResponse/*:Header/*:msgName)
+else
+	"ManageOrderNotificationResponse"</con7:path>
+                </con7:param>
+                <con7:param name="requestID">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:Header/*:requestID) != "") then
+    fn:data($body/*:FaultResponse/*:Header/*:requestID)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="destinationURI">
+                  <con7:path>"ATTIP"</con7:path>
+                </con7:param>
+                <con7:param name="msgType">
+                  <con7:path>"ERROR"</con7:path>
+                </con7:param>
+              </con7:xqueryTransform>
+            </con2:expr>
+          </con2:assign>
+          <con6:route>
+            <con2:id>_ActionId-1869047114185229856-4de6a778.12e711fd866.-7ffc</con2:id>
+            <con6:service ref="OSB_Applications/UtilityServices/Shared/ProxyServices/LogManagement" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+            <con6:outboundTransform>
+              <con3:replace varName="body" contents-only="true">
+                <con2:id>_ActionId-1869047114185229856-4de6a778.12e711fd866.-7ffb</con2:id>
+                <con3:location>
+                  <con2:xpathText>./*</con2:xpathText>
+                </con3:location>
+                <con3:expr>
+                  <con2:xqueryText><![CDATA[<Log>
+	<pxName>{fn:replace(fn:substring-after($inbound/@name,"ProxyService$"),"\$","/")}</pxName>
+	<serviceName>FFEnhancement</serviceName>
+	<pipeline>request</pipeline>
+	<type></type>
+	<Header>{$HeaderFault}</Header>
+	<Body>{$body/*}</Body>
+</Log>]]></con2:xqueryText>
+                </con3:expr>
+              </con3:replace>
+            </con6:outboundTransform>
+          </con6:route>
+        </con1:actions>
+      </con1:stage>
+      <con1:stage name="TranscodificError">
+        <con1:context>
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/FF/FaultManagement/1.0" prefix="ns"/>
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Common/1.0" prefix="ns1"/>
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0" prefix="ns2"/>
+        </con1:context>
+        <con1:actions>
+          <con2:assign varName="ServiceCallOutInput" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con6="http://www.bea.com/wli/sb/stages/logging/config" xmlns:jms="http://www.bea.com/wli/sb/transports/jms">
+            <con7:id xmlns:con7="http://www.bea.com/wli/sb/stages/config">_ActionId-1568440244992055230-2c312d63.12d3298e514.-7fc6</con7:id>
+            <con2:expr>
+              <con7:xqueryText xmlns:con7="http://www.bea.com/wli/sb/stages/config"><![CDATA[<input>
+	{$HeaderFault}
+	<ErrorCode>{fn:data($body/*:FaultResponse/*:Fault/*:code)}</ErrorCode>
+	<ErrorSystem>ATTIP</ErrorSystem>
+	<ErrorContext></ErrorContext>
+	<ErrorDetail>{fn:concat(fn:data($body/*:FaultResponse/*:Fault/*:detail)," ",fn:data($body/*:FaultResponse/*:Fault/*:description), " ", fn:data($details))}</ErrorDetail>
+</input>]]></con7:xqueryText>
+            </con2:expr>
+          </con2:assign>
+          <con2:wsCallout xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con4="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con6="http://www.bea.com/wli/sb/stages/logging/config" xmlns:jms="http://www.bea.com/wli/sb/transports/jms">
+            <con7:id xmlns:con7="http://www.bea.com/wli/sb/stages/config">_ActionId-1568440244992055230-2c312d63.12d3298e514.-7fc5</con7:id>
+            <con2:service xsi:type="ref:ProxyRef" ref="OSB_Applications/UtilityServices/Shared/ProxyServices/ErrorHandlerFaultToAck" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+            <con2:request>
+              <con2:payload>$ServiceCallOutInput</con2:payload>
+            </con2:request>
+            <con2:response>
+              <con2:payload>ServiceCallOutOutput</con2:payload>
+            </con2:response>
+            <con2:requestTransform/>
+            <con2:responseTransform/>
+          </con2:wsCallout>
+        </con1:actions>
+      </con1:stage>
+      <con1:stage name="PublishToBAM" errorHandler="_onErrorHandler-1568440244992055230-2c312d63.12d3298e514.-7fc1">
+        <con1:context xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config" xmlns:jms="http://www.bea.com/wli/sb/transports/jms">
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Common/1.0" prefix="ns"/>
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0" prefix="ns1"/>
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/FF/FaultManagement/1.0" prefix="ns2"/>
+        </con1:context>
+        <con1:actions xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config" xmlns:jms="http://www.bea.com/wli/sb/transports/jms">
+          <con3:assign varName="OrMes">
+            <con2:id>_ActionId-2347604126012453392-3a5cddb3.12e4d99e5eb.-7fad</con2:id>
+            <con3:expr>
+              <con2:xqueryText>fn-bea:inlinedXML($body//*:FaultResponse/*:OriginalMessage)</con2:xqueryText>
+            </con3:expr>
+          </con3:assign>
+          <con2:assign varName="HeaderforBAM" xmlns:con4="http://www.bea.com/wli/sb/pipeline/config" xmlns:con3="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config">
+            <con7:id xmlns:con7="http://www.bea.com/wli/sb/stages/config">_ActionId-2347604126012453392-3a5cddb3.12e4d99e5eb.-7faf</con7:id>
+            <con2:expr>
+              <con7:xqueryTransform xmlns:con7="http://www.bea.com/wli/sb/stages/config">
+                <con7:resource ref="OSB_Applications/UtilityServices/Shared/XQuery/CreateHeaderV2"/>
+                <con7:param name="userid">
+                  <con7:path>if (fn:data($OrMes//*:userid) != "") then
+    fn:data($OrMes//*:userid)
+else
+    "unknown"</con7:path>
+                </con7:param>
+                <con7:param name="version">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:version) != "") then
+    	fn:data($OrMes//*:Header/*:version)
+	else
+    	"1"</con7:path>
+                </con7:param>
+                <con7:param name="failureToURI">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:failureToURI) != "") then
+    	fn:data($OrMes//*:Header/*:failureToURI)
+	else
+    	""</con7:path>
+                </con7:param>
+                <con7:param name="activityName">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:activityName) != "") then
+    	fn:data($OrMes//*:Header/*:activityName)
+	else
+    	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="securityType">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:securityType) != "") then
+    	fn:data($OrMes//*:Header/*:securityType)
+	else
+    	""</con7:path>
+                </con7:param>
+                <con7:param name="security">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:security) != "") then
+    	fn:data($OrMes//*:Header/*:security)
+	else
+    	""</con7:path>
+                </con7:param>
+                <con7:param name="replyToURI">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:replyToURI) != "") then
+    	fn:data($OrMes//*:Header/*:replyToURI)
+	else
+    	""</con7:path>
+                </con7:param>
+                <con7:param name="businessID">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:businessID) != "") then
+    	fn:data($OrMes//*:Header/*:businessID)
+	else
+    	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="comunicationPattern">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:comunicationPattern) != "") then
+    	fn:data($OrMes//*:Header/*:comunicationPattern)
+	else
+    	"Notification"</con7:path>
+                </con7:param>
+                <con7:param name="comunicationStyle">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:comunicationStyle) != "") then
+    	fn:data($OrMes//*:Header/*:comunicationStyle)
+	else
+    	"MSG"</con7:path>
+                </con7:param>
+                <con7:param name="priority">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:priority) != "") then
+    	fn:data($OrMes//*:Header/*:priority)
+	else
+    	"4"</con7:path>
+                </con7:param>
+                <con7:param name="messageID">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:messageID) != "") then
+    	fn:data($OrMes//*:Header/*:messageID)
+	else
+    	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="service">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:service) != "") then
+    	fn:data($OrMes//*:Header/*:service)
+	else
+    	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="senderURI">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:senderURI) != "") then
+    	fn:data($OrMes//*:Header/*:senderURI)
+	else
+    	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="activityStatus">
+                  <con7:path>"FAILURE"</con7:path>
+                </con7:param>
+                <con7:param name="correlationID">
+                  <con7:path>if (fn:data($header//*:correlationID) != "") then
+    fn:data($header//*:correlationID)
+else
+	if (fn:data($body//*:Header/*:correlationID) != "") then
+    	fn:data($body//*:Header/*:correlationID)
+	else
+    	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="originatorURI">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:originatorURI) != "") then
+    	fn:data($OrMes//*:Header/*:originatorURI)
+	else
+    	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="conversationID">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:conversationID) != "") then
+    	fn:data($OrMes//*:Header/*:conversationID)
+	else
+    	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="MsgProperties">
+                  <con7:path><![CDATA[<ns:MsgSpecificProperties xmlns:ns="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0">
+<ns:Property>
+<ns:name>
+</ns:name>
+<ns:value>
+</ns:value>
+</ns:Property>
+</ns:MsgSpecificProperties>]]></con7:path>
+                </con7:param>
+                <con7:param name="msgName">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:msgName) != "") then
+    	fn:data($OrMes//*:Header/*:msgName)
+	else
+    	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="requestID">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:requestID) != "") then
+    	fn:data($OrMes//*:Header/*:requestID)
+	else
+    	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="destinationURI">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:destinationURI) != "") then
+    	fn:data($OrMes//*:Header/*:destinationURI)
+	else
+    	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="msgType">
+                  <con7:path>if (fn:data($OrMes//*:Header/*:msgType) != "") then
+    	fn:data($OrMes//*:Header/*:msgType)
+	else
+    	"RESPONSE"</con7:path>
+                </con7:param>
+              </con7:xqueryTransform>
+            </con2:expr>
+          </con2:assign>
+          <con3:replace varName="OrMes" contents-only="true">
+            <con2:id>_ActionId-2861790149860918409--1c1066f8.12d047a3af2.-7ebb</con2:id>
+            <con3:location>
+              <con2:xpathText>.//*:msgType</con2:xpathText>
+            </con3:location>
+            <con3:expr>
+              <con2:xqueryText>"ERROR"</con2:xqueryText>
+            </con3:expr>
+          </con3:replace>
+          <con7:assign varName="mbody" xmlns:con7="http://www.bea.com/wli/sb/stages/transform/config">
+            <con2:id>_ActionId-6450845652775229302-28d5d45d.12ca6985f96.-7fa5</con2:id>
+            <con7:expr>
+              <con8:xqueryTransform xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con7="http://www.bea.com/wli/sb/stages/config" xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con2="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con8="http://www.bea.com/wli/sb/stages/config">
+                <con8:resource ref="OSB_Applications/UtilityServices/SendToBAM/v1/XQuery/SendToBAM"/>
+                <con8:param name="FaultErrorCode">
+                  <con8:path>fn:data($ServiceCallOutOutput//*:code)</con8:path>
+                </con8:param>
+                <con8:param name="ServiceName1">
+                  <con8:path>""</con8:path>
+                </con8:param>
+                <con8:param name="IntegrationFlow1">
+                  <con8:path>""</con8:path>
+                </con8:param>
+                <con8:param name="toResubmitter">
+                  <con8:path>"yes"</con8:path>
+                </con8:param>
+                <con8:param name="header1">
+                  <con8:path>$HeaderforBAM</con8:path>
+                </con8:param>
+              </con8:xqueryTransform>
+            </con7:expr>
+          </con7:assign>
+          <con3:replace contents-only="true" varName="mbody" xmlns:con7="http://www.bea.com/wli/sb/stages/publish/config">
+            <con2:id>_ActionId-6450845652775229302-28d5d45d.12ca6985f96.-7f62</con2:id>
+            <con3:location>
+              <con2:xpathText>.//*:Header/*:destinationURI</con2:xpathText>
+            </con3:location>
+            <con3:expr>
+              <con2:xqueryText>fn:data($body/*:FaultResponse/*:Header/*:senderURI)</con2:xqueryText>
+            </con3:expr>
+          </con3:replace>
+          <con7:route xmlns:con7="http://www.bea.com/wli/sb/stages/publish/config">
+            <con2:id>_ActionId-6450845652775229302-28d5d45d.12ca6985f96.-7fa4</con2:id>
+            <con7:service ref="OSB_Applications/UtilityServices/SendToBAM/v1/SendToBAM" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+            <con7:outboundTransform>
+              <con8:replace varName="body" xmlns:con8="http://www.bea.com/wli/sb/stages/transform/config">
+                <con2:id>_ActionId-6450845652775229302-28d5d45d.12ca6985f96.-7fa3</con2:id>
+                <con8:location>
+                  <con2:xpathText>./*</con2:xpathText>
+                </con8:location>
+                <con8:expr>
+                  <con2:xqueryText>$mbody</con2:xqueryText>
+                </con8:expr>
+              </con8:replace>
+            </con7:outboundTransform>
+          </con7:route>
+        </con1:actions>
+      </con1:stage>
+      <con1:stage name="LogSteps">
+        <con1:context>
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/FF/FaultManagement/1.0" prefix="ns"/>
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Common/1.0" prefix="ns1"/>
+        </con1:context>
+        <con1:actions>
+          <con2:assign varName="aTTIPHeader" xmlns:con3="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config" xmlns:jms="http://www.bea.com/wli/sb/transports/jms">
+            <con7:comment xmlns:con7="http://www.bea.com/wli/sb/stages/config">Set Header variable</con7:comment>
+            <con7:id xmlns:con7="http://www.bea.com/wli/sb/stages/config">_ActionId-5369712627462652339-46b3205a.12acd06785a.-7ed0</con7:id>
+            <con2:expr>
+              <con7:xqueryText xmlns:con7="http://www.bea.com/wli/sb/stages/config">$body/*:FaultResponse/*:Header</con7:xqueryText>
+            </con2:expr>
+          </con2:assign>
+          <con2:javaCallout varName="" xmlns:con3="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config" xmlns:jms="http://www.bea.com/wli/sb/transports/jms">
+            <con7:comment xmlns:con7="http://www.bea.com/wli/sb/stages/config">Log input</con7:comment>
+            <con7:id xmlns:con7="http://www.bea.com/wli/sb/stages/config">_ActionId-5369712627462652339-46b3205a.12acd06785a.-7f0b</con7:id>
+            <con2:archive ref="OSB_Applications/InfrastructureServices/LogService/osb_log_util"/>
+            <con2:className>tr.com.turktelekom.attip.log.osb.LogHelper</con2:className>
+            <con2:method>public static void logBody(java.lang.String, java.lang.String, org.apache.xmlbeans.XmlObject, org.apache.xmlbeans.XmlObject)</con2:method>
+            <con2:expr>
+              <con7:xqueryText xmlns:con7="http://www.bea.com/wli/sb/stages/config">"TRACE.CfmExternalResubmitService"</con7:xqueryText>
+            </con2:expr>
+            <con2:expr>
+              <con7:xqueryText xmlns:con7="http://www.bea.com/wli/sb/stages/config">"INFO"</con7:xqueryText>
+            </con2:expr>
+            <con2:expr>
+              <con7:xqueryText xmlns:con7="http://www.bea.com/wli/sb/stages/config">$aTTIPHeader</con7:xqueryText>
+            </con2:expr>
+            <con2:expr>
+              <con7:xqueryText xmlns:con7="http://www.bea.com/wli/sb/stages/config">$body</con7:xqueryText>
+            </con2:expr>
+          </con2:javaCallout>
+        </con1:actions>
+      </con1:stage>
+      <con1:stage name="PrepareResubmitMessage">
+        <con1:context>
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/FF/FaultManagement/1.0" prefix="ns"/>
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Common/1.0" prefix="ns1"/>
+          <con2:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0" prefix="ns2"/>
+        </con1:context>
+        <con1:actions>
+          <con3:assign varName="OriginalMessage">
+            <con2:id>_ActionId-6726307389873988545-3e74021c.12c2b594b7a.-7e6c</con2:id>
+            <con3:expr>
+              <con2:xqueryText>fn-bea:inlinedXML($body//*:FaultResponse/*:OriginalMessage)</con2:xqueryText>
+            </con3:expr>
+          </con3:assign>
+          <con3:ifThenElse>
+            <con2:id>_ActionId-6726307389873988545-3e74021c.12c2b594b7a.-7e4f</con2:id>
+            <con3:case>
+              <con3:condition>
+                <con2:xqueryText>fn:starts-with(fn-bea:serialize($OriginalMessage),"&lt;")</con2:xqueryText>
+              </con3:condition>
+              <con3:actions/>
+            </con3:case>
+            <con3:default>
+              <con3:assign varName="OriginalMessage">
+                <con2:id>_ActionId-6726307389873988545-3e74021c.12c2b594b7a.-7dfb</con2:id>
+                <con3:expr>
+                  <con2:xqueryText>$body//*:FaultResponse/*:OriginalMessage/*</con2:xqueryText>
+                </con3:expr>
+              </con3:assign>
+            </con3:default>
+          </con3:ifThenElse>
+          <con3:assign varName="activityName">
+            <con2:id>_ActionId-5369712627462652339-46b3205a.12acd06785a.-7d86</con2:id>
+            <con3:expr>
+              <con2:xqueryText>data($OriginalMessage//*:activityName)</con2:xqueryText>
+            </con3:expr>
+          </con3:assign>
+          <con3:assign varName="msgName">
+            <con2:id>_ActionId-5369712627462652339-46b3205a.12acd06785a.-7d4d</con2:id>
+            <con3:expr>
+              <con2:xqueryText>data($OriginalMessage//*:msgName)</con2:xqueryText>
+            </con3:expr>
+          </con3:assign>
+          <con3:assign varName="dispatchConfigData">
+            <con2:id>_ActionId-5369712627462652339-46b3205a.12acd06785a.-7d30</con2:id>
+            <con3:expr>
+              <con2:xqueryTransform>
+                <con2:resource ref="OSB_Applications/UtilityServices/Shared/XQuery/DynamicDispatcherConfiguration"/>
+              </con2:xqueryTransform>
+            </con3:expr>
+          </con3:assign>
+          <con3:assign varName="dynamicProxy">
+            <con2:id>_ActionId-5369712627462652339-46b3205a.12acd06785a.-7d13</con2:id>
+            <con3:expr>
+              <con2:xqueryText>fn:normalize-space($dispatchConfigData/service[activityName=$activityName and msgName=$msgName]/proxy/text())</con2:xqueryText>
+            </con3:expr>
+          </con3:assign>
+          <con3:assign varName="dynamicBusiness">
+            <con2:id>_ActionId-7483085861672740154-5212eece.12c350e3fb0.-7ea9</con2:id>
+            <con3:expr>
+              <con2:xqueryText>fn:normalize-space($dispatchConfigData/service[activityName=$activityName and msgName=$msgName]/business/text())</con2:xqueryText>
+            </con3:expr>
+          </con3:assign>
+          <con3:assign varName="ResubmitMessage">
+            <con2:id>_ActionId-5369712627462652339-46b3205a.12acd06785a.-7da3</con2:id>
+            <con3:expr>
+              <con2:xqueryTransform>
+                <con2:resource ref="OSB_Applications/UtilityServices/Shared/XQuery/CreateResubmitMessage"/>
+                <con2:param name="proxyService">
+                  <con2:path>if (fn:data($dynamicProxy) != "") then
+fn:data($dynamicProxy)
+else
+""</con2:path>
+                </con2:param>
+                <con2:param name="originalMessage">
+                  <con2:path>fn-bea:serialize($OriginalMessage)</con2:path>
+                </con2:param>
+                <con2:param name="businessID">
+                  <con2:path>fn:data($OriginalMessage//*:businessID)</con2:path>
+                </con2:param>
+                <con2:param name="businessService">
+                  <con2:path>if (fn:data($dynamicBusiness) != "") then
+fn:data($dynamicBusiness)
+else
+""</con2:path>
+                </con2:param>
+                <con2:param name="conversationID">
+                  <con2:path>fn:data($OriginalMessage//*:conversationID)</con2:path>
+                </con2:param>
+                <con2:param name="destinationQueue">
+                  <con2:path>""</con2:path>
+                </con2:param>
+                <con2:param name="sourceSystem">
+                  <con2:path>fn:data($body//*:FaultResponse/*:Header/*:senderURI)</con2:path>
+                </con2:param>
+                <con2:param name="typology">
+                  <con2:path>fn:data($body//*:FaultResponse/*:Fault/*:type)</con2:path>
+                </con2:param>
+                <con2:param name="serviceName">
+                  <con2:path>fn:data($OriginalMessage//*:msgName)</con2:path>
+                </con2:param>
+                <con2:param name="faultMessage">
+                  <con2:path>fn-bea:serialize($ServiceCallOutOutput/*:Fault)</con2:path>
+                </con2:param>
+              </con2:xqueryTransform>
+            </con3:expr>
+          </con3:assign>
+          <con3:ifThenElse>
+            <con2:id>_ActionId-7483085861672740154-5212eece.12c350e3fb0.-7de1</con2:id>
+            <con3:case>
+              <con3:condition>
+                <con2:xqueryText>$msgName="PartnerCommissioningNotificationRequest"</con2:xqueryText>
+              </con3:condition>
+              <con3:actions>
+                <con7:assign varName="ResubmitMessage" xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con5="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con4="http://www.bea.com/wli/sb/typesystem/config" xmlns:con6="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con1="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con7="http://www.bea.com/wli/sb/stages/transform/config" xmlns:jms="http://www.bea.com/wli/sb/transports/jms">
+                  <con2:id>_ActionId-7483085861672740154-5212eece.12c350e3fb0.-7ddf</con2:id>
+                  <con7:expr>
+                    <con2:xqueryTransform>
+                      <con2:resource ref="OSB_Applications/UtilityServices/Shared/XQuery/ResubmitMessageAddJMSProperty"/>
+                      <con2:param name="name">
+                        <con2:path>"SOAP"</con2:path>
+                      </con2:param>
+                      <con2:param name="value">
+                        <con2:path>"yes"</con2:path>
+                      </con2:param>
+                      <con2:param name="resubmitionRequest1">
+                        <con2:path>$ResubmitMessage</con2:path>
+                      </con2:param>
+                    </con2:xqueryTransform>
+                  </con7:expr>
+                </con7:assign>
+              </con3:actions>
+            </con3:case>
+            <con3:default/>
+          </con3:ifThenElse>
+          <con3:replace varName="body">
+            <con2:id>_ActionId-5369712627462652339-46b3205a.12acd06785a.-798b</con2:id>
+            <con3:location>
+              <con2:xpathText>./*</con2:xpathText>
+            </con3:location>
+            <con3:expr>
+              <con2:xqueryText>$ResubmitMessage</con2:xqueryText>
+            </con3:expr>
+          </con3:replace>
+        </con1:actions>
+      </con1:stage>
+    </con1:pipeline>
+    <con1:pipeline type="response" name="CfmExternalResubmitService_response"/>
+    <con1:pipeline type="error" name="_onErrorHandler-5369712627462652339-46b3205a.12acd06785a.-7b44">
+      <con1:stage name="ManageError">
+        <con1:context/>
+        <con1:actions>
+          <con2:assign varName="HeaderFault" xmlns:con4="http://www.bea.com/wli/sb/pipeline/config" xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con3="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con1="http://www.bea.com/wli/sb/stages/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:jms="http://www.bea.com/wli/sb/transports/jms">
+            <con7:id xmlns:con7="http://www.bea.com/wli/sb/stages/config">_ActionId-1869047114185229856-4de6a778.12e711fd866.-7fe8</con7:id>
+            <con2:expr>
+              <con7:xqueryTransform xmlns:con7="http://www.bea.com/wli/sb/stages/config">
+                <con7:resource ref="OSB_Applications/UtilityServices/Shared/XQuery/CreateHeaderV2"/>
+                <con7:param name="userid">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:Header/*:userid) != "") then
+    fn:data($body/*:FaultResponse/*:Header/*:userid)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="version">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:version) != "") then
+    fn:data($body/*:FaultResponse/*:version)
+else
+   	""</con7:path>
+                </con7:param>
+                <con7:param name="failureToURI">
+                  <con7:path>""</con7:path>
+                </con7:param>
+                <con7:param name="activityName">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:activityName) != "") then
+    fn:data($body/*:FaultResponse/*:activityName)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="securityType">
+                  <con7:path>""</con7:path>
+                </con7:param>
+                <con7:param name="security">
+                  <con7:path>""</con7:path>
+                </con7:param>
+                <con7:param name="replyToURI">
+                  <con7:path>""</con7:path>
+                </con7:param>
+                <con7:param name="businessID">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:businessID) != "") then
+    fn:data($body/*:FaultResponse/*:businessID)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="comunicationPattern">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:comunicationPattern) != "") then
+    fn:data($body/*:FaultResponse/*:comunicationPattern)
+else
+   	"MultipleResponse"</con7:path>
+                </con7:param>
+                <con7:param name="comunicationStyle">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:comunicationStyle) != "") then
+    fn:data($body/*:FaultResponse/*:comunicationStyle)
+else
+   	"MSG"</con7:path>
+                </con7:param>
+                <con7:param name="priority">
+                  <con7:path>""</con7:path>
+                </con7:param>
+                <con7:param name="messageID">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:messageID) != "") then
+    fn:data($body/*:FaultResponse/*:messageID)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="service">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:service) != "") then
+    fn:data($body/*:FaultResponse/*:service)
+else
+   	""</con7:path>
+                </con7:param>
+                <con7:param name="senderURI">
+                  <con7:path>"ATTIP"</con7:path>
+                </con7:param>
+                <con7:param name="activityStatus">
+                  <con7:path>"FAILURE"</con7:path>
+                </con7:param>
+                <con7:param name="correlationID">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:correlationID) != "") then
+    fn:data($body/*:FaultResponse/*:correlationID)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="originatorURI">
+                  <con7:path>""</con7:path>
+                </con7:param>
+                <con7:param name="conversationID">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:conversationID) != "") then
+    fn:data($body/*:FaultResponse/*:conversationID)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="MsgProperties">
+                  <con7:path><![CDATA[<ns:MsgSpecificProperties xmlns:ns="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0">
+<ns:Property>
+<ns:name>
+</ns:name>
+<ns:value>
+</ns:value>
+</ns:Property>
+</ns:MsgSpecificProperties>]]></con7:path>
+                </con7:param>
+                <con7:param name="msgName">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:msgName) != "") then
+    fn:data($body/*:FaultResponse/*:msgName)
+else
+	"ManageOrderNotificationResponse"</con7:path>
+                </con7:param>
+                <con7:param name="requestID">
+                  <con7:path>if (fn:data($body/*:FaultResponse/*:requestID) != "") then
+    fn:data($body/*:FaultResponse/*:requestID)
+else
+   	"unknown"</con7:path>
+                </con7:param>
+                <con7:param name="destinationURI">
+                  <con7:path>"ATTIP"</con7:path>
+                </con7:param>
+                <con7:param name="msgType">
+                  <con7:path>"ERROR"</con7:path>
+                </con7:param>
+              </con7:xqueryTransform>
+            </con2:expr>
+          </con2:assign>
+          <con3:assign varName="MyFault">
+            <con2:id>_ActionId-1869047114185229856-4de6a778.12e711fd866.-7f78</con2:id>
+            <con3:expr>
+              <con2:xqueryText>$fault</con2:xqueryText>
+            </con3:expr>
+          </con3:assign>
+          <con6:route xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config" xmlns:jms="http://www.bea.com/wli/sb/transports/jms">
+            <con2:id>_ActionId-1869047114185229856-4de6a778.12e711fd866.-7feb</con2:id>
+            <con6:service ref="OSB_Applications/UtilityServices/Shared/ProxyServices/LogManagement" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+            <con6:outboundTransform>
+              <con3:replace varName="body" contents-only="true">
+                <con2:id>_ActionId-1869047114185229856-4de6a778.12e711fd866.-7fea</con2:id>
+                <con3:location>
+                  <con2:xpathText>./*</con2:xpathText>
+                </con3:location>
+                <con3:expr>
+                  <con2:xqueryText><![CDATA[<Log>
+	<pxName>{fn:replace(fn:substring-after($inbound/@name,"ProxyService$"),"\$","/")}</pxName>
+	<serviceName>FFEnhancement</serviceName>
+	<pipeline>error</pipeline>
+	<type></type>
+	<Header>{$aTTIPHeader}</Header>
+	<Body>{$body/*}</Body>
+	<Fault>{$MyFault}</Fault>
+</Log>]]></con2:xqueryText>
+                </con3:expr>
+              </con3:replace>
+            </con6:outboundTransform>
+          </con6:route>
+          <con2:reply isError="true">
+            <con2:id>_ActionId-5369712627462652339-46b3205a.12acd06785a.-79e0</con2:id>
+          </con2:reply>
+        </con1:actions>
+      </con1:stage>
+    </con1:pipeline>
+    <con1:pipeline type="error" name="_onErrorHandler-1568440244992055230-2c312d63.12d3298e514.-7fc1">
+      <con1:stage name="stage1">
+        <con1:context/>
+        <con1:actions>
+          <con5:log>
+            <con2:id>_ActionId-1568440244992055230-2c312d63.12d3298e514.-7fac</con2:id>
+            <con5:logLevel>error</con5:logLevel>
+            <con5:expr>
+              <con2:xqueryText>$fault</con2:xqueryText>
+            </con5:expr>
+            <con5:message>******** EH in CFMExt</con5:message>
+          </con5:log>
+          <con2:resume>
+            <con2:id>_ActionId-1568440244992055230-2c312d63.12d3298e514.-7f96</con2:id>
+          </con2:resume>
+        </con1:actions>
+      </con1:stage>
+    </con1:pipeline>
+    <con1:flow>
+      <con1:pipeline-node name="CfmExternalResubmitService">
+        <con1:request>CfmExternalResubmitService_request</con1:request>
+        <con1:response>CfmExternalResubmitService_response</con1:response>
+      </con1:pipeline-node>
+      <con1:route-node name="RouteToFMF">
+        <con1:context/>
+        <con1:actions>
+          <con4:route>
+            <con2:id>_ActionId-5369712627462652339-46b3205a.12acd06785a.-7c3a</con2:id>
+            <con4:service ref="OSB_Applications/InfrastructureServices/CFMService/v1/BusinessServices/CfmServiceResubmitt" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+            <con4:outboundTransform/>
+            <con4:responseTransform/>
+          </con4:route>
+        </con1:actions>
+      </con1:route-node>
+    </con1:flow>
+  </ser:router>
+</xml-fragment>

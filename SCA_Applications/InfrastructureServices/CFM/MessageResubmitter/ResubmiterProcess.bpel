@@ -1,0 +1,221 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Thu Jun 03 18:35:47 EEST 2010
+  Author:  leopoldo.elefante
+  Purpose: Asynchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="ResubmiterProcess"
+         targetNamespace="http://xmlns.oracle.com/SOA_Application_jws/MessageResubmitter/ResubmiterProcess"
+         xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:client="http://xmlns.oracle.com/SOA_Application_jws/MessageResubmitter/ResubmiterProcess"
+         xmlns:ora="http://schemas.oracle.com/xpath/extension"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:ns1="http://xmlns.oracle.com/SOA_Application_jws/MessageResubmitter/GenerateFaultProcess"
+         xmlns:ns2="http://www.turktelekom.com.tr/aTTIP/Schemas/Utilities/CentralizedFaultManagement/MessageResubmitter/1.0"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:ns3="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:ns6="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:ns5="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:ns8="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:ns9="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:ns7="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ns4="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:mhdr="http://www.oracle.com/XSL/Transform/java/oracle.tip.mediator.service.common.functions.MediatorExtnFunction"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:med="http://schemas.oracle.com/mediator/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:socket="http://www.oracle.com/XSL/Transform/java/oracle.tip.adapter.socket.ProtocolTranslator"
+         xmlns:ns10="http://xmlns.oracle.com/pcbpel/adapter/jms/CFM/MessageResubmitter/ResubmitToOSBJMSOut"
+         xmlns:ns11="http://xmlns.oracle.com/CFM/MessageResubmitter/ResubmitToOSBRoutingService"
+         xmlns:ns12="http://xmlns.oracle.com/pcbpel/adapter/jms/CFM/MessageResubmitter/ResubmitToOSBJMS"
+         xmlns:ns13="http://www.turktelekom.com.tr/aTTIP/Schemas/Utilities/CentralizedFaultManagement/GenerateFault/1.0"
+         xmlns:ns="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0"
+         xmlns:ns14="http://www.turktelekom.com.tr/aTTIP/Common/1.0"
+         xmlns:ns15="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0"
+         xmlns:ns16="http://www.turktelekom.com.tr/aTTIP/Utilities/BAMDataObject">
+
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+    <partnerLinks>
+        <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+        <partnerLink name="resubmiterprocess_client" partnerLinkType="client:ResubmiterProcess" myRole="ResubmiterProcessProvider"/>
+        <partnerLink name="ResubmitToOSBRouting.ResubmitToOSBRouting"
+                     partnerRole="Produce_ResubmitMessage_role"
+                     partnerLinkType="ns12:Produce_ResubmitMessage_plt"/>
+        <partnerLink name="GenerateFault"
+                     partnerRole="GenerateFaultProcessProvider"
+                     partnerLinkType="ns13:GenerateFaultProcess"/>
+    </partnerLinks>
+
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        VARIABLES                                                        
+        List of messages and XML documents used within this BPEL process 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+    <variables>
+        <!-- Reference to the message passed as input during initiation -->
+        <variable name="inputVariable" messageType="client:ResubmiterProcessRequestMessage"/>
+
+        <!-- Reference to the message that will be sent back to the requester during callback -->
+        <variable name="resubmit" type="xsd:boolean"/>
+        <variable name="Invoke_resubmitMessage"
+                  messageType="ns12:Produce_ResubmitMessage_msg"/>
+        <variable name="varBamInfo" element="ns16:BAMDataObject"/>
+    </variables>
+    <faultHandlers>
+        <catchAll/>
+    </faultHandlers>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       ORCHESTRATION LOGIC                                               
+       Set of activities coordinating the flow of messages across the    
+       services integrated within this business process                  
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+    <sequence name="main">
+        <!-- Receive input from requestor. (Note: This maps to operation defined in ResubmiterProcess.wsdl) -->
+        <receive name="receiveInput" partnerLink="resubmiterprocess_client" portType="client:ResubmiterProcess" operation="process" variable="inputVariable" createInstance="yes"/>
+
+        <!-- 
+          Asynchronous callback to the requester. (Note: the callback location and correlation id is transparently handled using WS-addressing.)
+        -->
+        <assign name="Init_BAM">
+            <bpelx:annotation>
+                <bpelx:pattern>transformation</bpelx:pattern>
+            </bpelx:annotation>
+            <copy>
+                <from expression="ora:processXSLT('xsl/Transformation_DataObj.xsl',bpws:getVariableData('inputVariable','payload'))"/>
+                <to variable="varBamInfo"/>
+            </copy>
+        </assign>
+        <scope name="Scope_InteractWithFMF">
+            <variables>
+                <variable name="Invoke_GenerateFaultProcess_OutputVariable"
+                          messageType="ns13:GenerateFaultProcessResponseMessage"/>
+                <variable name="Invoke_GenerateFaultProcess_InputVariable"
+                          messageType="ns13:GenerateFaultProcessRequestMessage"/>
+                <variable name="FaultVar"
+                          messageType="ns13:GenerateFaultProcessFaultMessage"/>
+                <variable name="Error" element="ns14:Fault"/>
+                <variable name="Header" element="ns14:Header"/>
+            </variables>
+            <faultHandlers>
+                <catch faultName="ns13:fault" faultVariable="FaultVar">
+                    <sequence>
+                        <assign name="Assign_resubmitTrue">
+                            <copy>
+                                <from expression="true()"/>
+                                <to variable="resubmit"/>
+                            </copy>
+                        </assign>
+                        <assign name="Transform_inputVariable">
+                            <bpelx:annotation>
+                                <bpelx:pattern>transformation</bpelx:pattern>
+                            </bpelx:annotation>
+                            <copy>
+                                <from expression="ora:processXSLT('xsl/Transformation_inputVariable.xsl',bpws:getVariableData('inputVariable','payload'))"/>
+                                <to variable="inputVariable" part="payload"/>
+                            </copy>
+                        </assign>
+                        <assign name="Assign_Reset_BAM">
+                            <copy>
+                                <from expression="xp20:current-dateTime()"/>
+                                <to variable="varBamInfo"
+                                    query="/ns16:BAMDataObject/ns16:LastUpdate"/>
+                            </copy>
+                            <copy>
+                                <from expression="xp20:current-dateTime()"/>
+                                <to variable="varBamInfo"
+                                    query="/ns16:BAMDataObject/ns16:ErrorFD"/>
+                            </copy>
+                        </assign>
+                    </sequence>
+                </catch>
+            </faultHandlers>
+            <sequence>
+                <assign name="Assign_FaultInput">
+                    <copy>
+                        <from variable="inputVariable" part="payload"
+                              query="/ns:ResubmitionRequest"/>
+                        <to variable="Invoke_GenerateFaultProcess_InputVariable"
+                            part="payload" query="/ns:ResubmitionRequest"/>
+                    </copy>
+                </assign>
+                <assign name="Assign_errorVariable">
+                    <copy bpelx:ignoreMissingFromData="yes">
+                        <from expression="bpws:getVariableData('inputVariable','payload','/ns:ResubmitionRequest/ns:OriginalFault')"/>
+                        <to variable="Error"/>
+                    </copy>
+                    <copy bpelx:ignoreMissingFromData="yes">
+                        <from expression="$inputVariable.payload//ns14:Header[1]"/>
+                        <to variable="Header"/>
+                    </copy>
+                </assign>
+                <invoke name="Invoke_GenerateFaultProcess"
+                        inputVariable="Invoke_GenerateFaultProcess_InputVariable"
+                        outputVariable="Invoke_GenerateFaultProcess_OutputVariable"
+                        partnerLink="GenerateFault"
+                        portType="ns13:GenerateFaultProcess"
+                        operation="process">
+                    <bpelx:inputProperty name="jca.jms.JMSDestinationName"
+                                         expression="string('test')"/>
+                </invoke>
+                <assign name="Assign_resubmitFalse">
+                    <copy>
+                        <from expression="false()"/>
+                        <to variable="resubmit"/>
+                    </copy>
+                </assign>
+            </sequence>
+        </scope>
+        <switch name="Switch_1">
+            <case condition="bpws:getVariableData('resubmit') = true()">
+                <bpelx:annotation>
+                    <bpelx:general>
+                        <bpelx:property name="userLabel">resubmitTrue</bpelx:property>
+                    </bpelx:general>
+                </bpelx:annotation>
+                <sequence>
+                    <assign name="Assign_resubmitMessageInput">
+                        <copy>
+                            <from variable="inputVariable" part="payload"
+                                  query="/ns:ResubmitionRequest"/>
+                            <to variable="Invoke_resubmitMessage" part="body"
+                                query="/ns:ResubmitionRequest"/>
+                        </copy>
+                    </assign>
+                    <!--
+                    <invoke name="Invoke_resubmitMessage"
+                            portType="ns10:Produce_Message_ptt"
+                            inputVariable="Invoke_resubmitMessage_InputVariable"
+                            outputVariable="Invoke_resubmitMessage_execute_OutputVariable"
+                            partnerLink="ResubmitToOSBRoutingService.ResubmitToOSBRoutingService"
+                            operation="execute">
+
+                    </invoke>
+                     -->
+                    <invoke name="Invoke_resubmitMessage"
+                            inputVariable="Invoke_resubmitMessage"
+                            partnerLink="ResubmitToOSBRouting.ResubmitToOSBRouting"
+                            portType="ns12:Produce_ResubmitMessage_ptt"
+                            operation="Produce_ResubmitMessage"/>
+                </sequence>
+            </case>
+        </switch>
+    </sequence>
+</process>

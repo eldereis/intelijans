@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<OracleBAMExport Version="2025">
+  <DataObject Version="14" Name="TemplateSRR_DO" ID="_TemplateSRR_DO" Path="/TemplateSRR" External="0">
+    <Layout>
+      <TipText>Data object template SRR</TipText>
+      <Column Name="IntegrationFlow" ID="_IntegrationFlow" Type="string" MaxSize="50" Nullable="1" Public="1"/>
+      <Column Name="ServiceName" ID="_ServiceName" Type="string" MaxSize="50" Nullable="1" Public="1"/>
+      <Column Name="Type" ID="_Type" Type="string" MaxSize="50" Nullable="1" Public="1"/>
+      <Column Name="SubType" ID="_SubType" Type="string" MaxSize="50" Nullable="1" Public="1"/>
+      <Column Name="Status" ID="_Status" Type="string" MaxSize="50" Nullable="1" Public="1"/>
+      <Column Name="CreationDate" ID="_CreationDate" Type="datetime" Nullable="1" Public="1"/>
+      <Column Name="LastUpdate" ID="_LastUpdate" Type="datetime" Nullable="1" Public="1"/>
+      <Column Name="System" ID="_System" Type="string" MaxSize="50" Nullable="1" Public="1"/>
+      <Column Name="ExecutionTime" ID="_ExecutionTime" Type="calculated" CalculatedExpression="&lt;expression type=&quot;MathExpression&quot;&gt;&lt;operation&gt;&lt;left&gt;&lt;type&gt;FieldID&lt;/type&gt;&lt;ivalue&gt;_LastUpdate&lt;/ivalue&gt;&lt;/left&gt;&lt;operator&gt;-&lt;/operator&gt;&lt;right&gt;&lt;type&gt;FieldID&lt;/type&gt;&lt;ivalue&gt;_CreationDate&lt;/ivalue&gt;&lt;/right&gt;&lt;/operation&gt;&lt;/expression&gt;" ExpressionUserText="LastUpdate - CreationDate"/>
+      <Column Name="InstanceID" ID="_InstanceID" Type="string" MaxSize="100" Nullable="1" Public="1"/>
+      <Column Name="ErrorCD" ID="_ErrorCD" Type="datetime" Nullable="1" Public="1"/>
+      <Column Name="ErrorFD" ID="_ErrorFD" Type="datetime" Nullable="1" Public="1"/>
+      <Column Name="TypeError" ID="_TypeError" Type="string" MaxSize="100" Nullable="1" Public="1"/>
+      <Column Name="CodeError" ID="_CodeError" Type="string" MaxSize="100" Nullable="1" Public="1"/>
+      <Column Name="TypeOfService" ID="_TypeOfService" Type="string" MaxSize="100" Nullable="1" Public="1"/>
+      <Indexes/>
+    </Layout>
+  </DataObject>
+</OracleBAMExport>

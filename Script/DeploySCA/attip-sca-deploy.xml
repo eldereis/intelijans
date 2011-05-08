@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<project name="soaDeployAll" default="deployAll">
+	<echo>basedir ${basedir}</echo>
+
+  <property name="compositeDir" value="compositeDir"/>
+  <property name="compositeName" value="compositeName"/>
+  <property name="revision" value="revision"/>
+  
+	<property environment="env"/>
+	<echo>current folder ${env.CURRENT_FOLDER}</echo>
+
+	<property file="${env.CURRENT_FOLDER}/deploy.properties"/> 
+	<property file="${env.CURRENT_FOLDER}/deploy-components.properties"/> 
+
+  <property name="distribution.dir" value="${env.CURRENT_FOLDER}/${deploy.target.environment}/Distributions"/>
+  <property name="configplan.dir" value="${env.CURRENT_FOLDER}/${deploy.target.environment}/ConfigurationPlans"/>
+  <property name="tmp.output.dir" value="${env.CURRENT_FOLDER}/${deploy.target.environment}/tmp"/>
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+	<import file="${basedir}/ant-sca-deploy.xml"/>
+	<import file="${basedir}/ant-sca-package.xml"/>
+	<import file="${basedir}/ant-sca-test.xml"/>
+	<import file="${basedir}/ant-sca-test.xml"/>
+	<import file="${basedir}/ant-sca-mgmt.xml"/>
+
+	<target name="deployAll">
+		<foreach list="${applications}" param="application" target="deployApplication" inheritall="true" inheritrefs="false"/>
+	</target>
+	
+	<target name="undeployMDS">
+		<echo>Undeploy MDS</echo>
+
+    <property name="export.mds.dir" value="${tmp.output.dir}/exported_mds"/>
+    <property name="export.mds.filename" value="${tmp.output.dir}/exported_mds.zip"/>
+
+    <antcall target="exportMDSApplication" inheritall="true">
+        <param name="mds.export" value="${export.mds.filename}"/>
+    </antcall>
+    
+    
+		<echo>Expanding export to folder ${export.mds.dir}</echo>
+    <unzip src="${export.mds.filename}" dest="${export.mds.dir}"/>
+    
+    <dirset id="export.mds.items" dir="${export.mds.dir}">
+      <depth max="0"/>
+    </dirset>
+    <property name="mds.item.list" refid="export.mds.items"/>
+
+		<foreach list="${mds.item.list}" param="mds.item" target="undeployMDSItem" inheritall="true" inheritrefs="false" delimiter=";"/>    
+	</target>
+
+  <target name="deployMDS">
+    <foreach list="${mds.applications}" param="mds.application" target="deployMDSApplication" inheritall="true" inheritrefs="false"/>
+  </target>
+
+  <target name="deployMDSApplication">
+    <echo>Deploy MDS for application ${mds.application}</echo>
+    
+    <propertycopy name="deploy.serverURL"    from="${deploy.target.environment}.serverURL"/>
+    <propertycopy name="deploy.overwrite"    from="${deploy.target.environment}.overwrite"/>
+    <propertycopy name="deploy.user"         from="${deploy.target.environment}.user"/>
+    <propertycopy name="deploy.password"     from="${deploy.target.environment}.password"/>
+    <propertycopy name="deploy.forceDefault" from="${deploy.target.environment}.forceDefault"/>
+  
+    <echo>deploy on ${deploy.serverURL} with user ${deploy.user}</echo>
+    <echo>deploy sarFile ${distribution.dir}/${mds.application}_mds.zip</echo>
+
+    <antcall target="deploy" inheritall="false">
+        <param name="wl_home" value="${wl_home}"/>
+        <param name="oracle.home" value="${oracle.home}"/>
+        <param name="serverURL" value="${deploy.serverURL}"/>
+        <param name="user" value="${deploy.user}"/>
+        <param name="password" value="${deploy.password}"/>
+        <param name="overwrite" value="${deploy.overwrite}"/>
+        <param name="forceDefault" value="${deploy.forceDefault}"/>
+        <param name="sarLocation" value="${distribution.dir}/${mds.application}_mds.zip"/>
+    </antcall> 
+  </target>
+
+  <target name="undeployMDSItem">
+    <echo>undeploy MDS app folder apps/${mds.item}</echo>
+
+    <propertycopy name="deploy.serverURL"    from="${deploy.target.environment}.serverURL"/>
+    <propertycopy name="deploy.user"         from="${deploy.target.environment}.user"/>
+    <propertycopy name="deploy.password"     from="${deploy.target.environment}.password"/>
+    <propertycopy name="deploy.forceDefault" from="${deploy.target.environment}.forceDefault"/>
+    
+    <antcall target="removeSharedData" inheritall="false">
+      <param name="serverURL" value="${deploy.serverURL}"/>
+      <param name="user" value="${deploy.user}"/>
+      <param name="password" value="${deploy.password}"/>
+      <param name="folderName" value="${mds.item}"/>
+    </antcall>
+  </target>
+
+  <target name="exportMDSApplication">
+		<echo>Export current MDS</echo>
+    
+    <propertycopy name="deploy.serverURL"    from="${deploy.target.environment}.serverURL"/>
+    <propertycopy name="deploy.overwrite"    from="${deploy.target.environment}.overwrite"/>
+    <propertycopy name="deploy.user"         from="${deploy.target.environment}.user"/>
+    <propertycopy name="deploy.password"     from="${deploy.target.environment}.password"/>
+    
+    <echo>Export MDS folders to file ${mds.export}</echo>
+    <antcall target="exportSharedData" inheritall="false">
+      <param name="serverURL" value="${deploy.serverURL}"/>
+      <param name="user" value="${deploy.user}"/>
+      <param name="password" value="${deploy.password}"/>
+      <param name="pattern" value="**"/>
+      <param name="jarFile" value="${mds.export}"/>
+    </antcall>
+  </target>
+
+	<target name="deployApplication">
+		<echo>deploy application ${application}</echo>
+    
+    <property name="app.distribution.dir" value="${distribution.dir}/${application}"/>
+    <property name="app.configplan.dir" value="${configplan.dir}/${application}"/>
+
+    <fileset id="app.distribution.projects" dir="${app.distribution.dir}" includes="*.jar"/>
+    <property name="projects" refid="app.distribution.projects"/>
+
+		<foreach list="${projects}" param="jarProjectName" target="deployProjectFromJarName" inheritall="true" inheritrefs="false" delimiter=";"/>    
+	</target>  
+
+  <target name="deployProjectFromJarName">
+      <echo>Deploy composite ${jarProjectName}</echo>
+      
+      <property name="regProjectExtractName" value="sca_([^_]*)"/>
+      <propertyregex property="project.name" input="${jarProjectName}" regexp="${regProjectExtractName}" select="\1" casesensitive="false" />
+
+      <property name="configplan.name" value="${project.name}_cfgplan.xml"/>
+    
+    <antcall target="deployProject" inheritall="false">
+      <param name="deploy.project" value="${project.name}"/>
+      <param name="deploy.sarLocation" value="${app.distribution.dir}/${jarProjectName}"/>
+      <param name="deploy.configplan"  value="${app.configplan.dir}/${configplan.name}"/>
+    </antcall>
+      
+  </target>
+
+  <target name="deployProject">
+    <echo>deploy project ${deploy.project} for  environment ${deploy.target.environment}</echo>
+    
+    <propertycopy name="deploy.serverURL"    from="${deploy.target.environment}.serverURL"/>
+    <propertycopy name="deploy.overwrite"    from="${deploy.target.environment}.overwrite"/>
+    <propertycopy name="deploy.user"         from="${deploy.target.environment}.user"/>
+    <propertycopy name="deploy.password"     from="${deploy.target.environment}.password"/>
+    <propertycopy name="deploy.forceDefault" from="${deploy.target.environment}.forceDefault"/>
+    <propertycopy name="deploy.server"       from="${deploy.target.environment}.server"/>
+    <propertycopy name="deploy.port"         from="${deploy.target.environment}.port"/>
+    
+    <echo>deploy on ${deploy.serverURL} with user ${deploy.user}</echo>
+    <echo>deploy sarFile ${deploy.sarLocation}</echo>
+    
+    <antcall target="deploy" inheritall="false">
+      <param name="serverURL" value="${deploy.serverURL}"/>
+      <param name="user" value="${deploy.user}"/>
+      <param name="password" value="${deploy.password}"/>
+      <param name="overwrite" value="${deploy.overwrite}"/>
+      <param name="forceDefault" value="${deploy.forceDefault}"/>
+      <param name="sarLocation" value="${deploy.sarLocation}"/>
+      <param name="configplan" value="${deploy.configplan}"/>
+    </antcall> 
+  </target>
+  
+  <target name="configEnvironment">
+		<echo>Configure environment ${deploy.target.environment}</echo>
+    
+    <foreach list="${applications}" param="application" target="configApplication" inheritall="true" inheritrefs="false"/>
+  </target>
+
+  <target name="configApplication">
+		<echo>Configure Application ${application}</echo>
+    
+    <property name="app.distribution.dir" value="${distribution.dir}/${application}"/>
+    <property name="app.configplan.dir" value="${configplan.dir}/${application}"/>
+
+    <fileset id="app.distribution.projects" dir="${app.distribution.dir}" includes="*.jar"/>
+    <property name="projects" refid="app.distribution.projects"/>
+
+		<foreach list="${projects}" param="jarProjectName" target="configProject" inheritall="true" inheritrefs="false" delimiter=";"/>    
+  </target>
+
+  <target name="configProject">
+      <echo>Configure project ${jarProjectName}</echo>
+      
+      <property name="regProjectExtractName" value="sca_([^_]*)"/>
+      <propertyregex property="project.name" input="${jarProjectName}" regexp="${regProjectExtractName}" select="\1" casesensitive="false" />
+
+      <property name="configplan.name" value="${project.name}_cfgplan.xml"/>
+      <echo>Configuration Plan is ${configplan.name}</echo>
+    
+      <property name="deploy.configplan"  value="${app.configplan.dir}/${configplan.name}"/>
+      <echo>Configuration Plan location ${deploy.configplan}</echo>
+
+      <propertycopy name="endpoint.soa.searchURL"  from="${deploy.target.environment}.configPlan.reference.endpoint.soa.searchURL"/>
+      <propertycopy name="endpoint.soa.replaceURL" from="${deploy.target.environment}.configPlan.reference.endpoint.soa.replaceURL"/>
+      <propertycopy name="endpoint.osb.searchURL"  from="${deploy.target.environment}.configPlan.reference.endpoint.osb.searchURL"/>
+      <propertycopy name="endpoint.osb.replaceURL" from="${deploy.target.environment}.configPlan.reference.endpoint.osb.replaceURL"/>
+      <propertycopy name="import.replaceString"    from="${deploy.target.environment}.configPlan.import.soa.addSearchReplace"/>
+			<propertycopy name="wsdlschema.replaceString"    from="${deploy.target.environment}.configPlan.wsdlschema.soa.addSearchReplace"/>
+			
+      <replace file="${deploy.configplan}" token="${endpoint.soa.searchURL}" value="${endpoint.soa.replaceURL}"/>
+      <echo>Replaced SOA Endpoint URI (${endpoint.soa.searchURL}) with value: ${endpoint.soa.replaceURL}</echo>      
+
+      <replace file="${deploy.configplan}" token="${endpoint.osb.searchURL}" value="${endpoint.osb.replaceURL}"/>
+      <echo>Replaced OSB Endpoint URI (${endpoint.osb.searchURL}) with value: ${endpoint.osb.replaceURL}</echo>
+			
+      <replaceregexp file="${deploy.configplan}"
+                     match="(&lt;import&gt;)(.*)(&lt;\/import&gt;)"
+                     replace="\1${import.replaceString}\3"
+                     flags="s"
+                     encoding="utf-8"/>
+
+			<echo>Added searchReplace in the import section: ${import.replaceString}</echo>
+                     
+      <replaceregexp file="${deploy.configplan}"
+                     match='(&lt;wsdlAndSchema\b[^>]*&gt;)(.*)(&lt;\/wsdlAndSchema&gt;)'
+                     replace="\1${wsdlschema.replaceString}\3"
+                     flags="s"
+                     encoding="utf-8"/>
+      
+      <echo>Added searchReplace in the wsdlschema section: ${wsdlschema.replaceString}</echo>
+  </target>
+</project>

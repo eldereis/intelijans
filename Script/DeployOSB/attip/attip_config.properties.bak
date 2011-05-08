@@ -1,0 +1,8 @@
+datasource=osbDatasource
+#attip.osb.logProcessor.jmsUrl=t3://172.16.249.38:8003,172.16.249.38:9003
+attip.osb.logProcessor.jmsUrl=t3://localhost:8003
+
+
+attip.logProcessor.jmsUrl=t3://localhost:9004
+attip.logProcessor.threadCount=5
+attip.logProcessor.batchSize=50

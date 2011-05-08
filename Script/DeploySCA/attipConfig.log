@@ -1,0 +1,66 @@
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+configEnvironment:
+     [echo] Configure environment TEST
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+configApplication:
+     [echo] Configure Application ComponentServices/ManageTroubleTicket/ManageTroubleTicket
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+configApplication:
+     [echo] Configure Application BusinessServices/ManageTroubleTicket/ManageTroubleTicket
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+configApplication:
+     [echo] Configure Application ComponentServices/ManageCustomerInteraction
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+configApplication:
+     [echo] Configure Application BusinessServices/ManageCustomerInteraction
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+configApplication:
+     [echo] Configure Application UtilityServices/ReceiveSMSNotification
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+configApplication:
+     [echo] Configure Application UtilityServices/SendSMS
+
+BUILD SUCCESSFUL
+Total time: 2 seconds

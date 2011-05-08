@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:ad="http://www.turktelekom.com.tr/aTTIP/Address/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.turktelekom.com.tr/aTTIP/Address/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+<xs:annotation>
+<xs:documentation>20100715 Address.xsd v.2.4</xs:documentation>
+</xs:annotation>
+<xs:complexType name="PlaceType">
+<xs:sequence>
+<xs:element name="id" type="xs:string"/>
+<xs:element name="startDate" type="xs:dateTime"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="GeographicPlaceType">
+<xs:complexContent>
+<xs:extension base="ad:PlaceType">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="LocalPlaceType">
+<xs:complexContent>
+<xs:extension base="ad:PlaceType">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="GeographicSiteLocal">
+<xs:complexContent>
+<xs:extension base="ad:GeographicPlaceType">
+<xs:sequence>
+<xs:element name="name" type="xs:string"/>
+<xs:element name="code" type="xs:string"/>
+<xs:element name="status" type="xs:string"/>
+<xs:element name="LocalPlace" type="ad:LocalPlaceType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="LocalAddress" type="ad:LocalAddressType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="GeographicLocationType">
+<xs:complexContent>
+<xs:extension base="ad:GeographicPlaceType">
+<xs:sequence>
+<xs:element name="accuracy" type="xs:string"/>
+<xs:element name="code" type="xs:string"/>
+<xs:element name="sourceCode" type="xs:string"/>
+<xs:element name="status" type="xs:string"/>
+<xs:element name="UAVTCode" type="xs:string" minOccurs="0"/>
+<xs:element name="UAVTSourceCode" type="xs:string" minOccurs="0"/>
+<xs:element name="GeographicLocationName" type="ad:GeographicLocationNameType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="GeographicLocationNameType">
+<xs:sequence>
+<xs:element name="nameType" type="xs:string"/>
+<xs:element name="name" type="xs:string"/>
+<xs:element name="startDate" type="xs:dateTime"/>
+<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="LocalAddressType">
+<xs:complexContent>
+<xs:extension base="ad:LocalPlaceType">
+<xs:sequence>
+<xs:element name="type" type="xs:string"/>
+<xs:element name="positionNr" type="xs:string"/>
+<xs:element name="fullAddress" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="CountryType">
+<xs:complexContent>
+<xs:extension base="ad:GeographicLocationType">
+<xs:sequence>
+<xs:element name="name" type="xs:string"/>
+<xs:element name="Iso2Code" type="xs:string"/>
+<xs:element name="Iso3Code" type="xs:string"/>
+<xs:element name="type" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TTCityType">
+<xs:complexContent>
+<xs:extension base="ad:GeographicLocationType">
+<xs:sequence>
+<xs:element name="TTDistrict" type="ad:TTDistrictType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TTDistrictType">
+<xs:complexContent>
+<xs:extension base="ad:GeographicLocationType">
+<xs:sequence>
+<xs:element name="TTCity" type="ad:TTCityType" minOccurs="0"/>
+<xs:element name="TTSubDistrict" type="ad:TTSubDistrictType" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TTSubDistrictType">
+<xs:complexContent>
+<xs:extension base="ad:GeographicLocationType">
+<xs:sequence>
+<xs:element name="TTDistrict" type="ad:TTDistrictType" minOccurs="0"/>
+<xs:element name="TTVillage" type="ad:TTVillageType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="isCenter" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TTVillageType">
+<xs:complexContent>
+<xs:extension base="ad:GeographicLocationType">
+<xs:sequence>
+<xs:element name="TTSubDistrict" type="ad:TTSubDistrictType" minOccurs="0"/>
+<xs:element name="TTNeighborhood" type="ad:TTNeighborhoodType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="isCenter" type="xs:string"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TTNeighborhoodType">
+<xs:complexContent>
+<xs:extension base="ad:GeographicLocationType">
+<xs:sequence>
+<xs:element name="TTVillage" type="ad:TTVillageType" minOccurs="0"/>
+<xs:element name="TTASBC" type="ad:TTASBCType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="sabitTanitimNo" type="xs:string" minOccurs="0"/>
+<xs:element name="authorizedAdminCode" type="xs:string" minOccurs="0"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TTASBCType">
+<xs:complexContent>
+<xs:extension base="ad:GeographicLocationType">
+<xs:sequence>
+<xs:element name="TTNeighborhood" type="ad:TTNeighborhoodType" minOccurs="0"/>
+<xs:element name="TTBuilding" type="ad:TTBuildingType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="sabitTanitimNo" type="xs:string" minOccurs="0"/>
+<xs:element name="developmentStatus" type="xs:string" minOccurs="0"/>
+<xs:element name="type" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TTBuildingType">
+<xs:complexContent>
+<xs:extension base="ad:GeographicLocationType">
+<xs:sequence>
+<xs:element name="TTASBC" type="ad:TTASBCType" minOccurs="0"/>
+<xs:element name="TTApartment" type="ad:TTApartmentType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="gateNr" type="xs:string" minOccurs="0"/>
+<xs:element name="siteName" type="xs:string" minOccurs="0"/>
+<xs:element name="alternativeSiteName" type="xs:string" minOccurs="0"/>
+<xs:element name="oldSiteName" type="xs:string" minOccurs="0"/>
+<xs:element name="postalCode" type="xs:string" minOccurs="0"/>
+<xs:element name="oldBuildingCode" type="xs:string" minOccurs="0"/>
+<xs:element name="characteristic" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TTApartmentType">
+<xs:complexContent>
+<xs:extension base="ad:GeographicLocationType">
+<xs:sequence>
+<xs:element name="TTBuilding" type="ad:TTBuildingType" minOccurs="0"/>
+<xs:element name="doorNr" type="xs:string" minOccurs="0"/>
+<xs:element name="charecteristic" type="xs:string"/>
+<xs:element name="addressNr" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+</xs:schema>

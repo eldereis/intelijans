@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:com="http://www.turktelekom.com.tr/aTTIP/Common/1.0" xmlns:mr="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/FF/FaultManagement/1.0" targetNamespace="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/FF/FaultManagement/1.0" elementFormDefault="qualified">
+  <xsd:import namespace="http://www.turktelekom.com.tr/aTTIP/Common/1.0" schemaLocation="../../../../CommonDataModel/v1/Common.xsd"/>
+  <xsd:complexType name="FaultType">
+    <xsd:sequence>
+      <xsd:element ref="com:Header" minOccurs="1" maxOccurs="1"/>
+      <xsd:element ref="com:Fault" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="OriginalMessage" type="xsd:anyType" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="FaultResponse" type="mr:FaultType"/>
+</xsd:schema>

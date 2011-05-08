@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Faults>
+   <Fault>
+      <severity>WARNING</severity>
+      <loc/>
+      <line/>
+      <col/>
+      <file>ResubmitToOSBRouting.mplan</file>
+      <msg>
+         <![CDATA[Case "ResubmitToOSBJMSQueue.Produce_ResubmitMessage" doesnt have any payload transformation Please make sure source and target message part name are same and of same type. Otherwise, target reference may fail to execute with error message like "Input sourcelike Null" or "Part not found"]]>
+      </msg>
+   </Fault>
+</Faults>

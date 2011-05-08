@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-fragment xmlns:ser="http://www.bea.com/wli/sb/services" xmlns:tran="http://www.bea.com/wli/sb/transports" xmlns:env="http://www.bea.com/wli/config/env" xmlns:http="http://www.bea.com/wli/sb/transports/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:con="http://www.bea.com/wli/sb/typesystem/config" xmlns:jms="http://www.bea.com/wli/sb/transports/jms" xmlns:con1="http://www.bea.com/wli/sb/pipeline/config" xmlns:con2="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con3="http://www.bea.com/wli/sb/stages/config" xmlns:con4="http://www.bea.com/wli/sb/stages/publish/config" xmlns:con5="http://www.bea.com/wli/sb/stages/routing/config">
+  <ser:coreEntry isProxy="true" isEnabled="true" isAutoPublish="false" isTracingEnabled="false">
+    <ser:description>This proxy manages the messages resubmission</ser:description>
+    <ser:binding type="Mixed" xsi:type="con6:MixedBindingType" xmlns:con6="http://www.bea.com/wli/sb/services/bindings/config">
+      <con6:request type="XML">
+        <con:schema ref="OSB_Applications/InfrastructureServices/CFMService/v1/XSD/ATTIP_PGM1_MessageResubmitter" element="ResubmitionRequest"/>
+      </con6:request>
+    </ser:binding>
+    <ser:monitoring isEnabled="false">
+      <ser:aggregationInterval>10</ser:aggregationInterval>
+      <ser:pipelineMonitoringLevel>Pipeline</ser:pipelineMonitoringLevel>
+    </ser:monitoring>
+    <ser:reporting>true</ser:reporting>
+    <ser:logging isEnabled="true">
+      <ser:logLevel>debug</ser:logLevel>
+    </ser:logging>
+    <ser:sla-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:sla-alerting>
+    <ser:pipeline-alerting isEnabled="true">
+      <ser:alertLevel>normal</ser:alertLevel>
+    </ser:pipeline-alerting>
+  </ser:coreEntry>
+  <ser:endpointConfig>
+    <tran:provider-id>jms</tran:provider-id>
+    <tran:inbound>true</tran:inbound>
+    <tran:URI>
+      <env:value>jms://sakarya:9004,dalaman:9004/attip.jms.FMF.cf/attip.jms.FMF.aTTIP_to_FMF_response</env:value>
+    </tran:URI>
+    <tran:inbound-properties/>
+    <tran:all-headers>false</tran:all-headers>
+    <tran:provider-specific>
+      <jms:is-queue>true</jms:is-queue>
+      <jms:is-secure>false</jms:is-secure>
+      <jms:inbound-properties>
+        <jms:response-required>false</jms:response-required>
+        <jms:XA-required>false</jms:XA-required>
+        <jms:synchronous-transactional>false</jms:synchronous-transactional>
+      </jms:inbound-properties>
+      <jms:request-encoding>UTF-8</jms:request-encoding>
+    </tran:provider-specific>
+  </ser:endpointConfig>
+  <ser:router errorHandler="_onErrorHandler-6443635783750820142-423a4862.1295f752b01.-7dbe">
+    <con1:pipeline type="error" name="_onErrorHandler-6443635783750820142-423a4862.1295f752b01.-7dbe">
+      <con1:stage name="ManageError">
+        <con1:context/>
+        <con1:actions>
+          <con2:assign varName="body">
+            <con3:id>_ActionId-6443635783750820142-423a4862.1295f752b01.-7c12</con3:id>
+            <con2:expr>
+              <con3:xqueryText>$originalBody</con3:xqueryText>
+            </con2:expr>
+          </con2:assign>
+          <con4:route>
+            <con3:id>_ActionId-6443635783750820142-423a4862.1295f752b01.-7d19</con3:id>
+            <con4:service ref="OSB_Applications/InfrastructureServices/CFMService/v1/BusinessServices/CfmServiceResubmitt" xsi:type="ref:BusinessServiceRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+            <con4:outboundTransform/>
+          </con4:route>
+        </con1:actions>
+      </con1:stage>
+    </con1:pipeline>
+    <con1:pipeline type="request" name="PipelinePairNode1_request">
+      <con1:stage name="AssignSteps">
+        <con1:context/>
+        <con1:actions>
+          <con2:assign varName="originalBody">
+            <con3:id>_ActionId-6443635783750820142-423a4862.1295f752b01.-7c51</con3:id>
+            <con2:expr>
+              <con3:xqueryText>$body</con3:xqueryText>
+            </con2:expr>
+          </con2:assign>
+          <con2:assign varName="aTTIPOriginalMessage">
+            <con3:id>_ActionId-6443635783750820142-423a4862.1295f752b01.-7c4f</con3:id>
+            <con2:expr>
+              <con3:xqueryText>fn-bea:inlinedXML($body//*:OriginalMessage)</con3:xqueryText>
+            </con2:expr>
+          </con2:assign>
+        </con1:actions>
+      </con1:stage>
+      <con1:stage name="ReplaceStep">
+        <con1:context>
+          <con3:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Schemas/Utilities/CentralizedFaultManagement/MessageResubmitter/1.0" prefix="ns"/>
+          <con3:varNsDecl namespace="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0" prefix="ns1"/>
+        </con1:context>
+        <con1:actions>
+          <con2:ifThenElse>
+            <con3:id>_ActionId-986180712434844714-7cc483bb.12988aeb3ad.-79b2</con3:id>
+            <con2:case>
+              <con2:condition>
+                <con3:xqueryText>$body/*:ResubmitionRequest/*:RoutingInfo/*:BusinessService!=""</con3:xqueryText>
+              </con2:condition>
+              <con2:actions>
+                <con2:assign varName="dynamicRoute">
+                  <con3:id>_ActionId-986180712434844714-7cc483bb.12988aeb3ad.-79b0</con3:id>
+                  <con2:expr>
+                    <con3:xqueryText>fn:data($body/*:ResubmitionRequest/*:RoutingInfo/*:BusinessService)</con3:xqueryText>
+                  </con2:expr>
+                </con2:assign>
+                <con2:assign varName="type">
+                  <con3:id>_ActionId-4012404240897572582--4366c82a.12a186a066a.-77b4</con3:id>
+                  <con2:expr>
+                    <con3:xqueryText>"BS"</con3:xqueryText>
+                  </con2:expr>
+                </con2:assign>
+              </con2:actions>
+            </con2:case>
+            <con2:default>
+              <con2:assign varName="dynamicRoute">
+                <con3:id>_ActionId-986180712434844714-7cc483bb.12988aeb3ad.-795c</con3:id>
+                <con2:expr>
+                  <con3:xqueryText>fn:data($body/*:ResubmitionRequest/*:RoutingInfo/*:ProxyService)</con3:xqueryText>
+                </con2:expr>
+              </con2:assign>
+              <con2:assign varName="type">
+                <con3:id>_ActionId-4012404240897572582--4366c82a.12a186a066a.-777b</con3:id>
+                <con2:expr>
+                  <con3:xqueryText>"PX"</con3:xqueryText>
+                </con2:expr>
+              </con2:assign>
+            </con2:default>
+          </con2:ifThenElse>
+          <con2:assign varName="AttipRequestID">
+            <con3:id>_ActionId-1259465896542892973-4b9d82c0.12b0a34186d.-5350</con3:id>
+            <con2:expr>
+              <con3:xqueryText>fn:data($body/*:ResubmitionRequest/*:RoutingInfo/*:JmsProperties/*:JmsProperty[*:Name="aTTIPRequestID"]/*:Value)</con3:xqueryText>
+            </con2:expr>
+          </con2:assign>
+          <con2:assign varName="soapProperty">
+            <con3:id>_ActionId-6196540341512270913-433c3b8c.12be38c241a.-7c10</con3:id>
+            <con2:expr>
+              <con3:xqueryText>fn:data($body/*:ResubmitionRequest/*:RoutingInfo/*:JmsProperties/*:JmsProperty[*:Name="SOAP"]/*:Value)</con3:xqueryText>
+            </con2:expr>
+          </con2:assign>
+          <con2:assign varName="checkdProperty">
+            <con3:id>_ActionId-6196540341512270913-433c3b8c.12be38c241a.-7c0d</con3:id>
+            <con2:expr>
+              <con3:xqueryText>fn:data($body/*:ResubmitionRequest/*:RoutingInfo/*:JmsProperties/*:JmsProperty[*:Name="checkDuplicate"]/*:Value)</con3:xqueryText>
+            </con2:expr>
+          </con2:assign>
+          <con2:ifThenElse>
+            <con3:id>_ActionId-6196540341512270913-433c3b8c.12be38c241a.-7db8</con3:id>
+            <con2:case>
+              <con2:condition>
+                <con3:xqueryText>$soapProperty="yes"</con3:xqueryText>
+              </con2:condition>
+              <con2:actions>
+                <con2:replace varName="body" contents-only="false">
+                  <con3:id>_ActionId-6196540341512270913-433c3b8c.12be38c241a.-7c9e</con3:id>
+                  <con2:location>
+                    <con3:xpathText>.</con3:xpathText>
+                  </con2:location>
+                  <con2:expr>
+                    <con3:xqueryText>$aTTIPOriginalMessage//*:Body</con3:xqueryText>
+                  </con2:expr>
+                </con2:replace>
+                <con2:insert varName="header">
+                  <con3:id>_ActionId-599571052995940745-4db44499.12cca805460.-7fde</con3:id>
+                  <con2:location>
+                    <con3:xpathText>.</con3:xpathText>
+                  </con2:location>
+                  <con2:where>first-child</con2:where>
+                  <con2:expr>
+                    <con3:xqueryText>$aTTIPOriginalMessage/*:Header/*:Header</con3:xqueryText>
+                  </con2:expr>
+                </con2:insert>
+                <con2:ifThenElse>
+                  <con3:id>_ActionId-599571052995940745-4db44499.12cca805460.-7e4d</con3:id>
+                  <con2:case>
+                    <con2:condition>
+                      <con3:xqueryText>fn:exists($header//*:MsgSpecificProperties)</con3:xqueryText>
+                    </con2:condition>
+                    <con2:actions>
+                      <con2:ifThenElse>
+                        <con3:id>_ActionId-599571052995940745-4db44499.12cca805460.-7cd7</con3:id>
+                        <con2:case>
+                          <con2:condition>
+                            <con3:xqueryText>fn:exists($header//*:MsgSpecificProperties/*:Property[*:name='ProxyName'])</con3:xqueryText>
+                          </con2:condition>
+                          <con2:actions>
+                            <con2:replace varName="header" contents-only="true">
+                              <con3:id>_ActionId-599571052995940745-4db44499.12cca805460.-7c49</con3:id>
+                              <con2:location>
+                                <con3:xpathText>.//*:MsgSpecificProperties/*:Property[*:name='ProxyName']/*:value</con3:xpathText>
+                              </con2:location>
+                              <con2:expr>
+                                <con3:xqueryText>fn:data($dynamicRoute)</con3:xqueryText>
+                              </con2:expr>
+                            </con2:replace>
+                          </con2:actions>
+                        </con2:case>
+                        <con2:default>
+                          <con2:insert varName="header" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config">
+                            <con3:id>_ActionId-599571052995940745-4db44499.12cca805460.-7c81</con3:id>
+                            <con2:location>
+                              <con3:xpathText>.//*:MsgSpecificProperties</con3:xpathText>
+                            </con2:location>
+                            <con2:where>last-child</con2:where>
+                            <con2:expr>
+                              <con3:xqueryText><![CDATA[<ns1:Property xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0">
+	<ns1:name>ProxyName</ns1:name>
+    <ns1:value>{data($dynamicRoute)}</ns1:value>
+</ns1:Property>]]></con3:xqueryText>
+                            </con2:expr>
+                          </con2:insert>
+                        </con2:default>
+                      </con2:ifThenElse>
+                    </con2:actions>
+                  </con2:case>
+                  <con2:default>
+                    <con7:insert varName="header" xmlns:con7="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config">
+                      <con3:id>_ActionId-599571052995940745-4db44499.12cca805460.-7e4b</con3:id>
+                      <con7:location>
+                        <con3:xpathText>.//*:Header/*:userid</con3:xpathText>
+                      </con7:location>
+                      <con7:where>after</con7:where>
+                      <con7:expr>
+                        <con3:xqueryText><![CDATA[<ns1:MsgSpecificProperties xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0">
+	<ns1:Property>
+		<ns1:name>ProxyName</ns1:name>
+    	<ns1:value>{data($dynamicRoute)}</ns1:value>
+	</ns1:Property>
+</ns1:MsgSpecificProperties>]]></con3:xqueryText>
+                      </con7:expr>
+                    </con7:insert>
+                  </con2:default>
+                </con2:ifThenElse>
+              </con2:actions>
+            </con2:case>
+            <con2:default>
+              <con2:replace varName="body" contents-only="true">
+                <con3:id>_ActionId-6196540341512270913-433c3b8c.12be38c241a.-7db6</con3:id>
+                <con2:location>
+                  <con3:xpathText>.</con3:xpathText>
+                </con2:location>
+                <con2:expr>
+                  <con3:xqueryText>$aTTIPOriginalMessage</con3:xqueryText>
+                </con2:expr>
+              </con2:replace>
+              <con2:ifThenElse>
+                <con3:id>_ActionId-599571052995940745-4db44499.12cca805460.-7df3</con3:id>
+                <con2:case>
+                  <con2:condition>
+                    <con3:xqueryText>fn:exists($body//*:Header/*:MsgSpecificProperties)</con3:xqueryText>
+                  </con2:condition>
+                  <con2:actions>
+                    <con2:ifThenElse>
+                      <con3:id>_ActionId-599571052995940745-4db44499.12cca805460.-7b8a</con3:id>
+                      <con2:case>
+                        <con2:condition>
+                          <con3:xqueryText>fn:exists($body//*:Header/*:MsgSpecificProperties/*:Property[*:name='ProxyName'])</con3:xqueryText>
+                        </con2:condition>
+                        <con2:actions>
+                          <con2:replace varName="body" contents-only="true">
+                            <con3:id>_ActionId-599571052995940745-4db44499.12cca805460.-7afc</con3:id>
+                            <con2:location>
+                              <con3:xpathText>.//*:Header/*:MsgSpecificProperties/*:Property[*:name='ProxyName']/*:value</con3:xpathText>
+                            </con2:location>
+                            <con2:expr>
+                              <con3:xqueryText>fn:data($dynamicRoute)</con3:xqueryText>
+                            </con2:expr>
+                          </con2:replace>
+                        </con2:actions>
+                      </con2:case>
+                      <con2:default>
+                        <con2:insert varName="body" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config">
+                          <con3:id>_ActionId-599571052995940745-4db44499.12cca805460.-7b88</con3:id>
+                          <con2:location>
+                            <con3:xpathText>.//*:Header/*:MsgSpecificProperties</con3:xpathText>
+                          </con2:location>
+                          <con2:where>last-child</con2:where>
+                          <con2:expr>
+                            <con3:xqueryText><![CDATA[<ns1:Property xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0">
+	<ns1:name>ProxyName</ns1:name>
+    <ns1:value>{data($dynamicRoute)}</ns1:value>
+</ns1:Property>]]></con3:xqueryText>
+                          </con2:expr>
+                        </con2:insert>
+                      </con2:default>
+                    </con2:ifThenElse>
+                  </con2:actions>
+                </con2:case>
+                <con2:default>
+                  <con7:insert varName="body" xmlns:con7="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con5="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/routing/config" xmlns:con6="http://www.bea.com/wli/sb/stages/publish/config">
+                    <con3:id>_ActionId-599571052995940745-4db44499.12cca805460.-7df1</con3:id>
+                    <con7:location>
+                      <con3:xpathText>.//*:Header/*:userid</con3:xpathText>
+                    </con7:location>
+                    <con7:where>after</con7:where>
+                    <con7:expr>
+                      <con3:xqueryText><![CDATA[<ns1:MsgSpecificProperties xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0">
+	<ns1:Property>
+		<ns1:name>ProxyName</ns1:name>
+    	<ns1:value>{data($dynamicRoute)}</ns1:value>
+	</ns1:Property>
+</ns1:MsgSpecificProperties>]]></con3:xqueryText>
+                    </con7:expr>
+                  </con7:insert>
+                </con2:default>
+              </con2:ifThenElse>
+            </con2:default>
+          </con2:ifThenElse>
+          <con2:ifThenElse>
+            <con3:id>_ActionId-1259465896542892973-4b9d82c0.12b0a34186d.-5418</con3:id>
+            <con2:case>
+              <con2:condition>
+                <con3:xqueryText>$AttipRequestID != ''</con3:xqueryText>
+              </con2:condition>
+              <con2:actions>
+                <con2:assign varName="requestID">
+                  <con3:id>_ActionId-1259465896542892973-4b9d82c0.12b0a34186d.-5352</con3:id>
+                  <con2:expr>
+                    <con3:xqueryText>$AttipRequestID</con3:xqueryText>
+                  </con2:expr>
+                </con2:assign>
+              </con2:actions>
+            </con2:case>
+            <con2:default>
+              <con2:assign varName="requestID">
+                <con3:id>_ActionId-1259465896542892973-4b9d82c0.12b0a34186d.-53f9</con3:id>
+                <con2:expr>
+                  <con3:xqueryText>fn:data($body//*:Header/*:requestID)</con3:xqueryText>
+                </con2:expr>
+              </con2:assign>
+            </con2:default>
+          </con2:ifThenElse>
+          <con2:ifThenElse>
+            <con3:comment>IF Instruction for the ReceiveSms service that dont use common header.</con3:comment>
+            <con3:id>_ActionId-4362548803755137287--6cdfc1ea.12d560e5362.-7e5e</con3:id>
+            <con2:case>
+              <con2:condition>
+                <con3:xqueryText>(fn:contains(data($dynamicRoute),"receiveSMSNotification") or fn:contains(data($dynamicRoute),"propagateSMSNotification")) and (upper-case($type)="PX")</con3:xqueryText>
+              </con2:condition>
+              <con2:actions>
+                <con2:replace varName="body" contents-only="false">
+                  <con3:id>_ActionId-1148868915574310806-34bb1053.12d4f9ece3c.-7ffb</con3:id>
+                  <con2:location>
+                    <con3:xpathText>.</con3:xpathText>
+                  </con2:location>
+                  <con2:expr>
+                    <con3:xqueryText>$aTTIPOriginalMessage</con3:xqueryText>
+                  </con2:expr>
+                </con2:replace>
+                <con4:dynamic-route>
+                  <con3:id>_ActionId-4362548803755137287--6cdfc1ea.12d560e5362.-7db4</con3:id>
+                  <con4:service>
+                    <con3:xqueryText>&lt;ctx:route>
+	&lt;ctx:service isProxy="true">{fn:normalize-space(data($dynamicRoute))}&lt;/ctx:service>
+&lt;/ctx:route></con3:xqueryText>
+                  </con4:service>
+                  <con4:outboundTransform>
+                    <con2:transport-headers copy-all="true">
+                      <con3:id>_ActionId-1148868915574310806-34bb1053.12d4f9ece3c.-7ff8</con3:id>
+                      <con2:header-set>outbound-request</con2:header-set>
+                      <con2:header name="SOAPAction" value="expression">
+                        <con3:xqueryText>"notifyDeliveryReport"</con3:xqueryText>
+                      </con2:header>
+                    </con2:transport-headers>
+                  </con4:outboundTransform>
+                </con4:dynamic-route>
+                <con3:reply isError="false">
+                  <con3:id>_ActionId-4362548803755137287--6cdfc1ea.12d560e5362.-7d7c</con3:id>
+                </con3:reply>
+              </con2:actions>
+            </con2:case>
+            <con2:default/>
+          </con2:ifThenElse>
+          <con2:javaCallout varName="result">
+            <con3:id>_ActionId-7414630197220823413-46a526f.129a22fa952.-7a38</con3:id>
+            <con2:archive ref="OSB_Applications/InfrastructureServices/IdemPotenceService/attip_check_duplicate"/>
+            <con2:className>tr.com.turktelecom.attip.checkDuplicate.AttipIdempotence</con2:className>
+            <con2:method>public static org.apache.xmlbeans.XmlObject UpdateStatusOnResponse(java.lang.String, int)</con2:method>
+            <con2:expr>
+              <con3:xqueryText>$requestID</con3:xqueryText>
+            </con2:expr>
+            <con2:expr>
+              <con3:xqueryText>3</con3:xqueryText>
+            </con2:expr>
+          </con2:javaCallout>
+          <con2:ifThenElse>
+            <con3:id>_ActionId-7414630197220823413-46a526f.129a22fa952.-7a1b</con3:id>
+            <con2:case>
+              <con2:condition>
+                <con3:xqueryText>$result/*:Code="0"</con3:xqueryText>
+              </con2:condition>
+              <con2:actions/>
+            </con2:case>
+            <con2:default>
+              <con2:ifThenElse>
+                <con3:id>_ActionId-4390864429732925347--2da74c0c.12bcf2a9f1e.-7d41</con3:id>
+                <con2:case>
+                  <con2:condition>
+                    <con3:xqueryText>$checkdProperty!="no"</con3:xqueryText>
+                  </con2:condition>
+                  <con2:actions>
+                    <con2:Error>
+                      <con3:id>_ActionId-4390864429732925347--2da74c0c.12bcf2a9f1e.-7d23</con3:id>
+                      <con2:errCode>SOA-Error</con2:errCode>
+                    </con2:Error>
+                  </con2:actions>
+                </con2:case>
+                <con2:default/>
+              </con2:ifThenElse>
+            </con2:default>
+          </con2:ifThenElse>
+        </con1:actions>
+      </con1:stage>
+    </con1:pipeline>
+    <con1:pipeline type="response" name="PipelinePairNode1_response"/>
+    <con1:flow>
+      <con1:pipeline-node name="PipelinePairNode1">
+        <con1:request>PipelinePairNode1_request</con1:request>
+        <con1:response>PipelinePairNode1_response</con1:response>
+      </con1:pipeline-node>
+      <con1:route-node name="DynamicRoute">
+        <con1:context/>
+        <con1:actions>
+          <con2:ifThenElse>
+            <con3:id>_ActionId-4012404240897572582--4366c82a.12a186a066a.-756e</con3:id>
+            <con2:case>
+              <con2:condition>
+                <con3:xqueryText>fn:data($type)='BS'</con3:xqueryText>
+              </con2:condition>
+              <con2:actions>
+                <con5:dynamic-route>
+                  <con3:id>_ActionId-4012404240897572582--4366c82a.12a186a066a.-7534</con3:id>
+                  <con5:service>
+                    <con3:xqueryText>&lt;ctx:route>
+	&lt;ctx:service isProxy="false">{fn:data($dynamicRoute)}&lt;/ctx:service>
+&lt;/ctx:route></con3:xqueryText>
+                  </con5:service>
+                  <con5:outboundTransform>
+                    <con2:ifThenElse>
+                      <con3:id>_ActionId-1333234624956289926-145f4f67.12c7ce983f2.-7fc4</con3:id>
+                      <con2:case>
+                        <con2:condition>
+                          <con3:xqueryText>$header//*:msgName="PartnerCommissioningNotificationRequest"</con3:xqueryText>
+                        </con2:condition>
+                        <con2:actions>
+                          <con2:transport-headers copy-all="true">
+                            <con3:id>_ActionId-1333234624956289926-145f4f67.12c7ce983f2.-7f8c</con3:id>
+                            <con2:header-set>outbound-request</con2:header-set>
+                            <con2:header name="SOAPJMS_contentType" value="expression">
+                              <con3:xqueryText>'text/xml; charset=UTF-8'</con3:xqueryText>
+                            </con2:header>
+                          </con2:transport-headers>
+                        </con2:actions>
+                      </con2:case>
+                      <con2:default/>
+                    </con2:ifThenElse>
+                  </con5:outboundTransform>
+                  <con5:responseTransform/>
+                </con5:dynamic-route>
+              </con2:actions>
+            </con2:case>
+            <con2:default>
+              <con5:route>
+                <con3:id>_ActionId-5902692962645258631--3a5186a7.12cc0284cdf.-7495</con3:id>
+                <con5:service ref="OSB_Applications/InfrastructureServices/CFMService/v1/CfmServiceDynamicProxy" xsi:type="ref:ProxyRef" xmlns:ref="http://www.bea.com/wli/sb/reference"/>
+                <con5:outboundTransform/>
+                <con5:responseTransform/>
+              </con5:route>
+            </con2:default>
+          </con2:ifThenElse>
+        </con1:actions>
+      </con1:route-node>
+    </con1:flow>
+  </ser:router>
+</xml-fragment>

@@ -1,0 +1,66 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="SCAErrorHandlerProcess"
+     targetNamespace="http://www.turktelekom.com.tr/aTTIP/SCAErrorHandler/SCAErrorHandlerProcess"
+     xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0"
+     xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/"
+     xmlns:client="http://www.turktelekom.com.tr/aTTIP/SCAErrorHandler/SCAErrorHandlerProcess"
+     xmlns:pns1="http://www.turktelekom.com.tr/aTTIP/SCAErrorHandler/SCAErrorHandlerProcess/correlationset"
+     xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    >
+    <plnk:partnerLinkType name="SCAErrorHandlerProcess">
+        <plnk:role name="SCAErrorHandlerProcessProvider">
+            <plnk:portType name="client:SCAErrorHandlerProcess"/>
+        </plnk:role>
+        <plnk:role name="SCAErrorHandlerProcessRequester">
+            <plnk:portType name="client:SCAErrorHandlerProcessCallback"/>
+        </plnk:role>
+    </plnk:partnerLinkType>
+    <bpws:propertyAlias propertyName="pns1:CompositeInstanceId" xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Schemas/Utilities/CentralizedFaultManagement/MessageResubmitter/1.0"
+         element="ns1:ResubmitionRequest" query="/ns1:ResubmitionRequest/ns1:CompositeInstanceID"/>
+    <bpws:propertyAlias propertyName="pns1:CompositeInstanceId" messageType="client:SCAErrorHandlerProcessRequestMessage"
+         part="payload" query="/ns13:ResubmitionRequest/ns13:CompositeInstanceID" xmlns:ns13="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0"/>
+    <bpws:propertyAlias propertyName="pns1:CompositeInstanceId" xmlns:ns13="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0"
+         element="ns13:ResubmitionRequest" query="/ns13:ResubmitionRequest/ns13:CompositeInstanceID"/>
+    <wsdl:import namespace="http://www.turktelekom.com.tr/aTTIP/SCAErrorHandler/SCAErrorHandlerProcess/correlationset"
+         location="SCAErrorHandlerProcess_Properties.wsdl"/>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0"
+             xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:client="http://www.turktelekom.com.tr/aTTIP/SCAErrorHandler/SCAErrorHandlerProcess"
+             xmlns:pns1="http://www.turktelekom.com.tr/aTTIP/SCAErrorHandler/SCAErrorHandlerProcess/correlationset"
+             xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            <import namespace="http://www.turktelekom.com.tr/aTTIP/SCAErrorHandler/SCAErrorHandlerProcess"
+                 schemaLocation="xsd/SCAErrorHandlerProcess.xsd"/>
+        </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0"
+             xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/" xmlns:client="http://www.turktelekom.com.tr/aTTIP/SCAErrorHandler/SCAErrorHandlerProcess"
+             xmlns:pns1="http://www.turktelekom.com.tr/aTTIP/SCAErrorHandler/SCAErrorHandlerProcess/correlationset"
+             xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            <import namespace="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0"
+                 schemaLocation="oramds:/apps/InfrastructureServices/CFM/Shared/1.0/MessageResubmitter.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="SCAErrorHandlerProcessRequestMessage">
+        <wsdl:part name="payload" element="ns1:ResubmitionRequest"/>
+    </wsdl:message>
+    <wsdl:message name="SCAErrorHandlerProcessResponseMessage">
+        <wsdl:part name="payload" element="client:processResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="SCAErrorHandlerProcess">
+        <wsdl:operation name="init">
+            <wsdl:input message="client:SCAErrorHandlerProcessRequestMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="error">
+            <wsdl:input message="client:SCAErrorHandlerProcessRequestMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="complete">
+            <wsdl:input message="client:SCAErrorHandlerProcessRequestMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:portType name="SCAErrorHandlerProcessCallback">
+        <wsdl:operation name="errorResponse">
+            <wsdl:input message="client:SCAErrorHandlerProcessRequestMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>

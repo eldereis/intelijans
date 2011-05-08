@@ -1,0 +1,24 @@
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+buildMDS:
+     [echo] build MDS SAR file 
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+buildMDSApplication:
+     [echo] build MDS SAR file for application aTTIP
+     [echo] remove and create local MDS temp dir
+   [delete] Deleting directory C:\SRC\Utilities\Script\DeploySCA\TEST\tmp\aTTIP
+    [mkdir] Created dir: C:\SRC\Utilities\Script\DeploySCA\TEST\tmp\aTTIP
+     [echo] create zip from file MDS store
+      [zip] Building zip: C:\SRC\Utilities\Script\DeploySCA\TEST\tmp\aTTIP\aTTIP_mds.jar
+     [echo] create zip with MDS jar
+      [zip] Building zip: C:\SRC\Utilities\Script\DeploySCA\TEST\tmp\aTTIP\aTTIP_mds.zip
+     [echo] Copy MDS to Distributions dir
+     [copy] Copying 1 file to C:\SRC\Utilities\Script\DeploySCA\TEST\Distributions
+
+BUILD SUCCESSFUL
+Total time: 5 seconds

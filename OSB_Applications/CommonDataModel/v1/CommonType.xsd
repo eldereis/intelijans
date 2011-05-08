@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xs:schema xmlns:ct="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+<xs:complexType name="HeaderType">
+<xs:annotation>
+<xs:documentation>20100719 CommonType.xsd v.2.5</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="activityName" type="ct:String_255"/>
+<xs:element name="msgName" type="ct:String_255"/>
+<xs:element name="msgType" type="ct:MsgTypeHeaderType"/>
+<xs:element name="senderURI" type="ct:String_255"/>
+<xs:element name="destinationURI" type="ct:String_255"/>
+<xs:element name="originatorURI" type="ct:String_255" minOccurs="0"/>
+<xs:element name="replyToURI" type="ct:String_255" minOccurs="0"/>
+<xs:element name="failureToURI" type="ct:String_255" minOccurs="0"/>
+<xs:element name="activityStatus" type="ct:ActivityStatusHeaderType" minOccurs="0"/>
+<xs:element name="security" type="ct:String_255" minOccurs="0"/>
+<xs:element name="securityType" type="ct:String_255" minOccurs="0"/>
+<xs:element name="priority" type="ct:PriorityHeaderType" minOccurs="0"/>
+<xs:element name="userid" type="ct:String_255"/>
+<xs:element name="MsgSpecificProperties" minOccurs="0">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="Property" maxOccurs="unbounded">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="name" type="ct:String_255"/>
+<xs:element name="value" type="ct:String_255"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="timestamp" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="comunicationPattern" type="ct:CommunicationPatternHeaderType"/>
+<xs:element name="comunicationStyle" type="ct:CommunicationStyleHeaderType"/>
+<xs:element name="service" type="ct:String_255"/>
+<xs:element name="version" type="ct:String_255" minOccurs="0"/>
+<xs:element name="correlationID" type="ct:String_255" minOccurs="0"/>
+<xs:element name="businessID" type="ct:String_255"/>
+<xs:element name="conversationID" type="ct:String_255"/>
+<xs:element name="requestID" type="ct:String_255"/>
+<xs:element name="messageID" type="ct:String_255"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="FaultType">
+<xs:annotation>
+<xs:documentation>Message structure for non-SOAP communication</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="type">
+<xs:simpleType>
+<xs:annotation>
+<xs:documentation>Two different types for fault</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="1"/>
+<xs:enumeration value="2"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:element>
+<xs:element name="code" type="xs:string"/>
+<xs:element name="description" type="ct:String_255"/>
+<xs:element name="sourceSystem" type="ct:String_255"/>
+<xs:element name="extErrorCode" type="ct:String_255" minOccurs="0"/>
+<xs:element name="detail" type="ct:String_255" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="AcknowledgmentType">
+<xs:sequence>
+<xs:element name="Header" type="ct:HeaderType"/>
+<xs:element name="Fault" type="ct:FaultType" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="MsgTypeHeaderType">
+<xs:annotation>
+<xs:documentation>The type of the message that is being exchanged as part of
+                     an activity</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="RESPONSE"/>
+<xs:enumeration value="ERROR"/>
+<xs:enumeration value="NOTIFICATION"/>
+<xs:enumeration value="REQUEST"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="ActivityStatusHeaderType">
+<xs:annotation>
+<xs:documentation>Specifies the high-level response status for an activity</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="SUCCESS"/>
+<xs:enumeration value="FAILURE"/>
+<xs:enumeration value="WARNING"/>
+<xs:enumeration value="REQUEST"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="PriorityHeaderType">
+<xs:annotation>
+<xs:documentation>Indicates message-handling priority for asynchronous
+                     messages. It must be in the range 0-9 (lowest-highest).
+                     Default: 4</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:int">
+<xs:enumeration value="0"/>
+<xs:enumeration value="1"/>
+<xs:enumeration value="2"/>
+<xs:enumeration value="3"/>
+<xs:enumeration value="4"/>
+<xs:enumeration value="5"/>
+<xs:enumeration value="6"/>
+<xs:enumeration value="7"/>
+<xs:enumeration value="8"/>
+<xs:enumeration value="9"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="CommunicationPatternHeaderType">
+<xs:annotation>
+<xs:documentation>Communication Pattern - SimpleResponse,
+                     MultipleBatchResponse, BulkResponse, Notification</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="SimpleResponse"/>
+<xs:enumeration value="MultipleResponse"/>
+<xs:enumeration value="Notification"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="CommunicationStyleHeaderType">
+<xs:annotation>
+<xs:documentation>Communication Style: RPC, MSG</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="RPC"/>
+<xs:enumeration value="MSG"/>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="String_255">
+<xs:restriction base="xs:string">
+<xs:maxLength value="255"/>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>

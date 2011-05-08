@@ -1,0 +1,40 @@
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+deployMDS:
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+deployMDSApplication:
+     [echo] Deploy MDS for application aTTIP
+     [echo] deploy on http://pgm1int:8001 with user weblogic
+     [echo] deploy sarFile C:\SRC\Utilities\Script\DeploySCA/TEST/Distributions/aTTIP_mds.zip
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] Running scatest using oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+deploy:
+    [input] skipping input as property serverURL has already been set.
+    [input] skipping input as property sarLocation has already been set.
+[deployComposite] setting user/password..., user=weblogic
+[deployComposite] Processing sar=C:\SRC\Utilities\Script\DeploySCA/TEST/Distributions/aTTIP_mds.zip
+[deployComposite] created temp dir =C:\Users\ADMINI~1\AppData\Local\Temp\2\deploy_client_1301913786274
+[deployComposite] Adding shared data file - C:\Users\ADMINI~1\AppData\Local\Temp\2\deploy_client_1301913786274\aTTIP_mds.jar
+[deployComposite] Creating HTTP connection to host:pgm1int, port:8001
+[deployComposite] Received HTTP response from the server, response code=200
+[deployComposite] clean up temp dir: C:\Users\ADMINI~1\AppData\Local\Temp\2\deploy_client_1301913786274
+[deployComposite] ---->Deploying composite success.
+
+BUILD SUCCESSFUL
+Total time: 45 seconds

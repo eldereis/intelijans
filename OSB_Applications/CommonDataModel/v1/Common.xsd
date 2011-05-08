@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:ct="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:c="http://www.turktelekom.com.tr/aTTIP/Common/1.0" targetNamespace="http://www.turktelekom.com.tr/aTTIP/Common/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+<xs:annotation>
+<xs:documentation>20100713 Common.xsd v.2.3</xs:documentation>
+</xs:annotation>
+<xs:import namespace="http://www.turktelekom.com.tr/aTTIP/Common/CommonType/1.0" schemaLocation="CommonType.xsd"/>
+<xs:element name="Header" type="ct:HeaderType"/>
+<xs:element name="Fault" type="ct:FaultType"/>
+<xs:element name="Acknowledgment" type="ct:AcknowledgmentType"/>
+</xs:schema>

@@ -1,0 +1,11 @@
+<project default="import">
+<property name="domain.import.script" value="import.py"/>
+<property name="import.config.file" value="import.properties"/>
+<target name="import">
+<echo message="Importing configuration"/>
+<echo message="importscript: ${domain.import.script}"/>
+<java classname="weblogic.WLST" fork="true">
+<arg line="${domain.import.script} ${import.config.file}"/>
+</java>
+</target>
+</project>

@@ -1,0 +1,123 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed Jul 07 19:11:47 CEST 2010
+  Author:  vincenzo.giannone
+  Purpose: Synchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="GenerateFaultProcess"
+               targetNamespace="http://www.turktelekom.com.tr/aTTIP/Schemas/Utilities/CentralizedFaultManagement/GenerateFault/1.0"
+               xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+               xmlns:client="http://www.turktelekom.com.tr/aTTIP/Schemas/Utilities/CentralizedFaultManagement/GenerateFault/1.0"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+               xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0"
+         xmlns:ns2="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/Fault/1.0"
+         xmlns:mhdr="http://www.oracle.com/XSL/Transform/java/oracle.tip.mediator.service.common.functions.MediatorExtnFunction"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:med="http://schemas.oracle.com/mediator/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:socket="http://www.oracle.com/XSL/Transform/java/oracle.tip.adapter.socket.ProtocolTranslator">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      PARTNERLINKS                                                      
+      List of services participating in this BPEL process               
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  --> 
+  <partnerLinks>
+    <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+    <partnerLink name="generatefaultprocess_client" partnerLinkType="client:GenerateFaultProcess" myRole="GenerateFaultProcessProvider"/>
+  </partnerLinks>
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      VARIABLES                                                        
+      List of messages and XML documents used within this BPEL process 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <variables>
+    <!-- Reference to the message passed as input during initiation -->
+    <variable name="inputVariable" messageType="client:GenerateFaultProcessRequestMessage"/>
+
+    <!-- Reference to the message that will be returned to the requester-->
+    <variable name="outputVariable" messageType="client:GenerateFaultProcessResponseMessage"/>
+     <variable name="FaultVariable"
+              messageType="client:GenerateFaultProcessFaultMessage"/>
+    <variable name="inputFault"
+              messageType="client:GenerateFaultProcessFaultMessage"/>
+  </variables>
+  <faultHandlers/>
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <sequence name="main">
+
+    <!-- Receive input from requestor. (Note: This maps to operation defined in GenerateFaultProcess.wsdl) -->
+    <receive name="receiveInput" partnerLink="generatefaultprocess_client" portType="client:GenerateFaultProcess" operation="process" variable="inputVariable" createInstance="yes"/>
+
+    <!-- Generate reply to synchronous request -->
+    <switch name="Switch_1">
+      <case condition="bpws:getVariableData('inputVariable','payload','/ns1:ResubmitionRequest/ns1:OriginalFault') != ''">
+        <bpelx:annotation>
+          <bpelx:general>
+            <bpelx:property name="userLabel">Exists OriginalFault</bpelx:property>
+          </bpelx:general>
+        </bpelx:annotation>
+        <sequence name="Sequence_ExistsFault">
+          <assign name="AssignInputFault">
+            <copy>
+              <from expression="oraext:parseXML(bpws:getVariableData('inputVariable','payload','/ns1:ResubmitionRequest/ns1:OriginalFault'))"/>
+              <to variable="inputFault" part="fault" query="/ns2:Fault"/>
+            </copy>
+          </assign>
+          <assign name="AssignOutputFault">
+            <copy>
+              <from variable="inputFault" part="fault" query="/ns2:Fault"/>
+              <to variable="FaultVariable" part="fault" query="/ns2:Fault"/>
+            </copy>
+          </assign>
+        </sequence>
+      </case>
+      <otherwise>
+        <sequence name="Sequence_Otherwise">
+          <assign name="AssignDefaultFault">
+            <copy>
+              <from expression='"2"'/>
+              <to variable="FaultVariable" part="fault"
+                  query="/ns2:Fault/ns2:Typology"/>
+            </copy>
+            <copy>
+              <from expression='"ATTIP"'/>
+              <to variable="FaultVariable" part="fault"
+                  query="/ns2:Fault/ns2:SourceSystem"/>
+            </copy>
+          </assign>
+        </sequence>
+      </otherwise>
+    </switch>
+    <reply name="replyOutput" partnerLink="generatefaultprocess_client" portType="client:GenerateFaultProcess" operation="process"
+           variable="FaultVariable"
+           faultName="client:fault"/>
+  </sequence>
+</process>

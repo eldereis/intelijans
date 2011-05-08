@@ -1,0 +1,291 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed Jun 30 16:14:33 CEST 2010
+  Author:  vincenzo.giannone
+  Purpose: Asynchronous BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="SCAErrorHandlerProcess"
+         targetNamespace="http://www.turktelekom.com.tr/aTTIP/SCAErrorHandler/SCAErrorHandlerProcess"
+         xmlns="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:client="http://www.turktelekom.com.tr/aTTIP/SCAErrorHandler/SCAErrorHandlerProcess"
+         xmlns:ora="http://schemas.oracle.com/xpath/extension"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+         xmlns:ns2="http://www.turktelekom.com.tr/aTTIP/SCAErrorHandler/SCAErrorHandlerProcess/correlationset"
+         xmlns:ns3="http://xmlns.oracle.com/CFM_jws/SCAErrorHandler/GenerateFaultProcess"
+         xmlns:ns4="http://www.turktelekom.com.tr/aTTIP/SCAErrorHandler/GenerateFaultProcess"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+         xmlns:xp20="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.Xpath20"
+         xmlns:bpel2="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:oraext="http://www.oracle.com/XSL/Transform/java/oracle.tip.pc.services.functions.ExtFunc"
+         xmlns:dvm="http://www.oracle.com/XSL/Transform/java/oracle.tip.dvm.LookupValue"
+         xmlns:xdk="http://schemas.oracle.com/bpel/extension/xpath/function/xdk"
+         xmlns:xref="http://www.oracle.com/XSL/Transform/java/oracle.tip.xref.xpath.XRefXPathFunctions"
+         xmlns:ldap="http://schemas.oracle.com/xpath/extension/ldap"
+         xmlns:mhdr="http://www.oracle.com/XSL/Transform/java/oracle.tip.mediator.service.common.functions.MediatorExtnFunction"
+         xmlns:hwf="http://xmlns.oracle.com/bpel/workflow/xpath"
+         xmlns:med="http://schemas.oracle.com/mediator/xpath"
+         xmlns:ids="http://xmlns.oracle.com/bpel/services/IdentityService/xpath"
+         xmlns:bpm="http://xmlns.oracle.com/bpmn20/extensions"
+         xmlns:socket="http://www.oracle.com/XSL/Transform/java/oracle.tip.adapter.socket.ProtocolTranslator"
+         xmlns:ns5="http://xmlns.oracle.com/CFM/SCAErrorHandler/ResubmitToOSBRoutingService"
+         xmlns:ns6="http://xmlns.oracle.com/pcbpel/adapter/jms/CFM/SCAErrorHandler/ResubmitToOSBJMSOut"
+         xmlns:ns7="http://xmlns.oracle.com/pcbpel/adapter/jms/CFM/SCAErrorHandler/ResubmitToOSBJMS"
+         xmlns:ns8="http://xmlns.oracle.com/pcbpel/adapter/jms/CFM/SCAErrorHandler/ResubmitToOSBJMSQueue"
+         xmlns:ns9="http://xmlns.oracle.com/pcbpel/adapter/file/CFM/SCAErrorHandler/WriteMsgToFile"
+         
+         xmlns:ns12="http://www.turktelekom.com.tr/aTTIP/events/edl/EventSCAErrorHandlerCallback"
+         xmlns:ns10="http://www.turktelekom.com.tr/aTTIP/events/edl/EventErrorHandlerCallback"
+         xmlns:ns11="http://www.turktelekom.com.tr/aTTIP/Schemas/Utilities/CentralizedFaultManagement/GenerateFault/1.0"
+         xmlns:ns13="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0"
+         xmlns:ns14="http://www.turktelekom.com.tr/aTTIP/Schemas/Utilities/CentralizedFaultManagement/MessageResubmitter/1.0"
+         xmlns:ns15="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/Fault/1.0"
+         xmlns:ns1="http://www.turktelekom.com.tr/aTTIP/events/edl/EventErrorHandlerCallback/v1"
+         xmlns:bpmn="http://schemas.oracle.com/bpm/xpath">
+
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        PARTNERLINKS                                                      
+        List of services participating in this BPEL process               
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    --> 
+    <partnerLinks>
+        <!-- 
+      The 'client' role represents the requester of this service. It is 
+      used for callback. The location and correlation information associated
+      with the client role are automatically set using WS-Addressing.
+    -->
+        <partnerLink name="scaerrorhandlerprocess_client" partnerLinkType="client:SCAErrorHandlerProcess" myRole="SCAErrorHandlerProcessProvider" partnerRole="SCAErrorHandlerProcessRequester"/>
+        <partnerLink name="ResubmitToOSBRouting.ResubmitToOSBRouting"
+                     partnerRole="Produce_ResubmitMessage_role"
+                     partnerLinkType="ns8:Produce_ResubmitMessage_plt"/>
+        <partnerLink name="GenerateFault"
+                     partnerRole="GenerateFaultProcessProvider"
+                     partnerLinkType="ns11:GenerateFaultProcess"/>
+    </partnerLinks>
+
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        VARIABLES                                                        
+        List of messages and XML documents used within this BPEL process 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+    <variables>
+        <!-- Reference to the message passed as input during initiation -->
+        <variable name="inputVariable" messageType="client:SCAErrorHandlerProcessRequestMessage"/>
+
+        <!-- Reference to the message that will be sent back to the requester during callback -->
+        <variable name="Receive_Complete"
+                  messageType="client:SCAErrorHandlerProcessRequestMessage"/>
+        <variable name="Receive_error"
+                  messageType="client:SCAErrorHandlerProcessRequestMessage"/>
+        <variable name="resubmit" type="xsd:boolean"/>
+        <variable name="Invoke_ResubmitToOSB"
+                  messageType="ns8:Produce_ResubmitMessage_msg"/>
+        <variable name="outputVariable"
+                  messageType="client:SCAErrorHandlerProcessResponseMessage"/>
+        <variable name="errorResponse" element="ns13:ResubmitionRequest"/>
+    </variables>
+    <correlationSets>
+        <correlationSet name="CorrelationSet_CompositeIstance"
+                        properties="ns2:CompositeInstanceId"/>
+    </correlationSets>
+    <!-- 
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       ORCHESTRATION LOGIC                                               
+       Set of activities coordinating the flow of messages across the    
+       services integrated within this business process                  
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    -->
+    <sequence name="main">
+        <!-- Receive input from requestor. (Note: This maps to operation defined in SCAErrorHandlerProcess.wsdl) -->
+        <receive name="receiveInput" partnerLink="scaerrorhandlerprocess_client" portType="client:SCAErrorHandlerProcess" operation="init" variable="inputVariable" createInstance="yes">
+            <correlations>
+                <correlation initiate="yes"
+                             set="CorrelationSet_CompositeIstance"/>
+            </correlations>
+        </receive>
+
+        <!-- 
+          Asynchronous callback to the requester. (Note: the callback location and correlation id is transparently handled using WS-addressing.)
+        -->
+        <assign name="Assign_resubmitFalse">
+            <copy>
+                <from expression="false()"/>
+                <to variable="resubmit"/>
+            </copy>
+        </assign>
+        <while name="While_Continue"
+               condition="bpws:getVariableData('resubmit')=false()">
+            <bpelx:annotation>
+                <bpelx:general>
+                    <bpelx:property name="userLabel">While_Continue</bpelx:property>
+                </bpelx:general>
+            </bpelx:annotation>
+            <sequence>
+                <pick name="Pick_error_or_complete" createInstance="no">
+                    <onMessage variable="Receive_Complete"
+                               partnerLink="scaerrorhandlerprocess_client"
+                               portType="client:SCAErrorHandlerProcess"
+                               operation="complete">
+                        <correlations>
+                            <correlation initiate="no"
+                                         set="CorrelationSet_CompositeIstance"/>
+                        </correlations>
+                        <sequence>
+                            <assign name="Assign_Completed">
+                                <copy>
+                                    <from expression="'completed'"/>
+                                    <to variable="outputVariable" part="payload"
+                                        query="/client:processResponse/client:result"/>
+                                </copy>
+                            </assign>
+                            <assign name="Assign_resubmitTrue">
+                                                <copy>
+                                                    <from expression="true()"/>
+                                                    <to variable="resubmit"/>
+                                                </copy>
+                                            </assign>
+                        </sequence>
+                    </onMessage>
+                    <onMessage partnerLink="scaerrorhandlerprocess_client"
+                               portType="client:SCAErrorHandlerProcess"
+                               operation="error" variable="Receive_error">
+                        <bpelx:annotation>
+                            <bpelx:pattern></bpelx:pattern>
+                        </bpelx:annotation>
+                        <correlations>
+                            <correlation initiate="no"
+                                         set="CorrelationSet_CompositeIstance"/>
+                        </correlations>
+                        <sequence>
+                            <scope name="Scope_1">
+                                <bpelx:annotation>
+                                    <bpelx:general>
+                                        <bpelx:property name="userLabel">Scope_InteractionWithFMF</bpelx:property>
+                                    </bpelx:general>
+                                </bpelx:annotation>
+                                <variables>
+                                    <variable name="FaultVar"
+                                              messageType="ns11:GenerateFaultProcessFaultMessage"/>
+                                    <variable name="Invoke_GenerateFault_process_InputVariable"
+                                              messageType="ns11:GenerateFaultProcessRequestMessage"/>
+                                    <variable name="Invoke_GenerateFault_process_OutputVariable"
+                                              messageType="ns11:GenerateFaultProcessResponseMessage"/>
+                                </variables>
+                                <faultHandlers>
+                                    <catch faultName="ns11:fault"
+                                           faultVariable="FaultVar">
+                                        <sequence>
+                                            <assign name="Assign_resubmitTrue">
+                                                <copy>
+                                                    <from expression="true()"/>
+                                                    <to variable="resubmit"/>
+                                                </copy>
+                                            </assign>
+                                            <assign name="Transform_inputVariable">
+                                                <bpelx:annotation>
+                                                    <bpelx:pattern>transformation</bpelx:pattern>
+                                                </bpelx:annotation>
+                                                <copy>
+                                                    <from expression="ora:processXSLT('xsl/Transformation_inputVariable.xsl',bpws:getVariableData('inputVariable','payload'))"/>
+                                                    <to variable="inputVariable"
+                                                        part="payload"/>
+                                                </copy>
+                                            </assign>
+                                        </sequence>
+                                    </catch>
+                                </faultHandlers>
+                                <sequence>
+                                    <assign name="Assign_error">
+                                        <copy>
+                                            <from variable="Receive_error"
+                                                  part="payload"
+                                                  query="/ns13:ResubmitionRequest"/>
+                                            <to variable="Invoke_GenerateFault_process_InputVariable"
+                                                part="payload"
+                                                query="/ns13:ResubmitionRequest"/>
+                                        </copy>
+                                    </assign>
+                                    <invoke name="Invoke_GenerateFault"
+                                            inputVariable="Invoke_GenerateFault_process_InputVariable"
+                                            outputVariable="Invoke_GenerateFault_process_OutputVariable"
+                                            partnerLink="GenerateFault"
+                                            portType="ns11:GenerateFaultProcess"
+                                            operation="process"/>
+                                    <assign name="Assign_Continue">
+                                        <copy>
+                                            <from variable="inputVariable"
+                                                  part="payload"
+                                                  query="/ns13:ResubmitionRequest/ns13:CompositeInstanceID"/>
+                                            <to variable="errorResponse"
+                                                query="/ns13:ResubmitionRequest/ns13:CompositeInstanceID"/>
+                                        </copy>
+                                        <copy>
+                                            <from expression="'continue'"/>
+                                            <to variable="errorResponse"
+                                                query="/ns13:ResubmitionRequest/ns13:OriginalMessage"/>
+                                        </copy>
+                                        <copy>
+                                            <from variable="Invoke_GenerateFault_process_InputVariable"
+                                                  part="payload"
+                                                  query="/ns13:ResubmitionRequest/ns13:ServiceName"/>
+                                            <to variable="errorResponse"
+                                                query="/ns13:ResubmitionRequest/ns13:ServiceName"/>
+                                        </copy>
+                                    </assign>
+                                    <invoke name="continueCallback"
+                                            inputVariable="errorResponse"
+                                            bpelx:eventName="ns1:errorCallback"/>
+                                </sequence>
+                            </scope>
+                        </sequence>
+                    </onMessage>
+                </pick>
+            </sequence>
+        </while>
+        <switch name="Switch_1">
+            <case condition="bpws:getVariableData('resubmit') = true()  and bpws:getVariableData('outputVariable','payload','/client:processResponse/client:result') != 'completed'">
+                <bpelx:annotation>
+                    <bpelx:general>
+                        <bpelx:property name="userLabel">resubmitTRUE</bpelx:property>
+                    </bpelx:general>
+                </bpelx:annotation>
+                <sequence>
+                    <assign name="Assign_ResubmitMSg">
+                        <copy>
+                            <from variable="inputVariable" part="payload"
+                                  query="/ns13:ResubmitionRequest"/>
+                            <to variable="Invoke_ResubmitToOSB" part="body"
+                                query="/ns13:ResubmitionRequest"/>
+                        </copy>
+                    </assign>
+                    <invoke name="Invoke_ResubmitToOSB"
+                            inputVariable="Invoke_ResubmitToOSB"
+                            portType="ns8:Produce_ResubmitMessage_ptt"
+                            partnerLink="ResubmitToOSBRouting.ResubmitToOSBRouting"
+                            operation="Produce_ResubmitMessage"/>
+                    <assign name="Assign_Rethrow">
+                        <copy>
+                            <from expression="'rethrow'"/>
+                            <to variable="errorResponse"
+                                query="/ns13:ResubmitionRequest/ns13:OriginalMessage"/>
+                        </copy>
+                        <copy>
+                            <from variable="inputVariable" part="payload"
+                                  query="/ns13:ResubmitionRequest/ns13:CompositeInstanceID"/>
+                            <to variable="errorResponse"
+                                query="/ns13:ResubmitionRequest/ns13:CompositeInstanceID"/>
+                        </copy>
+                    </assign>
+                    <invoke name="rethrowCallback" inputVariable="errorResponse"
+                            bpelx:eventName="ns1:errorCallback"/>
+                </sequence>
+            </case>
+        </switch>
+    </sequence>
+</process>

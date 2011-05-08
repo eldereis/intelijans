@@ -1,0 +1,399 @@
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+buildAll:
+     [echo] Clean temporary build folder C:\SRC\Utilities\Script\DeploySCA/TEST/tmp
+   [delete] Deleting directory C:\SRC\Utilities\Script\DeploySCA\TEST\tmp
+    [mkdir] Created dir: C:\SRC\Utilities\Script\DeploySCA\TEST\tmp
+     [echo] Clean Distribution directory
+   [delete] Deleting directory C:\SRC\Utilities\Script\DeploySCA\TEST\Distributions
+    [mkdir] Created dir: C:\SRC\Utilities\Script\DeploySCA\TEST\Distributions
+     [echo] Clean Configuration Plans directory
+   [delete] Deleting directory C:\SRC\Utilities\Script\DeploySCA\TEST\ConfigurationPlans
+    [mkdir] Created dir: C:\SRC\Utilities\Script\DeploySCA\TEST\ConfigurationPlans
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+buildApplication:
+     [echo] build application BusinessServices/ManageCustomer/ManageCustomer
+    [mkdir] Created dir: C:\SRC\Utilities\Script\DeploySCA\TEST\Distributions\BusinessServices\ManageCustomer\ManageCustomer
+    [mkdir] Created dir: C:\SRC\Utilities\Script\DeploySCA\TEST\ConfigurationPlans\BusinessServices\ManageCustomer\ManageCustomer
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+buildProject:
+     [echo] build project PropagateCustomerFromSiebelInbound for environment TEST
+     [echo] Create tmp dir C:\SRC\Utilities\Script\DeploySCA/TEST/tmp/PropagateCustomerFromSiebelInbound
+    [mkdir] Created dir: C:\SRC\Utilities\Script\DeploySCA\TEST\tmp\PropagateCustomerFromSiebelInbound
+     [echo] building compositeName PropagateCustomerFromSiebelInbound
+     [echo] build compositeDir C:\SRC\Utilities\Script\DeploySCA/../../../SCA_Applications/BusinessServices/ManageCustomer/ManageCustomer
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+Trying to override old definition of task scac
+Trying to override old definition of task attachplan
+Trying to override old definition of task extractplan
+Trying to override old definition of task generateplan
+Trying to override old definition of task validateplan
+
+clean:
+     [echo] deleting C:\SRC\Utilities\Script\DeploySCA/../../../SCA_Applications/BusinessServices/ManageCustomer/ManageCustomer/PropagateCustomerFromSiebelInbound/deploy/sca_PropagateCustomerFromSiebelInbound_rev1.0.0.4.jar
+   [delete] Deleting: C:\SRC\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\PropagateCustomerFromSiebelInbound\deploy\sca_PropagateCustomerFromSiebelInbound_rev1.0.0.4.jar
+
+init:
+
+scac-validate:
+     [echo] Running scac-validate in C:\SRC\Utilities\Script\DeploySCA/../../../SCA_Applications/BusinessServices/ManageCustomer/ManageCustomer/PropagateCustomerFromSiebelInbound/composite.xml
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+scac:
+     [scac] Validating composite : 'C:\SRC\Utilities\Script\DeploySCA/../../../SCA_Applications/BusinessServices/ManageCustomer/ManageCustomer/PropagateCustomerFromSiebelInbound/composite.xml'
+     [scac] INFO: Validating ..... C:\SRC\Utilities\Script\DeploySCA/../../../SCA_Applications/BusinessServices/ManageCustomer/ManageCustomer/PropagateCustomerFromSiebelInbound/composite.xml
+     [scac] INFO: Start Schema Validation Check.....
+     [scac] INFO: Pass
+     [scac] INFO: Loading Composite......
+     [scac] INFO: Pass
+     [scac] INFO: Loading WSDLs......
+     [scac] INFO: Pass
+     [scac] INFO: Check Composite Services......
+     [scac] INFO: 	Checking for interface defn [ PropagateCustomerFromSiebel ]to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: Check Composite Services (must exist in wires)......
+     [scac] INFO: Pass
+     [scac] INFO: Check Composite References......
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for bindings to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for bindings to be available in imported WSDLs.....
+     [scac] INFO: Loading wsModel.getLocation() http://ttsvint1:8001/soa-infra/services/default/ManageCustomer/PropagateCustomerRequest?WSDL
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for bindings to be available in imported WSDLs.....
+     [scac] INFO: Loading wsModel.getLocation() http://ttsvint1:8001/soa-infra/services/default/SCAErrorHandler/scaerrorhandlerprocess?WSDL
+     [scac] INFO: 	Pass
+     [scac] INFO: Pass
+     [scac] INFO: Checking components.....
+     [scac] INFO: 		Checking Component Services.....
+     [scac] INFO: 	Checking for interface defn [ ;default; ]to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for interface defn [ PropagateCustomerFromSiebelMediator ]to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 		Pass
+     [scac] INFO: 		Checking Component [PropagateCustomerFromSiebelMediator] References.....
+     [scac] INFO: 	Checking for reference [ PropagateCustomerFromSiebelMediator/ManageCustomerPropagateCustomerRequest ] in wires.....
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for reference [ PropagateCustomerFromSiebelMediator/PropagateCustomerFromSiebelInboundResponse ] in wires.....
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for reference [ PropagateCustomerFromSiebelMediator/SCAErrorHandler ] in wires.....
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 		Pass
+     [scac] INFO: 	Checking Component Name:PropagateCustomerFromSiebelMediator	Implementation Type:=implementation.mediator
+     [scac] INFO: Mediator validating "PropagateCustomerFromSiebelMediator.mplan" file
+     [scac] INFO: Schema validation begin for PropagateCustomerFromSiebelMediator.mplan with mediator.xsd
+     [scac] INFO: Pass
+     [scac] INFO: Pass
+     [scac] INFO: Check Composite Wires......
+     [scac] INFO: 	Checking Source = PropagateCustomerFromSiebelMediator:PropagateCustomerFromSiebelMediator/ManageCustomerPropagateCustomerRequest
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checing Target= ManageCustomerPropagateCustomerRequest:null
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking Source = PropagateCustomerFromSiebelMediator:PropagateCustomerFromSiebelMediator/SCAErrorHandler
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checing Target= SCAErrorHandler:null
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking Source = PropagateCustomerFromSiebelMediator:PropagateCustomerFromSiebelMediator/PropagateCustomerFromSiebelInboundResponse
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checing Target= PropagateCustomerFromSiebelInboundResponse:null
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking Source = PropagateCustomerFromSiebel:PropagateCustomerFromSiebel
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checing Target= PropagateCustomerFromSiebelMediator:PropagateCustomerFromSiebelMediator
+     [scac] INFO: 	Pass
+     [scac] INFO: Pass
+     [scac] INFO: Check Fault Policy Files ......
+     [scac] INFO: Fault Policy Validtor:Validating file fault-policies.xml
+     [scac] INFO: Schema validation begin for fault-policies.xml with fault-policies.xsd
+     [scac] WARNING: in fault-policies.xml(28,50):  Schema validation failed for fault-policies.xml<Line 28, Column 50>: XML-24534: (Error) Element 'invokeWS' not expected.
+     [scac] WARNING: in fault-policies.xml(30,16):  Schema validation failed for fault-policies.xml<Line 30, Column 16>: XML-24521: (Error) Element not completed: 'Action'
+     [scac] INFO: Check TestValidator ......
+     [scac] INFO: No test suites available
+     [scac] INFO: Pass
+
+package:
+    [input] skipping input as property compositeDir has already been set.
+    [input] skipping input as property compositeName has already been set.
+    [input] skipping input as property revision has already been set.
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+compile-source:
+    [mkdir] Created dir: C:\SRC\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\PropagateCustomerFromSiebelInbound\dist
+     [copy] Copying 24 files to C:\SRC\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\PropagateCustomerFromSiebelInbound\dist
+     [copy] Warning: C:\SRC\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\src not found.
+      [jar] Building jar: C:\SRC\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\PropagateCustomerFromSiebelInbound\deploy\sca_PropagateCustomerFromSiebelInbound_rev1.0.0.4.jar
+   [delete] Deleting directory C:\SRC\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\PropagateCustomerFromSiebelInbound\dist
+     [echo] built compositeName PropagateCustomerFromSiebelInbound to SAR file C:\SRC\Utilities\Script\DeploySCA/../../../SCA_Applications/BusinessServices/ManageCustomer/ManageCustomer/PropagateCustomerFromSiebelInbound/deploy/sca_PropagateCustomerFromSiebelInbound_rev1.0.0.4.jar
+     [copy] Copying 1 file to C:\SRC\Utilities\Script\DeploySCA\TEST\Distributions\BusinessServices\ManageCustomer\ManageCustomer
+     [echo] SAR file sca_PropagateCustomerFromSiebelInbound_rev1.0.0.4.jar copied to dir C:\SRC\Utilities\Script\DeploySCA/TEST/Distributions/BusinessServices/ManageCustomer/ManageCustomer
+     [echo] Generating Configuration Plan for composite PropagateCustomerFromSiebelInbound
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+generateConfigPlan:
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+Trying to override old definition of task scac
+Trying to override old definition of task attachplan
+Trying to override old definition of task extractplan
+Trying to override old definition of task generateplan
+Trying to override old definition of task validateplan
+
+generateplan:
+    [input] skipping input as property scac.input has already been set.
+    [input] skipping input as property scac.plan has already been set.
+[generateplan] Loading Composite file C:\SRC\Utilities\Script\DeploySCA\..\..\..\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\PropagateCustomerFromSiebelInbound\composite.xml
+[generateplan] Composite loaded
+[generateplan] Done generation of soa config plan.
+[generateplan] Write soa config plan to file C:\SRC\Utilities\Script\DeploySCA/TEST/ConfigurationPlans/BusinessServices/ManageCustomer/ManageCustomer/PropagateCustomerFromSiebelInbound_cfgplan.xml
+[generateplan] Generate plan successful
+     [echo] Configuration Plan PropagateCustomerFromSiebelInbound_cfgplan.xml generated into dir C:\SRC\Utilities\Script\DeploySCA/TEST/ConfigurationPlans/BusinessServices/ManageCustomer/ManageCustomer
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+buildProject:
+     [echo] build project ManageCustomer for environment TEST
+     [echo] Create tmp dir C:\SRC\Utilities\Script\DeploySCA/TEST/tmp/ManageCustomer
+    [mkdir] Created dir: C:\SRC\Utilities\Script\DeploySCA\TEST\tmp\ManageCustomer
+     [echo] building compositeName ManageCustomer
+     [echo] build compositeDir C:\SRC\Utilities\Script\DeploySCA/../../../SCA_Applications/BusinessServices/ManageCustomer/ManageCustomer
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+Trying to override old definition of task scac
+Trying to override old definition of task attachplan
+Trying to override old definition of task extractplan
+Trying to override old definition of task generateplan
+Trying to override old definition of task validateplan
+
+clean:
+     [echo] deleting C:\SRC\Utilities\Script\DeploySCA/../../../SCA_Applications/BusinessServices/ManageCustomer/ManageCustomer/ManageCustomer/deploy/sca_ManageCustomer_rev1.0.0.8.jar
+   [delete] Deleting: C:\SRC\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\ManageCustomer\deploy\sca_ManageCustomer_rev1.0.0.8.jar
+
+init:
+
+scac-validate:
+     [echo] Running scac-validate in C:\SRC\Utilities\Script\DeploySCA/../../../SCA_Applications/BusinessServices/ManageCustomer/ManageCustomer/ManageCustomer/composite.xml
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+scac:
+     [scac] Validating composite : 'C:\SRC\Utilities\Script\DeploySCA/../../../SCA_Applications/BusinessServices/ManageCustomer/ManageCustomer/ManageCustomer/composite.xml'
+     [scac] INFO: Validating ..... C:\SRC\Utilities\Script\DeploySCA/../../../SCA_Applications/BusinessServices/ManageCustomer/ManageCustomer/ManageCustomer/composite.xml
+     [scac] INFO: Start Schema Validation Check.....
+     [scac] INFO: Pass
+     [scac] INFO: Loading Composite......
+     [scac] INFO: Pass
+     [scac] INFO: Loading WSDLs......
+     [scac] INFO: Pass
+     [scac] INFO: Check Composite Services......
+     [scac] INFO: 	Checking for interface defn [ PropagateCustomerRequest ]to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: Check Composite Services (must exist in wires)......
+     [scac] INFO: Pass
+     [scac] INFO: Check Composite References......
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for bindings to be available in imported WSDLs.....
+     [scac] INFO: Loading wsModel.getLocation() http://ttsvint1:8001/soa-infra/services/default/GenerateFault/generatefaultprocess_client_ep?WSDL
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for bindings to be available in imported WSDLs.....
+     [scac] INFO: Loading wsModel.getLocation() http://ttsvint1:8001/soa-infra/services/default/PropagateCustomerToTTVPNBillingSystemOutbound/PropagateCustomerToTTVPNBillingSystemMediator_ep?WSDL
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for bindings to be available in imported WSDLs.....
+     [scac] INFO: Loading wsModel.getLocation() http://ttsvint1:8001/soa-infra/services/default/PropagateCustomerToTMSOutbound/PropagateCustomerToTMSMediator_ep?WSDL
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for bindings to be available in imported WSDLs.....
+     [scac] INFO: Loading wsModel.getLocation() http://ttsvint1:8001/soa-infra/services/default/SCAErrorHandler/scaerrorhandlerprocess?WSDL
+     [scac] INFO: 	Pass
+     [scac] INFO: Pass
+     [scac] INFO: Checking components.....
+     [scac] INFO: 		Checking Component Services.....
+     [scac] INFO: 	Checking for interface defn [ ;default; ]to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for interface defn [ ManageCustomerToPropagateCustomerToTMSoutbound ]to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 		Pass
+     [scac] INFO: 		Checking Component [ManageCustomerToPropagateCustomerToTMSoutbound] References.....
+     [scac] INFO: 	Checking for reference [ ManageCustomerToPropagateCustomerToTMSoutbound/PropagateCustomerToTMSOutbound ] in wires.....
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 		Pass
+     [scac] INFO: 		Checking Component Services.....
+     [scac] INFO: 	Checking for interface defn [ ;default; ]to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for interface defn [ ManageCustomerMediator ]to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 		Pass
+     [scac] INFO: 		Checking Component [ManageCustomerMediator] References.....
+     [scac] INFO: 	Checking for reference [ ManageCustomerMediator/ManageCustomerProcess.managecustomerprocess_client ] in wires.....
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 		Pass
+     [scac] INFO: 		Checking Component Services.....
+     [scac] INFO: 	Checking for interface defn [ ;default; ]to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for interface defn [ managecustomerprocess_client ]to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 		Pass
+     [scac] INFO: 		Checking Component [ManageCustomerProcess] References.....
+     [scac] INFO: 	Checking for reference [ ManageCustomerProcess/SCAErrorHandler ] in wires.....
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for reference [ ManageCustomerProcess/GenerateFault ] in wires.....
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for reference [ ManageCustomerProcess/ManageCustomerToPropagateCustomerToTMSoutbound.ManageCustomerToPropagateCustomerToTMSoutbound ] in wires.....
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for reference [ ManageCustomerProcess/ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound.ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound ] in wires.....
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 		Pass
+     [scac] INFO: 		Checking Component Services.....
+     [scac] INFO: 	Checking for interface defn [ ;default; ]to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking for interface defn [ ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound ]to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 		Pass
+     [scac] INFO: 		Checking Component [ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound] References.....
+     [scac] INFO: 	Checking for reference [ ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound/PropagateCustomerToTTVPNBillingSystemOutbound ] in wires.....
+     [scac] INFO: 	Checking for interface defn to be available in imported WSDLs.....
+     [scac] INFO: 	Pass
+     [scac] INFO: 		Pass
+     [scac] INFO: 	Checking Component Name:ManageCustomerToPropagateCustomerToTMSoutbound	Implementation Type:=implementation.mediator
+     [scac] INFO: Mediator validating "ManageCustomerToPropagateCustomerToTMSoutbound.mplan" file
+     [scac] INFO: Schema validation begin for ManageCustomerToPropagateCustomerToTMSoutbound.mplan with mediator.xsd
+     [scac] INFO: Pass
+     [scac] WARNING: in ManageCustomerToPropagateCustomerToTMSoutbound.mplan: Case "PropagateCustomerToTMSOutbound.execute" doesnt have any payload transformation Please make sure source and target message part name are same and of same type. Otherwise, target reference may fail to execute with error message like "Input sourcelike Null" or "Part not found"
+     [scac] INFO: 	Checking Component Name:ManageCustomerMediator	Implementation Type:=implementation.mediator
+     [scac] INFO: Mediator validating "ManageCustomerMediator.mplan" file
+     [scac] INFO: Schema validation begin for ManageCustomerMediator.mplan with mediator.xsd
+     [scac] INFO: Pass
+     [scac] INFO: 	Checking Component Name:ManageCustomerProcess	Implementation Type:=implementation.bpel
+     [scac] INFO: 	Checking Component Name:ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound	Implementation Type:=implementation.mediator
+     [scac] INFO: Mediator validating "ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound.mplan" file
+     [scac] INFO: Schema validation begin for ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound.mplan with mediator.xsd
+     [scac] INFO: Pass
+     [scac] WARNING: in ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound.mplan: Case "PropagateCustomerToTTVPNBillingSystemOutbound.execute_2" doesnt have any payload transformation Please make sure source and target message part name are same and of same type. Otherwise, target reference may fail to execute with error message like "Input sourcelike Null" or "Part not found"
+     [scac] INFO: Pass
+     [scac] INFO: Check Composite Wires......
+     [scac] INFO: 	Checking Source = ManageCustomerProcess:ManageCustomerProcess/ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound.ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checing Target= ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound:ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking Source = ManageCustomerToPropagateCustomerToTMSoutbound:ManageCustomerToPropagateCustomerToTMSoutbound/PropagateCustomerToTMSOutbound
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checing Target= PropagateCustomerToTMSOutbound:null
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking Source = ManageCustomerMediator:ManageCustomerMediator/ManageCustomerProcess.managecustomerprocess_client
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checing Target= ManageCustomerProcess:managecustomerprocess_client
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking Source = ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound:ManageCustomerToPropagateCustomerToTTVPNBillingSystemOutbound/PropagateCustomerToTTVPNBillingSystemOutbound
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checing Target= PropagateCustomerToTTVPNBillingSystemOutbound:null
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking Source = ManageCustomerProcess:ManageCustomerProcess/GenerateFault
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checing Target= GenerateFault:null
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking Source = PropagateCustomerRequest:PropagateCustomerRequest
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checing Target= ManageCustomerMediator:ManageCustomerMediator
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking Source = ManageCustomerProcess:ManageCustomerProcess/SCAErrorHandler
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checing Target= SCAErrorHandler:null
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checking Source = ManageCustomerProcess:ManageCustomerProcess/ManageCustomerToPropagateCustomerToTMSoutbound.ManageCustomerToPropagateCustomerToTMSoutbound
+     [scac] INFO: 	Pass
+     [scac] INFO: 	Checing Target= ManageCustomerToPropagateCustomerToTMSoutbound:ManageCustomerToPropagateCustomerToTMSoutbound
+     [scac] INFO: 	Pass
+     [scac] INFO: Pass
+     [scac] INFO: Check Fault Policy Files ......
+     [scac] INFO: Fault Policy Validtor:Validating file fault-policies.xml
+     [scac] INFO: Schema validation begin for fault-policies.xml with fault-policies.xsd
+     [scac] INFO: Pass
+     [scac] INFO: Schema validation begin for fault-bindings.xml with fault-bindings.xsd
+     [scac] INFO: Pass
+     [scac] INFO: Check TestValidator ......
+     [scac] INFO: No test suites available
+     [scac] INFO: Pass
+
+package:
+    [input] skipping input as property compositeDir has already been set.
+    [input] skipping input as property compositeName has already been set.
+    [input] skipping input as property revision has already been set.
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+compile-source:
+    [mkdir] Created dir: C:\SRC\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\ManageCustomer\dist
+     [copy] Copying 35 files to C:\SRC\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\ManageCustomer\dist
+     [copy] Warning: C:\SRC\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\src not found.
+      [jar] Building jar: C:\SRC\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\ManageCustomer\deploy\sca_ManageCustomer_rev1.0.0.8.jar
+   [delete] Deleting directory C:\SRC\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\ManageCustomer\dist
+     [echo] built compositeName ManageCustomer to SAR file C:\SRC\Utilities\Script\DeploySCA/../../../SCA_Applications/BusinessServices/ManageCustomer/ManageCustomer/ManageCustomer/deploy/sca_ManageCustomer_rev1.0.0.8.jar
+     [copy] Copying 1 file to C:\SRC\Utilities\Script\DeploySCA\TEST\Distributions\BusinessServices\ManageCustomer\ManageCustomer
+     [echo] SAR file sca_ManageCustomer_rev1.0.0.8.jar copied to dir C:\SRC\Utilities\Script\DeploySCA/TEST/Distributions/BusinessServices/ManageCustomer/ManageCustomer
+     [echo] Generating Configuration Plan for composite ManageCustomer
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+
+generateConfigPlan:
+     [echo] basedir C:\Oracle\Middleware\JDev_11gR1\jdeveloper\bin
+     [echo] current folder C:\SRC\Utilities\Script\DeploySCA
+     [echo] oracle.home = C:/Oracle/Middleware/JDev_11gR1/jdeveloper
+Trying to override old definition of task scac
+Trying to override old definition of task attachplan
+Trying to override old definition of task extractplan
+Trying to override old definition of task generateplan
+Trying to override old definition of task validateplan
+
+generateplan:
+    [input] skipping input as property scac.input has already been set.
+    [input] skipping input as property scac.plan has already been set.
+[generateplan] Loading Composite file C:\SRC\Utilities\Script\DeploySCA\..\..\..\SCA_Applications\BusinessServices\ManageCustomer\ManageCustomer\ManageCustomer\composite.xml
+[generateplan] Composite loaded
+[generateplan] Done generation of soa config plan.
+[generateplan] Write soa config plan to file C:\SRC\Utilities\Script\DeploySCA/TEST/ConfigurationPlans/BusinessServices/ManageCustomer/ManageCustomer/ManageCustomer_cfgplan.xml
+[generateplan] Generate plan successful
+     [echo] Configuration Plan ManageCustomer_cfgplan.xml generated into dir C:\SRC\Utilities\Script\DeploySCA/TEST/ConfigurationPlans/BusinessServices/ManageCustomer/ManageCustomer
+
+BUILD SUCCESSFUL
+Total time: 25 seconds

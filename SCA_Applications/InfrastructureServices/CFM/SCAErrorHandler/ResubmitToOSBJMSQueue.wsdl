@@ -1,0 +1,29 @@
+<?binding.jca ResubmitToOSBJMSQueue_jms.jca?>
+<wsdl:definitions name="ResubmitToOSBJMSQueue"
+                  targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/jms/CFM/SCAErrorHandler/ResubmitToOSBJMSQueue"
+                  xmlns:tns="http://xmlns.oracle.com/pcbpel/adapter/jms/CFM/SCAErrorHandler/ResubmitToOSBJMSQueue"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:imp1="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0"
+                  xmlns:plt="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+    <plt:partnerLinkType name="Produce_ResubmitMessage_plt">
+        <plt:role name="Produce_ResubmitMessage_role">
+            <plt:portType name="tns:Produce_ResubmitMessage_ptt"/>
+        </plt:role>
+    </plt:partnerLinkType>
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema">
+            <import namespace="http://www.turktelekom.com.tr/aTTIP/Schemas/InfrastructureServices/CFM/MessageResubmitter/1.0"
+                    schemaLocation="oramds:/apps/InfrastructureServices/CFM/Shared/1.0/MessageResubmitter.xsd"/>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="Produce_ResubmitMessage_msg">
+        <wsdl:part name="body" element="imp1:ResubmitionRequest"/>
+    </wsdl:message>
+    <wsdl:portType name="Produce_ResubmitMessage_ptt">
+        <wsdl:operation name="Produce_ResubmitMessage">
+            <wsdl:input message="tns:Produce_ResubmitMessage_msg"/>
+        </wsdl:operation>
+    </wsdl:portType>
+</wsdl:definitions>
+
+

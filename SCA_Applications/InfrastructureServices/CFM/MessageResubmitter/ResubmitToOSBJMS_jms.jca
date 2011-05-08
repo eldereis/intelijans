@@ -1,0 +1,13 @@
+<adapter-config name="ResubmitToOSBJMS" adapter="Jms Adapter" wsdlLocation="ResubmitToOSBJMS.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory location="eis/wls/JMSHubSAF" UIConnectionName="INDVTT" UIJmsProvider="WLSJMS" adapterRef=""/>
+  <endpoint-interaction portType="Produce_ResubmitMessage_ptt" operation="Produce_ResubmitMessage">
+    <interaction-spec className="oracle.tip.adapter.jms.outbound.JmsProduceInteractionSpec">
+      <property name="DestinationName" value="JmsHubSAFImportedDestinationsattip.jms.FMF.aTTIP_to_FMF_response"/>
+      <property name="DeliveryMode" value="Persistent"/>
+      <property name="TimeToLive" value="0"/>
+      <property name="PayloadType" value="TextMessage"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>
